@@ -1,0 +1,17 @@
+services:
+  a56d2ayu_0: &id001
+    command: sleep 365d
+    cpu_shares: 512
+    cpuset: 0,1
+    image: ubuntu:14.04
+    mem_limit: 512m
+    network_mode: none
+    privileged: true
+  c56d2aio_0: *id001
+  router:
+    command: sleep 365d
+    image: ubuntu:14.04
+    network_mode: none
+    privileged: true
+  s56d2art_0: *id001
+version: '2'

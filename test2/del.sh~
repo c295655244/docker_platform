@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+sudo docker-compose stop ubuntu
+
+sudo docker-compose rm -f
+
+sudo sudo ovs-vsctl del-br br-int1
+
+sudo sudo ovs-vsctl del-br br-int2
+
+sudo sudo ovs-vsctl del-br br-int3
