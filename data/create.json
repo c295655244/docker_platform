@@ -1,6 +1,6 @@
 {
-    "status": "",
-    "msg": "",
+    "topo_id":"21asd56wad1",
+    "operate":"create",
     "data": {
         "network_topo": {
             "network_core_list": [
@@ -33,8 +33,6 @@
                     "image": "ubuntu:14.04",
                     "host_type": [
                         {
-                            
-                            
                             "image": "ubuntu:14.04",
                             "type":"docker",
                             "config": {
@@ -54,8 +52,6 @@
                     "image": "ubuntu:14.04",
                     "host_type": [
                         {
-                            
-                            
                             "image": "ubuntu:14.04",
                             "type":"docker",
                             "config": {

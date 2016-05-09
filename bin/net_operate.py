@@ -281,23 +281,5 @@ class NetOperate():
 		return link_list,network_core_list
 
 
-
-if __name__ == '__main__':
-	demo=NetOperate()
-	data=ReadTopoData()
-	conf=ReadDockConf()
-	docker_operate=DockerOperate()
-
-	data["data"]["network_topo"]["network_core_list"]=docker_operate.DockerCreate(conf,data["data"]["network_topo"]["network_core_list"],
-		data["data"]["user_info"]["user_id"])
-
-	demo.NetConfig(data["data"]["network_topo"]["link_list"],
-		data["data"]["network_topo"]["network_core_list"],
-		conf,data["data"]["user_info"]["user_id"])
-
-
-
-	# x=demo.CreateEdge(data["data"]["network_topo"]["link_list"])
-	# print demo.dijkstra(x,0,2)
 	
 

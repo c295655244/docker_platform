@@ -87,16 +87,20 @@ class DockerOperate():
 
 	compose_cmd="sudo  docker-compose -f "+file_path+"  scale  "
 
+	#存储网络核心的种类以及对应数量
 	network_core_dict={}
+
+
+	#添加docker主机创建命令
 	for network_core in network_core_list:
 
-		#统计网络核心数量
+		#按种类统计网络核心数量，例如router=3
 		if not network_core_dict.has_key(network_core["type"]):
 			network_core_dict[network_core["type"]]=1
 		else:
 			network_core_dict[network_core["type"]]+=1
 
-		#统计各docker集群
+		#统计各docker集群数量
 		for cluster in network_core["host_type"]:
 			if cluster["type"]=="docker":
 				cmd_tmp=cluster["id"]+"="+str(cluster["host_num"])+"   "
@@ -115,19 +119,26 @@ class DockerOperate():
 
 
 
-  def DockerDel(data):
-	pass
+  def DockerDel(self,config,user_id):
+  	  #创建complie-file
+	file_path=config["host"]["compose_file_path"]+"user/"+str(user_id)+"/docker-compose.yaml"
 
+
+	compose_cmd_pre="sudo  docker-compose -f "+file_path
+
+	compose_cmd_stop=compose_cmd_pre+"  stop"
+
+	compose_cmd_rm=compose_cmd_pre+"  rm  -f"
+
+	if debug =="false":
+		os.system(compose_cmd_stop)
+		os.system(compose_cmd_rm)
+
+
+	print compose_cmd_stop
+	print compose_cmd_rm
 
   def DataParse(data):
 	pass
 
 
-
-if __name__ == '__main__':
-	demo=DockerOperate()
-	data=ReadTopoData()
-	conf=ReadDockConf()
-
-	demo.DockerCreate(conf,data["data"]["network_topo"]["network_core_list"],
-		data["data"]["user_info"]["user_id"])
