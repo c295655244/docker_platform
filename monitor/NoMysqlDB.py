@@ -6,7 +6,6 @@ import httplib,urllib
 import json
 from collections import OrderedDict
 import pprint
-
 import time
 
 class Docker(object):

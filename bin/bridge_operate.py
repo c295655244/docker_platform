@@ -23,13 +23,14 @@ class BridgeOperate():
 
 		#创建路由间网桥
 		for link_relation in link_list:
-		  bridge_name="br_router_"+str(link_relation["link"][0])+"_"+str(link_relation["link"][1])
-		  self.BridgeDel(bridge_name)
+			bridge_name="br_router_"+str(link_relation["link"][0])+"_"+str(link_relation["link"][1])
+			self.BridgeDel(bridge_name)
 
 		#创建主机间网桥
 		for switch_host in network_core_list:
-		  bridge_name="br_"+switch_host["id"]
-		  self.BridgeDel(bridge_name)
+			if switch_host["host_num"]>0:
+				bridge_name="br_"+switch_host["id"]
+				self.BridgeDel(bridge_name)
 
 
 	def OvsCreate(self,link_list,network_core_list):
