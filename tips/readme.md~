@@ -13,4 +13,7 @@ git push -u origin +master
 
 之后只需
 
-
+git add --all
+git commit -m "first commit"
+git remote add origin https://github.com/c295655244/docker_platform.git
+git push -u origin +master

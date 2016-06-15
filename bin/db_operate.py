@@ -8,11 +8,11 @@ class DbOperate():
 
 	def __init__(self,config):
 
-		self.client = MongoClient(config["db"]["db_host"], 27017)
-		self.database=config["db"]["db_database"]
+		self.client = MongoClient(config["db_mongo"]["db_host"], 27017)
+		self.database=config["db_mongo"]["db_database"]
 
 		#用户认证需要依托一个存在的库，如admin
-		self.client.admin.authenticate(config["db"]["db_user"], config["db"]["db_pass"])
+		self.client.admin.authenticate(config["db_mongo"]["db_user"], config["db"]["db_pass"])
 
 
 	'''

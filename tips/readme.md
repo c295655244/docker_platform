@@ -15,5 +15,4 @@ git push -u origin +master
 
 git add --all
 git commit -m "first commit"
-git remote add origin https://github.com/c295655244/docker_platform.git
 git push -u origin +master
