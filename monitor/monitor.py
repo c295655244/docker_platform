@@ -1,12 +1,45 @@
 #! /usr/bin/env python
 #-*-coding:utf-8-*-
 import sys
+import json
+import time
+import traceback
+import httplib,urllib
 import subprocess 
 import datetime
 
 
 
 class Monitor(object):
+
+	def __init__(self):
+		super(Monitor, self).__init__()
+		self.conn=httplib.HTTPConnection('0.0.0.0:2375')
+
+	#获取docker列表
+	def GetDockerList(self):
+		try:
+			self.conn.request("GET", "/containers/json?all=1")
+			r1 = self.conn.getresponse()
+		except Exception,e:
+				print Exception
+		raw = r1.read()
+		data=json.loads(raw)
+		list_data=[]
+		#print data
+		for item in data:
+			dict_data={}
+			ltime=time.localtime(item["Created"])
+			dict_data["created_time"]=time.strftime("%Y-%m-%d %H:%M:%S", ltime)
+			dict_data["docker_id"]=item["Id"][0:12]
+			dict_data["docker_name"]=item["Names"][0].replace("/","")
+			dict_data["image"]=item["Image"]
+			dict_data["command"]=item["Command"]
+			dict_data["status"]=item["Status"]
+			list_data.append(dict_data)
+		print list_data
+		return  list_data
+
 
 	#去除多余空格		
 	def DelSerialSpace(self,str_data):
@@ -96,4 +129,4 @@ class Monitor(object):
 
 if __name__ == '__main__':
 	demo=Monitor()
-	demo.DockerMonitor()
+	demo.GetDockerList()

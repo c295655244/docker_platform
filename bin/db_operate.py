@@ -1,10 +1,11 @@
 #coding=utf-8
 import sys,os
+import MySQLdb
 from read_data import *
 from pymongo import MongoClient
 
 
-class DbOperate():
+class MongoOperate():
 
 	def __init__(self,config):
 
@@ -12,7 +13,7 @@ class DbOperate():
 		self.database=config["db_mongo"]["db_database"]
 
 		#用户认证需要依托一个存在的库，如admin
-		self.client.admin.authenticate(config["db_mongo"]["db_user"], config["db"]["db_pass"])
+		self.client.admin.authenticate(config["db_mongo"]["db_user"], config["db_mongo"]["db_passwd"])
 
 
 	'''
@@ -61,8 +62,57 @@ class DbOperate():
 		data.delete_many(condition)
 
 
+class MysqlOperate():
+
+	def __init__(self,config):
+
+		self.client=MySQLdb.connect(host=config["db_mysql"]["db_host"],user=config["db_mysql"]["db_user"],
+			passwd=config["db_mysql"]["db_passwd"],db=config["db_mysql"]["db_database"],charset="utf8")
+		self.cursor = self.client.cursor()
+
+
+
+	'''
+	功能：stats表相关操作
+	'''
+	#检测该stats表中host条目是否存在
+	def check_host_exist_stats(self,host_id,name):
+		sql="select * from stats where id='%s' and name='%s' " %(host_id,name)
+		self.cursor.execute(sql)
+		results = self.cursor.fetchall()
+		if results==[]:
+			print host_id,name,"不存在!"
+
+
+	#查询host
+	#condition决定查找类型
+	#condition=0，查找全部
+	#condition=1，按host_id查找
+	#condition=2，按router_id模糊查找
+	def find_host_stats(self,condition=False,router_id="",host_id):
+		if condition:
+			sql="select * from stats "
+		else:
+			sql="select * from stats where id like '%lon%'"
+		self.cursor.execute(sql)
+		results = self.cursor.fetchall()
+		data_dict={}
+		for item in results:
+			data_dict[item[0]]=item		
+		return data_dict
+
+
+	def save_host_id_stats(self,data_list):
+		host_dict=find_all_host_stats()
+		for item in data_list:
+			if item["docker_id"] not in host_dict.keys():
+				sql="INSERT INTO stats(id,name)"
+
+
+
+
+
 if __name__ == '__main__':
 	config=ReadDockConf()
 	data=ReadTopoData("create")
-	demo=DbOperate(config)
-	demo.save_dic(data,"cluster")
+	demo=MysqlOperate(config)
