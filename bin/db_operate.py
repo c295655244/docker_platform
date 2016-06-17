@@ -1,5 +1,6 @@
 #coding=utf-8
 import sys,os
+import traceback
 import MySQLdb
 from read_data import *
 from pymongo import MongoClient
@@ -62,10 +63,11 @@ class MongoOperate():
 		data.delete_many(condition)
 
 
+
+
 class MysqlOperate():
 
 	def __init__(self,config):
-
 		self.client=MySQLdb.connect(host=config["db_mysql"]["db_host"],user=config["db_mysql"]["db_user"],
 			passwd=config["db_mysql"]["db_passwd"],db=config["db_mysql"]["db_database"],charset="utf8")
 		self.cursor = self.client.cursor()
@@ -89,11 +91,15 @@ class MysqlOperate():
 	#condition=0，查找全部
 	#condition=1，按host_id查找
 	#condition=2，按router_id模糊查找
-	def find_host_stats(self,condition=False,router_id="",host_id):
-		if condition:
+	def find_host_stats(self,condition=0,router_id="",host_id=""):
+		if condition==0:
 			sql="select * from stats "
+		elif condition==1:
+			router_id="%"+router_id+"%"
+			sql="select * from stats where id like '%s'" % router_id
 		else:
-			sql="select * from stats where id like '%lon%'"
+			sql="select * from stats where id = '%s' " % host_id
+
 		self.cursor.execute(sql)
 		results = self.cursor.fetchall()
 		data_dict={}
@@ -102,13 +108,45 @@ class MysqlOperate():
 		return data_dict
 
 
+
+
+	#添加新的id与name
 	def save_host_id_stats(self,data_list):
-		host_dict=find_all_host_stats()
-		for item in data_list:
-			if item["docker_id"] not in host_dict.keys():
-				sql="INSERT INTO stats(id,name)"
+		host_dict=self.find_host_stats(condition=0)
+		host_list=[(item["id"],item["name"]) for item in data_list if item["id"] not in host_dict.keys()]
+		host_tuple=tuple(host_list)
+		try:
+			if host_tuple  != ():	
+				sql="INSERT INTO stats(id,name)  VALUES (%s,%s) "
+				self.cursor.executemany(sql,host_tuple)
+				# 提交到数据库执行
+				self.client.commit()
+
+		except Exception, e:
+			print "更新状态出错！添加新id与name错误！"
+			print traceback.format_exc()
+			exit()
 
 
+
+	#更新host状态
+	def save_host_stats(self,data_dict):
+		host_list=[(str(data_dict[key]["cpu"]),str(data_dict[key]["mem"]),
+			str(data_dict[key]["input_rate"]),str(data_dict[key]["output_rate"]),
+			data_dict[key]["id"]) for key in data_dict.keys()]
+		host_tuple=tuple(host_list)
+		print host_tuple,type(host_tuple[0][0]),type(host_tuple[0][1]),type(host_tuple[0][2]),type(host_tuple[0][3])
+		sql="UPDATE stats SET cpu=%s ,mem=%s,net_input=%s,net_output=%s   WHERE id = %s "
+		self.cursor.executemany(sql,host_tuple)
+		# 提交到数据库执行
+		self.client.commit()
+				
+
+
+
+	#删除已经失效的主机记录（不想写，就先不写了.......）
+	def del_host_id_stats(self,data_list):
+		pass
 
 
 

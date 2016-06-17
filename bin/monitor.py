@@ -7,6 +7,8 @@ import traceback
 import httplib,urllib
 import subprocess 
 import datetime
+from read_data import *
+from db_operate import *
 
 
 
@@ -15,6 +17,8 @@ class Monitor(object):
 	def __init__(self):
 		super(Monitor, self).__init__()
 		self.conn=httplib.HTTPConnection('0.0.0.0:2375')
+		self.config=ReadDockConf()
+		self.db=MysqlOperate(self.config)
 
 	#获取docker列表
 	def GetDockerList(self):
@@ -37,7 +41,7 @@ class Monitor(object):
 			dict_data["command"]=item["Command"]
 			dict_data["status"]=item["Status"]
 			list_data.append(dict_data)
-		print list_data
+		#print list_data
 		return  list_data
 
 
@@ -50,9 +54,9 @@ class Monitor(object):
 	#格式化数据
 	def DockerStatsParse(self,data):
 		data_dict={}	
-		data_dict["docker_id"]=data[0]
+		data_dict["id"]=data[0]
 		data_dict["cpu"]=float(data[1].replace("%",""))
-		data_dict["men"]=float(data[7].replace("%",""))
+		data_dict["mem"]=float(data[7].replace("%",""))
 
 		#流量数制转换
 		if data[9]=="B":
@@ -73,6 +77,8 @@ class Monitor(object):
 		else:
 			data_dict["net_output"]=float(data[11])
 
+		data_dict["input_rate"]=0.0
+		data_dict["output_rate"]=0.0
 		return data_dict
 
 
@@ -81,17 +87,15 @@ class Monitor(object):
 		for docker_id in now_data.keys():
 			#若是新加入的docker
 			if docker_id not in old_data.keys():
-				now_data[docker_id]["input_rate"]=0
-				now_data[docker_id]["output_rate"]=0
+				now_data[docker_id]["input_rate"]=0.0
+				now_data[docker_id]["output_rate"]=0.0
 			else:
 				input_rate=(now_data[docker_id]["net_input"]-old_data[docker_id]["net_input"])/t_diff
 				output_rate=(now_data[docker_id]["net_output"]-old_data[docker_id]["net_output"])/t_diff
-				now_data[docker_id]["input_rate"]=int(input_rate)
-				now_data[docker_id]["output_rate"]=int(output_rate)
-				print input_rate,output_rate
-
-		# old_data["net_input"]
-		# old_data["net_input_unit"]
+				now_data[docker_id]["input_rate"]=float('%0.2f'%input_rate)
+				now_data[docker_id]["output_rate"]=float('%0.2f'%output_rate)
+				#print input_rate,output_rate
+		return now_data
 
 
 
@@ -107,7 +111,7 @@ class Monitor(object):
 
 			if "CPU" not in stats:
 				stats_parse=self.DockerStatsParse(stats)
-				stats_dict[stats_parse["docker_id"]]=stats_parse
+				stats_dict[stats_parse["id"]]=stats_parse
 
 			elif stats_dict!={}:
 				#计算时间差
@@ -117,11 +121,16 @@ class Monitor(object):
 				t_diff=float(str(diff)[-8:])
 
 				if stats_dict_old!={}:
-					self.CalFlowRate(stats_dict_old,stats_dict,t_diff)
+					stats_dict=self.CalFlowRate(stats_dict_old,stats_dict,t_diff)
 
 				stats_dict_old=stats_dict
 
-				pass#sql操作,存储状态
+
+
+				#sql操作,更新当前host状态
+				self.db.save_host_stats(stats_dict)
+
+
 				print "状态数据更新！"
 				print stats_dict
 				stats_dict={}
@@ -129,4 +138,4 @@ class Monitor(object):
 
 if __name__ == '__main__':
 	demo=Monitor()
-	demo.GetDockerList()
+	demo.DockerMonitor()

@@ -1,6 +1,6 @@
 #coding=utf-8
 from topo_operate import *
-
+from monitor import *
 
 
 #创建拓扑测试
@@ -71,12 +71,27 @@ def test_DockerDel():
 
 
 
+def test_db_save_host_id_stats():
+	demo=Monitor()
+	data_list=demo.GetDockerList()
+	config=ReadDockConf()
+	data=ReadTopoData("create")
+	db=MysqlOperate(config)
+	db.save_host_id_stats(data_list)
+
+def test_monitor_stats():
+	config=ReadDockConf()
+	data=ReadTopoData("create")
+	demo=MysqlOperate(config)
+
+
 if __name__ == '__main__':
 	
-	test_create_topo()
-
-
+	#test_create_topo()
 	#test_del_topo()
+	test_db_save_host_id_stats()
+	#test_monitor_stats()
+
 
 
 
