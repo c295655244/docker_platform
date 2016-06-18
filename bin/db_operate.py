@@ -121,6 +121,9 @@ class MysqlOperate():
 				self.cursor.executemany(sql,host_tuple)
 				# 提交到数据库执行
 				self.client.commit()
+				print "添加新id以及name成功！"
+			else:
+				print "未有新host添加！"
 
 		except Exception, e:
 			print "更新状态出错！添加新id与name错误！"
@@ -135,18 +138,38 @@ class MysqlOperate():
 			str(data_dict[key]["input_rate"]),str(data_dict[key]["output_rate"]),
 			data_dict[key]["id"]) for key in data_dict.keys()]
 		host_tuple=tuple(host_list)
-		print host_tuple,type(host_tuple[0][0]),type(host_tuple[0][1]),type(host_tuple[0][2]),type(host_tuple[0][3])
 		sql="UPDATE stats SET cpu=%s ,mem=%s,net_input=%s,net_output=%s   WHERE id = %s "
-		self.cursor.executemany(sql,host_tuple)
-		# 提交到数据库执行
-		self.client.commit()
-				
+		try:
+			self.cursor.executemany(sql,host_tuple)
+			# 提交到数据库执行
+			self.client.commit()
+		except Exception, e:
+			print "更新状态出错！"
+			print traceback.format_exc()
 
 
 
-	#删除已经失效的主机记录（不想写，就先不写了.......）
+	#删除已经失效的主机记录
 	def del_host_id_stats(self,data_list):
-		pass
+		host_dict=self.find_host_stats(condition=0)
+		data_dict=[item["id"] for item in data_list]
+		host_list=[(host_dict[key][0],host_dict[key][1]) for key in host_dict.keys() if key not in data_dict]
+		host_tuple=tuple(host_list)
+		try:
+			if host_tuple  != ():	
+				sql="DELETE FROM stats WHERE id = %s and name=%s"
+				self.cursor.executemany(sql,host_tuple)
+				# 提交到数据库执行
+				self.client.commit()
+				print "删除旧id以及name成功！"
+			else:
+				print "未有旧host删除！"
+
+		except Exception, e:
+			print "更新状态出错！删除旧id以及name错误！"
+			print traceback.format_exc()
+			exit()
+
 
 
 

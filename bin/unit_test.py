@@ -85,12 +85,27 @@ def test_monitor_stats():
 	demo=MysqlOperate(config)
 
 
+def test_insert():
+	config=ReadDockConf()
+	client=MySQLdb.connect(host=config["db_mysql"]["db_host"],user=config["db_mysql"]["db_user"],
+		passwd=config["db_mysql"]["db_passwd"],db=config["db_mysql"]["db_database"],charset="utf8")
+	cursor = client.cursor()
+	host_tuple=("0.0","0.0","0.0","0.0","e695fc4e30d8")
+	sql="UPDATE stats SET cpu=%s ,mem=%s,net_input=%s,net_output=%s   WHERE id = %s "%host_tuple
+	print sql
+	cursor.execute(sql)
+	
+	# 提交到数据库执行
+	client.commit()
+	client.close()
+
+
+
 if __name__ == '__main__':
 	
 	#test_create_topo()
 	#test_del_topo()
-	test_db_save_host_id_stats()
-	#test_monitor_stats()
+	test_insert()
 
 
 

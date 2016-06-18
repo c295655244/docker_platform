@@ -104,6 +104,8 @@ class Monitor(object):
 		stats_dict={}
 		stats_dict_old={}	
 		t_start=datetime.datetime.now()
+		update_count=0#计数，状态更新10次，进行一次id与name的添加删除操作
+		self.db.save_host_id_stats(self.GetDockerList())
 		while 1:
 			stats_output = cmd.stdout.readline()
 			stats_output=self.DelSerialSpace(stats_output)
@@ -121,18 +123,30 @@ class Monitor(object):
 				t_diff=float(str(diff)[-8:])
 
 				if stats_dict_old!={}:
+					#计算网速
 					stats_dict=self.CalFlowRate(stats_dict_old,stats_dict,t_diff)
 
 				stats_dict_old=stats_dict
 
-
-
 				#sql操作,更新当前host状态
-				self.db.save_host_stats(stats_dict)
+				result_flag=self.db.save_host_stats(stats_dict)
 
+				#没刷新10次，查询一下是否由新的host加入，是否有旧的host需要删除
+				if update_count>10:
+					#获取docker_list
+					current_host_list=self.GetDockerList()
 
+					#此处获取kvm_list
+					pass
+
+					self.db.save_host_id_stats(current_host_list)					
+					self.db.del_host_id_stats(current_host_list)
+
+					update_count=0
+
+				update_count+=1
 				print "状态数据更新！"
-				print stats_dict
+				#print stats_dict
 				stats_dict={}
 
 
