@@ -38,7 +38,7 @@ class MongoOperate():
 
 	def save_dic(self,data_dic,table):
 		data=self.client[self.database][table]
-		data.delete_many({"topo_id":data_dic["topo_id"]})
+		data.delete_many({"caseins":data_dic["caseins"]})
 		post_id = data.insert_one(data_dic).inserted_id 
 		
 
@@ -68,8 +68,12 @@ class MongoOperate():
 class MysqlOperate():
 
 	def __init__(self,config):
-		self.client=MySQLdb.connect(host=config["db_mysql"]["db_host"],user=config["db_mysql"]["db_user"],
-			passwd=config["db_mysql"]["db_passwd"],db=config["db_mysql"]["db_database"],charset="utf8")
+		self.client=MySQLdb.connect(
+			host=config["db_mysql"]["db_host"],
+			user=config["db_mysql"]["db_user"],
+			passwd=config["db_mysql"]["db_passwd"],
+			db=config["db_mysql"]["db_database"],
+			charset="utf8")
 		self.cursor = self.client.cursor()
 
 
@@ -108,6 +112,24 @@ class MysqlOperate():
 		return data_dict
 
 
+	#刷新数据库中stats标志
+	def save_host_stats_flag(self,data_list):
+		host_dict=self.find_host_stats(condition=0)
+		host_list=[(item["status"],item["id"]) for item in data_list]
+		host_tuple=tuple(host_list)
+		try:
+	
+			sql="UPDATE stats SET stats=%s   WHERE id = %s "
+			self.cursor.executemany(sql,host_tuple)
+			# 提交到数据库执行
+			self.client.commit()
+			print "更新stats标志成功！"
+
+		except Exception, e:
+			print "更新状态出错！添加新id与name错误！"
+			print traceback.format_exc()
+			exit()
+
 
 
 	#添加新的id与name
@@ -140,9 +162,13 @@ class MysqlOperate():
 		host_tuple=tuple(host_list)
 		sql="UPDATE stats SET cpu=%s ,mem=%s,net_input=%s,net_output=%s   WHERE id = %s "
 		try:
+			'''
+			注意：若没有找到条目，此句不会报错！依然正常运行！
+			'''
 			self.cursor.executemany(sql,host_tuple)
 			# 提交到数据库执行
 			self.client.commit()
+
 		except Exception, e:
 			print "更新状态出错！"
 			print traceback.format_exc()
@@ -169,6 +195,12 @@ class MysqlOperate():
 			print "更新状态出错！删除旧id以及name错误！"
 			print traceback.format_exc()
 			exit()
+
+	'''
+	stats表操作结束
+	'''
+
+
 
 
 

@@ -1,0 +1,169 @@
+{
+    "status": "success",
+    "msg": "ok",
+    "caseins": "21asd56wad1",
+    "data": {
+        "network_topo": {
+            "cluster_list": [
+                {
+                    "cluster_id": "",
+                    "router_list": [
+                        0,
+                        1,
+                        2
+                    ]
+                }
+            ],
+            "network_core_list": [
+                {
+                    "as_gateway_ip": "10.0.0.1",
+                    "name": "router1",
+                    "image": "ubuntu:14.04",
+                    "host_type": [
+                        {
+                            "type": "docker",
+                            "image": "ubuntu:14.04",
+                            "docker_id_pre": "0_s56d2art_0_",
+                            "config": {
+                                "cpu_num": "2",
+                                "mem": "512m"
+                            },
+                            "id": "s56d2art_0",
+                            "host_num": 2
+                        }
+                    ],
+                    "switch_id": "br_s56d2art",
+                    "rank": "",
+                    "link_router_ip": {
+                        "1": [
+                            "10.0.1.1",
+                            24,
+                            "20.0.0.2"
+                        ],
+                        "2": [
+                            "10.0.2.1",
+                            24,
+                            "20.0.0.10"
+                        ]
+                    },
+                    "host_num": 2,
+                    "type": "router",
+                    "id": "s56d2art",
+                    "docker_id": "0_router_1"
+                },
+                {
+                    "as_gateway_ip": "10.0.1.1",
+                    "name": "router2",
+                    "image": "ubuntu:14.04",
+                    "host_type": [
+                        {
+                            "type": "docker",
+                            "image": "ubuntu:14.04",
+                            "docker_id_pre": "0_a56d2ayu_0_",
+                            "config": {
+                                "cpu_num": "2",
+                                "mem": "512m"
+                            },
+                            "id": "a56d2ayu_0",
+                            "host_num": 2
+                        }
+                    ],
+                    "switch_id": "br_a56d2ayu",
+                    "rank": "",
+                    "link_router_ip": {
+                        "0": [
+                            "10.0.0.1",
+                            24,
+                            "20.0.0.1"
+                        ],
+                        "2": [
+                            "10.0.2.1",
+                            24,
+                            "20.0.0.5"
+                        ]
+                    },
+                    "host_num": 2,
+                    "type": "router",
+                    "id": "a56d2ayu",
+                    "docker_id": "0_router_2"
+                },
+                {
+                    "as_gateway_ip": "10.0.2.1",
+                    "name": "router3",
+                    "image": "ubuntu:14.04",
+                    "host_type": [
+                        {
+                            "type": "docker",
+                            "image": "ubuntu:14.04",
+                            "docker_id_pre": "0_c56d2aio_0_",
+                            "config": {
+                                "cpu_num": "2",
+                                "mem": "512m"
+                            },
+                            "id": "c56d2aio_0",
+                            "host_num": 2
+                        }
+                    ],
+                    "switch_id": "br_c56d2aio",
+                    "rank": "",
+                    "link_router_ip": {
+                        "0": [
+                            "10.0.0.1",
+                            24,
+                            "20.0.0.9"
+                        ],
+                        "1": [
+                            "10.0.1.1",
+                            24,
+                            "20.0.0.6"
+                        ]
+                    },
+                    "host_num": 2,
+                    "type": "router",
+                    "id": "c56d2aio",
+                    "docker_id": "0_router_3"
+                }
+            ],
+            "link_list": [
+                {
+                    "link": [
+                        0,
+                        1
+                    ],
+                    "bridge_name": "br_router_0_1",
+                    "ip_list": [
+                        "20.0.0.1",
+                        "20.0.0.2"
+                    ]
+                },
+                {
+                    "link": [
+                        2,
+                        1
+                    ],
+                    "bridge_name": "br_router_2_1",
+                    "ip_list": [
+                        "20.0.0.5",
+                        "20.0.0.6"
+                    ]
+                },
+                {
+                    "link": [
+                        0,
+                        2
+                    ],
+                    "bridge_name": "br_router_0_2",
+                    "ip_list": [
+                        "20.0.0.9",
+                        "20.0.0.10"
+                    ]
+                }
+            ]
+        },
+        "user_info": {
+            "user_name": "demo",
+            "user_id": "0"
+        }
+    },
+    "operate": "delete"
+}

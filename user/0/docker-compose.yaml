@@ -7,7 +7,6 @@ services:
     mem_limit: 512m
     network_mode: none
     privileged: true
-  c56d2aio_0: *id001
   router:
     command: sleep 365d
     image: ubuntu:14.04

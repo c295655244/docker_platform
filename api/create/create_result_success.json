@@ -1,0 +1,54 @@
+{
+  "status": "success",
+  "caseins": "21asd56wad1",
+  "msg": "ok",
+  "data": {
+    "router_list": [
+      {
+        "real_id": "0_router_1",
+        "router_id": "s56d2art",
+        "host_num": 1,
+        "image": "ubuntu:14.04",
+        "vncport": 34567
+      },
+      {
+        "real_id": "0_router_2",
+        "router_id": "a56d2ayu",
+        "host_num": 1,
+        "image": "ubuntu:14.04",
+        "vncport": 34568
+      }
+    ],
+    "host_list": [
+      {
+        "real_id": "0_s56d2art_0_1",
+        "router_id": "s56d2art",
+        "cluster_id":"asdawdaw",
+        "image": "ubuntu:14.04",
+        "type": "docker",
+        "config": {
+          "cpu_num": "2",
+          "mem": "512m"
+        },
+        "bridge": "br_c56d2aio",
+        "vncport": 34570,
+        "ip": "10.0.0.1"
+      },
+      {
+        "real_id": "0_s56d2art_0_1",
+        "router_id": "a56d2ayu",
+        "cluster_id":"asdawdaw",
+        "image": "ubuntu:14.04",
+        "type": "docker",
+        "config": {
+          "cpu_num": "2",
+          "mem": "512m"
+        },
+        "bridge": "br_a56d2ayu",
+        "vncport": 34570,
+        "ip": "10.0.0.1"
+      }
+    ]
+  },
+  "operate": "create"
+}

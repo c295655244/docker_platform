@@ -54,28 +54,39 @@ class TopoOperate(BaseOperate):
 			user_info["user_id"])
 
 		#kvm创建
-		self.kvm_operate.KvmCreate()
+		config,network_core_list=self.kvm_operate.KvmCreate(config,network_topo["network_core_list"],user_info["user_id"])
 
-		network_topo["link_list"],network_topo["network_core_list"]=\
+
+		network_topo["link_list"],network_topo["network_core_list"],host_data_list,router_data_list=\
 		self.net_operate.NetConfig(network_topo["link_list"],
 			network_topo["network_core_list"],
 			config,user_info["user_id"])
-		
+
 		self.db_operate.save_dic(data,"cluster")
+		data["data"]={}
+		data["data"]["host_list"]=host_data_list
+		data["data"]["router_list"]=router_data_list
+		self.db_operate.save_dic(data,"host_list")
+		
 
 		data["status"]="success"
 		data["msg"]="ok"
+		
 		#不能为空字符串，否则报错
-		del data['_id']
+		try:
+			del data['_id']
+
+		except:
+			pass	
 		WriteTopoData(data,"create")
-		return True
+		return data
 
   	except Exception, e:
-  		data["status"]="fail"
+  		data["status"]="error"
 		data["msg"]=traceback.format_exc()
 		data["data"]={}
   		print traceback.format_exc()
-  		return False
+  		return data
 
 
 
@@ -83,33 +94,44 @@ class TopoOperate(BaseOperate):
   	config=self.conf
   	task_data={}
   	try:
+  		
   		#查询拓扑
-  		topo_dict=self.db_operate.get_data_condition("cluster",{"topo_id":data["topo_id"]})[0]
+  		topo_dict=self.db_operate.get_data_condition("cluster",{"caseins":data["caseins"]})[0]
+  		host_data=self.db_operate.get_data_condition("host_list",{"caseins":data["caseins"]})[0]
   		network_topo=topo_dict["data"]["network_topo"]
 		user_info=topo_dict["data"]["user_info"]
 
+		#删除kvm
+		self.kvm_operate.KvmDel(host_data["data"]["host_list"])
+		
+
   		#删除docker
   		self.docker_operate.DockerDel(config,user_info["user_id"])
+
+
 
   		# 删除ovs网桥
 		self.bridge_operate.OvsDel(network_topo["link_list"],
 			network_topo["network_core_list"])
 
-		self.db_operate.del_dict("cluster",{"topo_id":data["topo_id"]})
-
+		if debug =="false":
+			self.db_operate.del_dict("cluster",{"caseins":data["caseins"]})
+			self.db_operate.del_dict("host_list",{"caseins":data["caseins"]})
 		data["status"]="success"
 		data["msg"]="ok"
 		data["data"]=topo_dict["data"]
 
 		WriteTopoData(data,"del")
-		return True
+		return data
+		
 
 
   	except Exception, e:
-  		data["status"]="fail"
+  		data["status"]="error"
 		data["msg"]=traceback.format_exc()
 		data["data"]={}
 		print traceback.format_exc()
+		return data
 
 
 if __name__ == '__main__':

@@ -1,0 +1,33 @@
+{
+  "xml": "winxp_3_256M_httpbotnet_vm9_bot4.xml",
+  "domain": "winxp_3_256M_httpbotnet_vm9_bot4",
+  "software": [
+    "windows_pre-BOT.py",
+    "ip.ini"
+  ],
+  "nodename": "vm9",
+  "process": 30,
+  "cpu_useage": 0.0,
+  "route": [],
+  "taskid": "httpbotnet",
+  "networkinfo": [
+    [
+      "eth1",
+      "0",
+      "130.0.4.2",
+      "255.255.255.0",
+      "52:54:56:00:16:6e"
+    ]
+  ],
+  "cpu_cores": 3,
+  "ftpaddr": "172.26.253.46",
+  "connection": 10,
+  "diskimg": "/var/lib/libvirt/images/winxp_3_256M_httpbotnet_vm9_bot4",
+  "vnclink": "172.29.152.242:34",
+  "mem_useage": 0.0,
+  "memory": "256M",
+  "nat_mac": "52:54:56:00:16:5a",
+  "botnetname": "bot4",
+  "os": "winxp",
+  "vncport": 5934
+}

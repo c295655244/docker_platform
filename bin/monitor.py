@@ -16,6 +16,7 @@ class Monitor(object):
 
 	def __init__(self):
 		super(Monitor, self).__init__()
+		#连接本地docker demon
 		self.conn=httplib.HTTPConnection('0.0.0.0:2375')
 		self.config=ReadDockConf()
 		self.db=MysqlOperate(self.config)
@@ -39,7 +40,12 @@ class Monitor(object):
 			dict_data["name"]=item["Names"][0].replace("/","")
 			dict_data["image"]=item["Image"]
 			dict_data["command"]=item["Command"]
-			dict_data["status"]=item["Status"]
+			if "Up" in item["Status"]:
+				dict_data["status"]="run"
+			elif "Exited" in item["Status"]:
+				dict_data["status"]="stop"
+			else:
+				dict_data["status"]="fault"
 			list_data.append(dict_data)
 		#print list_data
 		return  list_data
@@ -58,7 +64,7 @@ class Monitor(object):
 		data_dict["cpu"]=float(data[1].replace("%",""))
 		data_dict["mem"]=float(data[7].replace("%",""))
 
-		#流量数制转换
+		#流量数制转换(base on B)
 		if data[9]=="B":
 			data_dict["net_input"]=0.0
 		elif data[9]=="MB":
@@ -112,6 +118,7 @@ class Monitor(object):
 			stats=stats_output.split(" ")
 
 			if "CPU" not in stats:
+				#print stats
 				stats_parse=self.DockerStatsParse(stats)
 				stats_dict[stats_parse["id"]]=stats_parse
 
@@ -141,6 +148,7 @@ class Monitor(object):
 
 					self.db.save_host_id_stats(current_host_list)					
 					self.db.del_host_id_stats(current_host_list)
+					self.db.save_host_stats_flag(current_host_list)
 
 					update_count=0
 
@@ -150,6 +158,8 @@ class Monitor(object):
 				stats_dict={}
 
 
+
 if __name__ == '__main__':
 	demo=Monitor()
+	#demo.GetDockerList()
 	demo.DockerMonitor()

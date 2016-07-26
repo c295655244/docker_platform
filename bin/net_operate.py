@@ -43,8 +43,10 @@ class NetOperate():
 
 
 
-	#向docker添加ip
-	def IpConfigDocker(self,docker_id_pre,ip,num,bridge_id,gateway_ip):
+	#向单个docker添加ip
+	def IpConfigDocker(self,host_dict,docker_id_pre,ip,num,bridge,gateway_ip):
+		docker_data_list=[]
+		bridge_id="br_"+bridge
 		for count in xrange(num):
 
 			'''
@@ -60,13 +62,26 @@ class NetOperate():
 			print "sudo ovs-docker add-port %s eth0 %s"%(bridge_id,docker_id)
 			print "sudo docker exec %s ifconfig eth0 %s/24"%(docker_id,ip)
 			print "sudo docker exec %s route add default gw %s"%(docker_id,gateway_ip)
+			save_data={
+				"real_id": docker_id,
+				"router_id":bridge,
+				"cluster_id":host_dict["id"],
+				"image": host_dict["image"],
+				"type": "docker",
+				"config": {
+					"cpu_num": host_dict["config"]["cpu_num"],
+					"mem": host_dict["config"]["mem"]
+					},
+				"bridge": bridge_id,
+				"vncport": 0,
+				"ip":ip
+			}
+			docker_data_list.append(save_data)
 			ip=self.IpAdd(ip,1)
 
-
-
-
 			#print docker_id_pre+str(count+1)+"  主机配ip: "+ip+"  连接网桥:"+bridge_id
-		return ip
+		return ip,docker_data_list
+
 
 	#向router添加ip
 	def IpConfigRouter(self,docker_id,ip,bridge_id,mac_name,mask):
@@ -84,19 +99,14 @@ class NetOperate():
 		#print docker_id+"  路由配ip: "+ip+"  连接网桥:"+bridge_id
 
 
-	#向kvm添加ip
-	def IpConfigKvm(self,kvm_id,ip):
 
-		pass
 
-	#系统配置路由表命令
+	#向路由器节点配置路由表命令
 	def RouterAdd(self,router_id,dst_ip,mask,forward_ip):
 		mask_ip=self.cul_mask(mask)
 		dst_ip=self.IpAdd(dst_ip,-1)
 
-		'''
-		配置路由表命令,区分kvm与docker
-		'''
+
 		if debug =="false":
 			os.system("sudo docker exec %s route add -net %s netmask %s gw %s"%(router_id,dst_ip,mask_ip,forward_ip))
 		print "sudo docker exec %s route add -net %s netmask %s gw %s"%(router_id,dst_ip,mask_ip,forward_ip)
@@ -105,6 +115,8 @@ class NetOperate():
 	#Host ip分配
 	def HostIpDistribution(self,link_list,network_core_list,conf,user_id):
 		start_ip=conf["host"]["start_ip"]
+		host_data_list=[]
+		router_data_list=[]
 		for count in xrange(len(network_core_list)) :
 			network_core_list[count]["link_router_ip"]={}
 			network_core=network_core_list[count]
@@ -121,6 +133,15 @@ class NetOperate():
 			#为路由器添加连接主机的ip，默认eth0
 			self.IpConfigRouter(router_id_docker,network_core["as_gateway_ip"],bridge_id,"eth0",24)
 
+			save_data={
+			        "real_id": router_id_docker,
+			        "router_id": network_core["id"],
+			        "host_num": network_core["host_num"],
+			        "image": network_core["image"],
+			        "vncport": 0
+			}
+			router_data_list.append(save_data)
+
 
 			host_ip=self.IpAdd(start_ip,2)
 
@@ -132,16 +153,63 @@ class NetOperate():
 				gateway_ip=network_core["as_gateway_ip"]
 
 				if host_dict["type"]=="docker":
-					host_ip=self.IpConfigDocker(docker_id_pre,host_ip,host_dict["host_num"],bridge_id,gateway_ip)
-
+					host_ip,docker_list=self.IpConfigDocker(host_dict,docker_id_pre,host_ip,host_dict["host_num"],network_core["id"],gateway_ip)
+					host_data_list.extend(docker_list)
 				#此处kvm分配ip
 				else :
-					pass
-
+					kvm_conf_file_path=conf["host"]["compose_file_path"]+"user/"+user_id+"/setip.bat"
+					host_ip,kvm_list=self.KvmNetConfig(host_dict,docker_id_pre,host_ip,host_dict["host_num"],gateway_ip,kvm_conf_file_path)
+					host_data_list.extend(kvm_list)
 			start_ip=self.IpAdd(start_ip,256)
 
-		return network_core_list
+		return network_core_list,host_data_list,router_data_list
 
+	#配置kvm网络
+	def KvmNetConfig(self,host_dict,kvm_id_pre,ip,num,gateway_ip,path):
+		kvm_data_list=[]
+		for count in xrange(num):
+			#print "配置kvm！"
+			kvm_id =kvm_id_pre+str(count+1)
+			self.EditKvmNetFile(ip,gateway_ip,path)
+
+			if debug =="false":
+				cmd1="sudo virt-copy-in -d %s %s /"%(kvm_id,path)
+				os.system(cmd1)
+				cmd2='virsh start %s'%kvm_id
+				os.system(cmd2)
+			print "sudo virt-copy-in -d %s %s /"%(kvm_id,path)
+			print 'virsh start %s'%kvm_id			
+			save_data={
+				"real_id": kvm_id,
+				"router_id":host_dict["router_id"] ,
+				"cluster_id":host_dict["id"],
+				"image": host_dict["image"],
+				"type": "kvm",
+				"config": {
+					"cpu_num": host_dict["config"]["cpu_num"],
+					"mem": host_dict["config"]["mem"]
+					},
+				"bridge": host_dict["bridge"],
+				"vncport": host_dict["vnc_port_start"]+count,
+				"ip":ip
+			}
+			kvm_data_list.append(save_data)
+			ip=self.IpAdd(ip,1)
+
+		return ip,kvm_data_list
+
+		
+
+
+
+	#编辑kvm网络配置脚本
+	def EditKvmNetFile(self,ip,gateway,path):
+		file_object = open(path, 'w')
+		str_conf="@echo off\r\n"
+		file_object.write(str_conf)
+		str_conf='netsh interface ip set address "bridge" static %s 255.255.255.0 %s 1'%(ip,gateway)
+		file_object.write(str_conf)
+		file_object.close( )
 
 
 
@@ -236,6 +304,7 @@ class NetOperate():
 		return path_list[length-2]
 
 
+	#为docker添加路由表
 	def AddRouteTable(self,link_list,network_core_list,conf,user_id):
 		router_num=len(network_core_list)
 
@@ -269,16 +338,18 @@ class NetOperate():
 
 
 
-
+	#网络配置总入口函数
 	def NetConfig(self,link_list,network_core_list,conf,user_id):
 
-		network_core_list=self.HostIpDistribution(link_list,network_core_list,conf,user_id)
-
+		#配置主机ip
+		network_core_list,host_data_list,router_data_list=self.HostIpDistribution(link_list,network_core_list,conf,user_id)
+		#配置路由ip
 		link_list,network_core_list=self.RouterIpDistribution(link_list,network_core_list,conf,user_id)
 
+		#添加路由表
 		self.AddRouteTable(link_list,network_core_list,conf,user_id)
 
-		return link_list,network_core_list
+		return link_list,network_core_list,host_data_list,router_data_list
 
 
 	

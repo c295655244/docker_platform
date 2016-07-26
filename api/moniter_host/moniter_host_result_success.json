@@ -1,0 +1,23 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "host_id": "21asd56wad1",
+      "cpu": 0.15,
+      "mem": 0.15,
+      "net_input": 256,
+      "net_output": 256,
+      "stats": "run"
+    },
+    {
+      "host_id": "21asd56fasf",
+      "cpu": 0.15,
+      "mem": 0.15,
+      "net_input": 256,
+      "net_output": 256,
+      "stats": "run"
+    }
+  ],
+  "operate": "moniter_host",
+  "msg": "ok"
+}

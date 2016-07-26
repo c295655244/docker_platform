@@ -12,7 +12,7 @@ class DockerOperate():
 
   #检查是否存在对应的用户文件
   def CheckUserFile(self,config,user_id):
-  	file_path=config["host"]["compose_file_path"]+"user/16"+str(user_id)
+  	file_path=config["host"]["compose_file_path"]+"user/"+str(user_id)
   	if not os.path.exists(file_path):
   		os.makedirs(file_path)
 
@@ -59,8 +59,6 @@ class DockerOperate():
 				docker_temp["cpuset"]=",".join([str(x) for x in xrange(int(docker_item["config"]["cpu_num"]))])
 				docker_temp["mem_limit"]=docker_item["config"]["mem"]
 
-				#保存id
-				network_core_list[count]["host_type"][count_d]["id"]=cluster_id+"_"+str(count_d)
 
 				#修改composefile
 				compose_file["services"][cluster_id+"_"+str(count_d)]=docker_temp
@@ -105,6 +103,7 @@ class DockerOperate():
 			if cluster["type"]=="docker":
 				cmd_tmp=cluster["id"]+"="+str(cluster["host_num"])+"   "
 				compose_cmd+=cmd_tmp
+
 
 	#添加网络核心创建命令
 	for (net_name,num) in network_core_dict.items():

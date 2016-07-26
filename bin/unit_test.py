@@ -57,20 +57,18 @@ def test_DockerCreate():
 	demo=DockerOperate()
 	data=ReadTopoData("create")
 	conf=ReadDockConf()
-
 	demo.DockerCreate(conf,data["data"]["network_topo"]["network_core_list"],
 		data["data"]["user_info"]["user_id"])	
 
-
+#docker删除测试
 def test_DockerDel():
 	demo=DockerOperate()
 	data=ReadTopoData("create")
 	conf=ReadDockConf()
-
 	demo.DockerDel(conf,data["data"]["user_info"]["user_id"])	
 
 
-
+#mysql存储测试
 def test_db_save_host_id_stats():
 	demo=Monitor()
 	data_list=demo.GetDockerList()
@@ -79,12 +77,14 @@ def test_db_save_host_id_stats():
 	db=MysqlOperate(config)
 	db.save_host_id_stats(data_list)
 
+
+#监控测试
 def test_monitor_stats():
 	config=ReadDockConf()
 	data=ReadTopoData("create")
 	demo=MysqlOperate(config)
 
-
+#数据插入测试
 def test_insert():
 	config=ReadDockConf()
 	client=MySQLdb.connect(host=config["db_mysql"]["db_host"],user=config["db_mysql"]["db_user"],
@@ -99,13 +99,31 @@ def test_insert():
 	client.commit()
 	client.close()
 
+#kvm创建测试
+def test_kvm_create():
+	demo=KvmOperate()
+	data=ReadTopoData("create")
+	conf=ReadDockConf()
 
+	demo.KvmCreate(conf,data["data"]["network_topo"]["network_core_list"],
+		data["data"]["user_info"]["user_id"])	
+
+#kvm删除测试
+def test_kvm_del():
+	conf=ReadDockConf()
+	data=ReadTopoData("create")
+	demo=KvmOperate()
+	db_operate=MongoOperate(conf)
+  	host_data=db_operate.get_data_condition("host_list",{"caseins":data["caseins"]})[0]
+	demo.KvmDel(host_data["data"]["host_list"])
 
 if __name__ == '__main__':
 	
-	#test_create_topo()
+	test_create_topo()
 	#test_del_topo()
-	test_insert()
+	#test_kvm_create()
+	#test_kvm_del()
+
 
 
 

@@ -5,7 +5,7 @@ sudo ovsdb-server  --remote=punix:/usr/local/var/run/openvswitch/db.sock \
                  --bootstrap-ca-cert=db:Open_vSwitch,SSL,ca_cert \
                  --pidfile --detach
 
-sudo ovs-vsctl --no-wait init 初始化vswitch
+sudo ovs-vsctl --no-wait init 
 
 sudo ovs-vswitchd --pidfile --detach
 

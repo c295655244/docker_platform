@@ -16,19 +16,21 @@ def ReadDockConf():
         for item in data_conf.options(section):
             section_dict[item]=data_conf.get(section,item)
         data_dict[section]=section_dict
+    data_dict["host"]["compose_file_path"]=os.path.dirname(sys.path[0])+"/"
+    #print data_dict["host"]["compose_file_path"]
     return data_dict
 
 
 #获取数据
 def ReadTopoData(data_types):
-    
+    data={}
     files=os.path.dirname(sys.path[0])+"/data/"+data_types+".json"
     with open(files, "r") as f:
         try:
             data= json.load(f)
         except Exception, e:
             print "读取json失败！"
-            raise e
+            print traceback.format_exc()
     return data
     
 def WriteTopoData(json_data,data_types):
@@ -41,5 +43,4 @@ def WriteTopoData(json_data,data_types):
 
 
 if __name__ == '__main__':
-    print ReadTopoData()
     ReadDockConf()
