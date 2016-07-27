@@ -1,13 +1,5 @@
-<!--
-WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE
-OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
-  virsh edit winxp
-or other application using the libvirt API.
--->
-
 <domain type='kvm'>
   <name>winxp</name>
-  <uuid>1480377a-5fa8-4348-b9ea-bccf69b90ca3</uuid>
   <memory unit='KiB'>262144</memory>
   <currentMemory unit='KiB'>262144</currentMemory>
   <vcpu placement='static'>1</vcpu>
@@ -23,9 +15,11 @@ or other application using the libvirt API.
   <clock offset='localtime'/>
   <on_poweroff>destroy</on_poweroff>
   <on_reboot>restart</on_reboot>
+  <memballoon model="virtio">
+    <stats period="1"/>
+</memballoon>
   <on_crash>restart</on_crash>
   <devices>
-    <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk type='file' device='cdrom'>
       <driver name='qemu' type='raw'/>
       <target dev='hdc' bus='ide'/>
@@ -50,12 +44,6 @@ or other application using the libvirt API.
       <source network='default'/>
       <model type='virtio'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
-    </interface>
-    <interface type='bridge'>
-      <mac address='52:54:00:8c:24:9c'/>
-      <source bridge='virbr0'/>
-      <model type='virtio'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
     </interface>
     <input type='tablet' bus='usb'/>
     <input type='mouse' bus='ps2'/>
