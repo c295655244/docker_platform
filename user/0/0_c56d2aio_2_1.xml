@@ -18,17 +18,17 @@
   <on_crash>restart</on_crash>
   <devices>
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
-    <disk device="disk" type="file">
-      <driver name="qemu" type="qcow2" />
-      <source file="/var/lib/libvirt/images/0_c56d2aio_2_1" />
-      <target bus="virtio" dev="vda" />
-      <address bus="0x00" domain="0x0000" function="0x0" slot="0x06" type="pci" />
-    </disk>
     <disk device="cdrom" type="file">
       <driver name="qemu" type="raw" />
       <target bus="ide" dev="hdc" />
       <readonly />
       <address bus="1" controller="0" target="0" type="drive" unit="0" />
+    </disk>
+    <disk device="disk" type="file">
+      <driver name="qemu" type="qcow2" />
+      <source file="/var/lib/libvirt/images/0_c56d2aio_2_1" />
+      <target bus="ide" dev="hdd" />
+      <address bus="1" controller="0" target="0" type="drive" unit="1" />
     </disk>
     <controller index="0" type="ide">
       <address bus="0x00" domain="0x0000" function="0x1" slot="0x01" type="pci" />
@@ -38,10 +38,10 @@
     </controller>
     <controller index="0" model="pci-root" type="pci" />
     <interface type="bridge">
-      <mac address="52:54:00:29:4c:ea" />
+      <mac address="52:54:00:57:89:bf" />
       <source bridge="br_c56d2aio" network="default" />
       <model type="virtio" />
-      <address bus="0x00" domain="0x0000" function="0x0" slot="0x03" type="pci" />
+      <address bus="0x00" domain="0x0000" function="0x0" slot="0x04" type="pci" />
     <virtualport type="openvswitch" /></interface>
     <input bus="usb" type="tablet" />
     <input bus="ps2" type="mouse" />

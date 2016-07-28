@@ -1,6 +1,8 @@
 {
-    "caseins":"21asd56wad1",
-    "host_id":"asasd626wd",
-    "cmd":"python  demo.py",
-    "operate":"cmd"
+  "caseins": "21asd56wad1",
+  "host_id": [
+    "asasd626wd"
+  ],
+  "cmd": "python  demo.py",
+  "operate": "cmd"
 }

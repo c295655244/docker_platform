@@ -18,6 +18,6 @@
       "stats": "run"
     }
   ],
-  "operate": "moniter_host",
+  "operate": "monitor_host",
   "msg": "ok"
 }

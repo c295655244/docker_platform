@@ -1,6 +1,9 @@
 #coding=utf-8
 import sys,os
 import yaml
+import datetime
+import subprocess 
+import traceback
 from read_data import *
 debug=ReadDockConf()["host"]["debug"]
 
@@ -137,7 +140,22 @@ class DockerOperate():
 	print compose_cmd_stop
 	print compose_cmd_rm
 
-  def DataParse(data):
-	pass
+
+
+  def DockerCmd(self,docker_id,cmd,timeout=5):
+  	exec_cmd="sudo docker exec %s  %s"%(docker_id,cmd)
+  	try:
+	  	proc = subprocess.Popen(exec_cmd,stdin=subprocess.PIPE,stdout=subprocess.PIPE,shell=True)
+	  	cmd_out=""
+	  	while 1:
+	  		stats_output = cmd.stdout.readline()
+	  		cmd_out+=stats_output 
+	  	return cmd_out
+	except Exception, e:
+	  	print traceback.format_exc()
+		return str(traceback.format_exc())
+
+  	
+
 
 

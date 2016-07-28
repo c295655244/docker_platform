@@ -1,6 +1,6 @@
 {
   "status": "error",
   "data": [],
-  "operate": "moniter_host",
+  "operate": "monitor_host",
   "msg": "error_message"
 }

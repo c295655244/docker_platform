@@ -78,6 +78,18 @@ class MysqlOperate():
 
 
 
+	#查询host状态，供api函数使用
+	def find_host_stats_api(self,host_id):
+		sql="select * from stats where name='%s' " %host_id
+		self.cursor.execute(sql)
+		results = self.cursor.fetchone() 
+		return results
+		
+
+
+
+
+
 	'''
 	功能：stats表相关操作
 	'''
@@ -90,7 +102,7 @@ class MysqlOperate():
 			print host_id,name,"不存在!"
 
 
-	#查询host
+	#模糊查询host
 	#condition决定查找类型
 	#condition=0，查找全部
 	#condition=1，按host_id查找

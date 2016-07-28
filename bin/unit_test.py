@@ -113,17 +113,21 @@ def test_kvm_del():
 	conf=ReadDockConf()
 	data=ReadTopoData("create")
 	demo=KvmOperate()
-	db_operate=MongoOperate(conf)
-  	host_data=db_operate.get_data_condition("host_list",{"caseins":data["caseins"]})[0]
+	mongo_operate=MongoOperate(conf)
+  	host_data=mongo_operate.get_data_condition("host_list",{"caseins":data["caseins"]})[0]
 	demo.KvmDel(host_data["data"]["host_list"])
+
+#host监控api测试
+def test_host_monitor():
+	demo=TopoOperate()
+	data=ReadTopoData("monitor_host")
+	demo.Hostmonitor(data)
 
 if __name__ == '__main__':
 	
-	test_create_topo()
+	#test_create_topo()
 	#test_del_topo()
-	#test_kvm_create()
-	#test_kvm_del()
-
+	test_host_monitor()
 
 
 

@@ -1,0 +1,25 @@
+{
+  "host_id": [
+    "stoic_pike",
+    "winxp"
+  ],
+  "operate": "monitor_host",
+  "data": [
+    {
+      "net_output": 0.0,
+      "stats": "run",
+      "mem": 0.4,
+      "net_input": 0.0,
+      "host_id": "stoic_pike",
+      "cpu": 0.04
+    },
+    {
+      "net_output": 0.0,
+      "stats": "run",
+      "mem": 36.94,
+      "net_input": 0.1,
+      "host_id": "winxp",
+      "cpu": 100.0
+    }
+  ]
+}
