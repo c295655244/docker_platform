@@ -1,8 +1,8 @@
 <domain type="kvm">
-  <name>0_c56d2aio_2_2</name>
-  <memory unit="KiB">524288</memory>
+  <name>bf33578c_b53d792c_4_6</name>
+  <memory unit="KiB">1048576</memory>
   <currentMemory unit="KiB">262144</currentMemory>
-  <vcpu placement="static">2</vcpu>
+  <vcpu placement="static">1</vcpu>
   <os>
     <type arch="x86_64" machine="pc-i440fx-1.5">hvm</type>
     <boot dev="hd" />
@@ -26,7 +26,7 @@
     </disk>
     <disk device="disk" type="file">
       <driver name="qemu" type="qcow2" />
-      <source file="/var/lib/libvirt/images/0_c56d2aio_2_2" />
+      <source file="/var/lib/libvirt/images/bf33578c_b53d792c_4_6" />
       <target bus="ide" dev="hdd" />
       <address bus="1" controller="0" target="0" type="drive" unit="1" />
     </disk>
@@ -38,15 +38,15 @@
     </controller>
     <controller index="0" model="pci-root" type="pci" />
     <interface type="bridge">
-      <mac address="52:54:00:6a:6d:4e" />
-      <source bridge="br_c56d2aio" network="default" />
+      <mac address="52:54:00:53:12:3d" />
+      <source bridge="br_b53d792c" network="default" />
       <model type="virtio" />
       <address bus="0x00" domain="0x0000" function="0x0" slot="0x04" type="pci" />
     <virtualport type="openvswitch" /></interface>
     <input bus="usb" type="tablet" />
     <input bus="ps2" type="mouse" />
     <input bus="ps2" type="keyboard" />
-    <graphics autoport="no" listen="0.0.0.0" port="34568" type="vnc">
+    <graphics autoport="no" listen="0.0.0.0" port="34573" type="vnc">
       <listen address="0.0.0.0" type="address" />
     </graphics>
     <video>

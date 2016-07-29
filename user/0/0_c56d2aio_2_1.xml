@@ -38,7 +38,7 @@
     </controller>
     <controller index="0" model="pci-root" type="pci" />
     <interface type="bridge">
-      <mac address="52:54:00:57:89:bf" />
+      <mac address="52:54:00:0f:00:15" />
       <source bridge="br_c56d2aio" network="default" />
       <model type="virtio" />
       <address bus="0x00" domain="0x0000" function="0x0" slot="0x04" type="pci" />

@@ -123,11 +123,19 @@ def test_host_monitor():
 	data=ReadTopoData("monitor_host")
 	demo.Hostmonitor(data)
 
+
+def test_docker_cmd():
+	demo=TopoOperate()
+	data=ReadTopoData("cmd")
+	demo.HostCmd(data)
+
+
+
 if __name__ == '__main__':
 	
-	#test_create_topo()
+	test_create_topo()
 	#test_del_topo()
-	test_host_monitor()
+	#test_docker_cmd()
 
 
 

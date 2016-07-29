@@ -1,10 +1,12 @@
 {
   "status": "success",
   "caseins": "21asd56wad1",
-  "host_id":"asasd626wd",
+  "host_id": [
+    "asasd626wd"
+  ],
   "msg": "ok",
   "data": {
-      "return":"server connected!"
-    },
+    "return": "server connected!"
+  },
   "operate": "cmd"
 }
