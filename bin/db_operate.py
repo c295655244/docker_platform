@@ -4,12 +4,13 @@ import traceback
 import MySQLdb
 from read_data import *
 from pymongo import MongoClient
-
+from set_log import *
 
 class MongoOperate():
 
 	def __init__(self,config):
-
+		self.caseins="demo"
+		self.logger=Logger()
 		self.client = MongoClient(config["db_mongo"]["db_host"], 27017)
 		self.database=config["db_mongo"]["db_database"]
 

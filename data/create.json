@@ -1,5 +1,5 @@
 {
-  "caseins": "b684c7e4",
+  "caseins": "75784053",
   "operate": "create",
   "data": {
     "user_info": {
@@ -7,163 +7,92 @@
       "name": "lyq_olivia"
     },
     "network_topo": {
-      "network_core_list": [
-        {
-          "name": "路由器2",
-          "id": "7c47bbcb",
-          "type": "borderRouter",
-          "rank": "",
-          "image": "Ubuntu 12.04",
-          "host_num": 0,
-          "host_type": []
-        },
-        {
-          "name": "路由器1",
-          "id": "47e364fd",
-          "type": "ordinaryRouter",
-          "rank": "",
-          "image": "Ubuntu 12.04",
+      "network_core_list": [{
+        "name": "路由器1",
+        "id": "08630628",
+        "type": "router",
+        "rank": "",
+        "image": "ubuntu:14.04",
+        "host_num": 1,
+        "host_type": [{
+          "image": "ubuntu:14.04",
+          "type": "docker",
           "host_num": 1,
-          "host_type": [
-            {
-              "image": "Ubuntu 14.04",
-              "type": "docker",
-              "host_num": 1,
-              "config": {
-                "cpu_num": "1",
-                "mem": "1024m"
-              },
-              "id": "0660dbbf"
-            }
-          ]
-        },
-        {
-          "name": "路由器1",
-          "id": "cf1f51ff",
-          "type": "borderRouter",
-          "rank": "",
-          "image": "Ubuntu 12.04",
+          "config": {
+            "cpu_num": "1",
+            "mem": "256m"
+          },
+          "id": "af3ffeb6"
+        }
+       ]
+      },
+      {
+        "name": "路由器1",
+        "id": "b53d792c",
+        "type": "router",
+        "rank": "",
+        "image": "ubuntu:14.04",
+        "host_num": 1,
+        "host_type": [{
+          "image": "ubuntu:14.04",
+          "type": "docker",
+          "host_num": 1,
+          "config": {
+            "cpu_num": "1",
+            "mem": "256m"
+          },
+          "id": "ee05a06d"
+        }]
+      },
+      {
+        "name": "路由器1",
+        "id": "cf1f51ff",
+        "type": "router",
+        "rank": "",
+        "image": "ubuntu:14.04",
+        "host_num": 2,
+        "host_type": [{
+          "image": "winxp",
+          "type": "kvm",
           "host_num": 2,
-          "host_type": [
-            {
-              "image": "winxp",
-              "type": "kvm",
-              "host_num": 1,
-              "config": {
-                "cpu_num": "1",
-                "mem": "1024m"
-              },
-              "id": "b80fc3df"
-            },
-            {
-              "image": "Ubuntu 14.04",
-              "type": "docker",
-              "host_num": 1,
-              "config": {
-                "cpu_num": "1",
-                "mem": "1024m"
-              },
-              "id": "1d7ddc8e"
-            }
-          ]
-        },
-        {
-          "name": "路由器1",
-          "id": "08630628",
-          "type": "borderRouter",
-          "rank": "",
-          "image": "Ubuntu 14.04",
-          "host_num": 4,
-          "host_type": [
-            {
-              "image": "Ubuntu 14.04",
-              "type": "docker",
-              "host_num": 1,
-              "config": {
-                "cpu_num": "1",
-                "mem": "256m"
-              },
-              "id": "af3ffeb6"
-            },
-            {
-              "image": "CentOS 6.7",
-              "type": "docker",
-              "host_num": 1,
-              "config": {
-                "cpu_num": "1",
-                "mem": "512m"
-              },
-              "id": "54a09257"
-            },
-            {
-              "image": "Ubuntu 12.04",
-              "type": "docker",
-              "host_num": 1,
-              "config": {
-                "cpu_num": "1",
-                "mem": "256m"
-              },
-              "id": "8b1f3dc8"
-            },
-            {
-              "image": "Ubuntu 14.04",
-              "type": "docker",
-              "host_num": 1,
-              "config": {
-                "cpu_num": "1",
-                "mem": "256m"
-              },
-              "id": "c201cab3"
-            }
-          ]
-        },
-        {
-          "name": "路由器1",
-          "id": "b53d792c",
-          "type": "borderRouter",
-          "rank": "",
-          "image": "Ubuntu 12.04",
-          "host_num": 10,
-          "host_type": [
-            {
-              "image": "winxp",
-              "type": "kvm",
-              "host_num": 10,
-              "config": {
-                "cpu_num": "1",
-                "mem": "1024m"
-              },
-              "id": "d9743f11"
-            }
-          ]
-        }
+          "config": {
+            "cpu_num": "1",
+            "mem": "1024m"
+          },
+          "id": "b80fc3df"
+        }]
+      },
+      {
+        "name": "路由器1",
+        "id": "47e364fd",
+        "type": "router",
+        "rank": "",
+        "image": "ubuntu:14.04",
+        "host_num": 1,
+        "host_type": [{
+          "image": "ubuntu:14.04",
+          "type": "docker",
+          "host_num": 1,
+          "config": {
+            "cpu_num": "1",
+            "mem": "1024m"
+          },
+          "id": "0660dbbf"
+        }]
+      }
       ],
-      "link_list": [
-        {
-          "link": [
-            0,
-            1
-          ]
-        },
-        {
-          "link": [
-            4,
-            0
-          ]
-        },
-        {
-          "link": [
-            3,
-            0
-          ]
-        },
-        {
-          "link": [
-            2,
-            0
-          ]
-        }
-      ]
+      "link_list": [{
+        "link": [0,
+        3]
+      },
+      {
+        "link": [2,
+        0]
+      },
+      {
+        "link": [1,
+        0]
+      }]
     }
   }
 }

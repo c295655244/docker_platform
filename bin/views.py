@@ -1,79 +1,176 @@
 #encoding=utf-8
-
+import traceback  
 import tornado.web
 import json
-from service import create,delete,cmd,moniter_host,moniter_topo
+from service import *
+
+
+class Index(tornado.web.RequestHandler):
+
+	def get(self):
+		self.write("success!\n")
+
 
 class CreateHandler(tornado.web.RequestHandler):
 
-    def get(self):
-    	self.write("success!")
+	def get(self):
+		self.write("success!")
 
-    def post(self):
-	json_str = self.get_argument('createjson')
-	data = eval(json_str)
-	result = create(data)
-	self.write(json.dumps(result))
+	def post(self):
+		json_str = self.get_argument('createjson')
+		try:
+			data = eval(json_str)
+			result = create(data)
+			self.write(json.dumps(result))
+		except Exception, e:
+			data={
+			  "status": "error",
+			  "data": [],
+			  "operate": "create",
+			  "msg": str(traceback.format_exc())
+			}
+			print traceback.format_exc()
+			self.write(json.dumps(data))
+
 
 class DeleteHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.write("success!")
+
 	def post(self):
 		json_str = self.get_argument('deletejson')
-		deletejson = eval(json_str)
-
-		#测试数据，在使用时删除
-		deletejson = {
-		    "host_id":
-			"21asd56wad1",
-		    "operate":"moniter"
-		}
-
-		result = delete(deletejson)
-		self.write(json.dumps(result))
+		try:
+			data = eval(json_str)
+			result = delete(data)
+			self.write(json.dumps(result))
+		except Exception, e:
+			data={
+			  "status": "error",
+			  "data": [],
+			  "operate": "delete",
+			  "msg": str(traceback.format_exc())
+			}
+			print traceback.format_exc()
+			self.write(json.dumps(data))
 
 class CmdHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.write("success!")
+
 	def post(self):
 		json_str = self.get_argument('cmdjson')
-		cmdjson = eval(json_str)
+		try:
+			data = eval(json_str)
+			result = cmd(data)
+			self.write(json.dumps(result))
+		except Exception, e:
+			data={
+			  "status": "error",
+			  "data": [],
+			  "operate": "cmd",
+			  "msg": str(traceback.format_exc())
+			}
+			print traceback.format_exc()
+			self.write(json.dumps(data))
 
-		#测试数据，使用时删除
-		cmdjson = {
-		    "topo_id":"21asd56wad1",
-		    "host_id":"asasd626wd",
-		    "cmd":"python  demo.py",
-		    "operate":"cmd"
-		}
+class MonitorHostHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.write("success!")
 
-
-		result = cmd(cmdjson)
-		self.write(json.dumps(result))
-
-class MoniterHostHandler(tornado.web.RequestHandler):
 	def post(self):
-		json_str = self.get_argument('moniterhostjson')
-		moniterhostjson = eval(json_str)
+		json_str = self.get_argument('monitorhostjson')
+		try:
+			data = eval(json_str)
+			result = monitor_host(data)
+			self.write(json.dumps(result))
+		except Exception, e:
+			data={
+			  "status": "error",
+			  "data": [],
+			  "operate": "monitor_host",
+			  "msg": str(traceback.format_exc())
+			}
+			print traceback.format_exc()
+			self.write(json.dumps(data))
 
-		#测试数据，使用时删除
-		moniterhostjson = {
-		  "host_id": [
-		    "21asd56wad1",
-		    "21asd56fasf"
-		  ],
-		  "operate": "moniter_host"
-		}
+class MonitorTopoHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.write("success!")
 
-		result = moniter_host(moniterhostjson)
-		self.write(json.dumps(result))
-
-class MoniterTopoHandler(tornado.web.RequestHandler):
 	def post(self):
-		json_str = self.get_argument('monitertopojson')
-		monitertopojson = eval(json_str)
+		json_str = self.get_argument('monitortopojson')
+		try:
+			data = eval(json_str)
+			result = monitor_topo(data)
+			self.write(json.dumps(result))
+		except Exception, e:
+			data={
+			  "status": "error",
+			  "data": [],
+			  "operate": "monitor_topo",
+			  "msg": str(traceback.format_exc())
+			}
+			print traceback.format_exc()
+			self.write(json.dumps(data))      
 
-		#测试数据，使用时删除
-		monitertopojson = {
-		  "topo_id":"21asd56wad1",
-		  "operate": "moniter_topo"
-		}
 
-		result = moniter_topo(monitertopojson)
-		self.write(json.dumps(result))		
+class MonitorClusterHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.write("success!")
+
+	def post(self):
+		json_str = self.get_argument('monitorclusterjson')
+		try:
+			data = eval(json_str)
+			result = monitor_cluster(data)
+			self.write(json.dumps(result))
+		except Exception, e:
+			data={
+			  "status": "error",
+			  "data": [],
+			  "operate": "monitor_cluster",
+			  "msg": str(traceback.format_exc())
+			}
+			print traceback.format_exc()
+			self.write(json.dumps(data))     
+
+
+class LogDayHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.write("success!")
+
+	def post(self):
+		json_str = self.get_argument('logdayjson')
+		try:
+			data = eval(json_str)
+			result = log_day(data)
+			self.write(json.dumps(result))
+		except Exception, e:
+			data={
+			  "status": "error",
+			  "data": [],
+			  "operate": "log_day",
+			  "msg": str(traceback.format_exc())
+			}
+			print traceback.format_exc()
+			self.write(json.dumps(data))    
+
+class LogMonthHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.write("success!")
+
+	def post(self):
+		json_str = self.get_argument('logmonthjson')
+		try:
+			data = eval(json_str)
+			result = log_month(data)
+			self.write(json.dumps(result))
+		except Exception, e:
+			data={
+			  "status": "error",
+			  "data": [],
+			  "operate": "log_month",
+			  "msg": str(traceback.format_exc())
+			}
+			print traceback.format_exc()
+			self.write(json.dumps(data))    

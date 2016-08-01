@@ -7,11 +7,14 @@ import subprocess
 import traceback
 import signal
 from read_data import *
+from set_log import *
 debug=ReadDockConf()["host"]["debug"]
 
 class DockerOperate():
 	"""docstring for DockerOperate"""
 	def __init__(self):
+		self.logger=Logger()
+		self.caseins="demo"
 		pass
 
 
@@ -60,6 +63,7 @@ class DockerOperate():
 
 				if docker_list[count_d]["type"]=="docker":
 					docker_item=docker_list[count_d]
+					docker_list[count_d]["compose_id"]=network_core_list[count]["id"]+"_"+str(count_d)
 					docker_temp["image"]=docker_item["image"]
 					docker_temp["cpuset"]=",".join([str(x) for x in xrange(int(docker_item["config"]["cpu_num"]))])
 					docker_temp["mem_limit"]=docker_item["config"]["mem"]
@@ -106,7 +110,7 @@ class DockerOperate():
 			#统计各docker集群数量
 			for cluster in network_core["host_type"]:
 				if cluster["type"]=="docker":
-					cmd_tmp=cluster["id"]+"="+str(cluster["host_num"])+"   "
+					cmd_tmp=cluster["compose_id"]+"="+str(cluster["host_num"])+"   "
 					compose_cmd+=cmd_tmp
 
 
@@ -115,9 +119,12 @@ class DockerOperate():
 			cmd_tmp=net_name+"="+str(num)+"   "
 			compose_cmd+=cmd_tmp 
 
+
+
 		if debug =="false":
 			os.system(compose_cmd)
-		print compose_cmd
+		self.logger.log_save(compose_cmd,self.caseins,"info")
+		#print compose_cmd
 
 		return network_core_list
 
@@ -138,9 +145,11 @@ class DockerOperate():
 			os.system(compose_cmd_stop)
 			os.system(compose_cmd_rm)
 
+		self.logger.log_save(compose_cmd_stop,self.caseins,"info")		
+		self.logger.log_save(compose_cmd_rm,self.caseins,"info")
 
-		print compose_cmd_stop
-		print compose_cmd_rm
+		#print compose_cmd_stop
+		#print compose_cmd_rm
 
 
 
@@ -153,19 +162,25 @@ class DockerOperate():
 		timeout-=1
 		print exec_cmd
 		try: 
-			start = datetime.datetime.now()
-			proc = subprocess.Popen(exec_cmd,stdin=subprocess.PIPE,stdout=subprocess.PIPE,shell=True)	
-			if flag==1:
-				while proc.poll() is None:
-					time.sleep(0.1)
-					now = datetime.datetime.now()
-					if (now - start).seconds> timeout:
-						os.kill(proc.pid, signal.SIGKILL)
-						os.waitpid(-1, os.WNOHANG)
-						return None
-				return proc.stdout.read()
+			if debug =="false":
+				start = datetime.datetime.now()
+				proc = subprocess.Popen(exec_cmd,stdin=subprocess.PIPE,stdout=subprocess.PIPE,shell=True)	
+				self.logger.log_save("主机"+docker_id+"运行命令："+cmd,self.caseins,"info")
+				if flag==1:
+					while proc.poll() is None:
+						time.sleep(0.1)
+						now = datetime.datetime.now()
+						if (now - start).seconds> timeout:
+							os.kill(proc.pid, signal.SIGKILL)
+							os.waitpid(-1, os.WNOHANG)
+							return None
+					out=proc.stdout.read()
+					self.logger.log_save("主机"+docker_id+"返回命令："+out,self.caseins,"info")		
+					return out
+				else:
+					return True
 			else:
-				return True
+				return "此数据为测试数据！"
 		except Exception, e:
 			print traceback.format_exc()
 			return str(traceback.format_exc())

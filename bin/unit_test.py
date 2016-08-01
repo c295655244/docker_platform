@@ -1,13 +1,18 @@
 #coding=utf-8
 from topo_operate import *
 from monitor import *
+import copy
 
 
 #创建拓扑测试
 def test_create_topo():
-	demo=TopoOperate()
 	data=ReadTopoData("create")
-	demo.TopoCreate(data)
+	record={}
+	record["user_id"]=copy.deepcopy(data["data"]["user_info"]["user_id"])
+	data["data"]["user_info"]["user_id"]=record["user_id"][0:8]
+	demo=TopoOperate()
+	result=demo.TopoCreate(data)
+	result["data"]["user_info"]["user_id"]=record["user_id"]
 
 #删除拓扑测试
 def test_del_topo():
@@ -117,25 +122,53 @@ def test_kvm_del():
   	host_data=mongo_operate.get_data_condition("host_list",{"caseins":data["caseins"]})[0]
 	demo.KvmDel(host_data["data"]["host_list"])
 
+
 #host监控api测试
 def test_host_monitor():
 	demo=TopoOperate()
 	data=ReadTopoData("monitor_host")
-	demo.Hostmonitor(data)
+	demo.HostMonitor(data)
 
 
+#命令控制测试
 def test_docker_cmd():
 	demo=TopoOperate()
 	data=ReadTopoData("cmd")
 	demo.HostCmd(data)
 
 
+#拓扑状态查询测试
+def test_topo_monitor():
+	demo=TopoOperate()
+	data=ReadTopoData("monitor_topo")
+	demo.TopoMonitor(data)
+
+
+#集群状态查询测试
+def test_cluster_monitor():
+	demo=TopoOperate()
+	data=ReadTopoData("monitor_cluster")
+	demo.ClusterMonitor(data)
+
+#本月日志查询测试
+def test_log_month():
+	demo=TopoOperate()
+	data=ReadTopoData("log_month")
+	demo.LogMonth(data)	
+
+
+#本日日志查询测试
+def test_log_day():
+	demo=TopoOperate()
+	data=ReadTopoData("log_day")
+	demo.LogDay(data)	
+
 
 if __name__ == '__main__':
 	
-	test_create_topo()
+	#test_create_topo()
 	#test_del_topo()
-	#test_docker_cmd()
+	test_log_day()
 
 
 

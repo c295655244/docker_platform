@@ -19,15 +19,15 @@ def cmd(cmd_json):
 	
 	return result
 
-def moniter_host(moniter_host_json):
-	print moniter_host_json
+def monitor_host(monitor_host_json):
+	print monitor_host_json
 	result = {}
 	#add code here
 	
 	return result
 
-def moniter_topo(moniter_topo_json):
-	print moniter_topo_json
+def monitor_topo(monitor_topo_json):
+	print monitor_topo_json
 	result = {}
 	#add code here
 	

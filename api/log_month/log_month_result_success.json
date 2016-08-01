@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "caseins": "21asd56wad1",
+  "month": "2016-08",
+  "data": [
+    {
+      "date": "2016-08-01",
+      "is_exist": 1
+    },
+    {
+      "date": "2016-08-02",
+      "is_exist": 0
+    }
+  ],
+  "operate": "log_month",
+  "msg": "ok"
+}

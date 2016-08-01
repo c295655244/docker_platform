@@ -2,7 +2,7 @@
 
 import tornado.web
 import json
-from service import create,delete,cmd,moniter_host,moniter_topo
+from service import create,delete,cmd,monitor_host,monitor_topo
 
 class CreateHandler(tornado.web.RequestHandler):
 
@@ -144,7 +144,7 @@ class DeleteHandler(tornado.web.RequestHandler):
 		deletejson = {
 		    "host_id":
 			"21asd56wad1",
-		    "operate":"moniter"
+		    "operate":"monitor"
 		}
 
 		result = delete(deletejson)
@@ -167,33 +167,33 @@ class CmdHandler(tornado.web.RequestHandler):
 		result = cmd(cmdjson)
 		self.write(json.dumps(result))
 
-class MoniterHostHandler(tornado.web.RequestHandler):
+class MonitorHostHandler(tornado.web.RequestHandler):
 	def post(self):
-		json_str = self.get_argument('moniterhostjson')
-		moniterhostjson = eval(json_str)
+		json_str = self.get_argument('monitorhostjson')
+		monitorhostjson = eval(json_str)
 
 		#测试数据，使用时删除
-		moniterhostjson = {
+		monitorhostjson = {
 		  "host_id": [
 		    "21asd56wad1",
 		    "21asd56fasf"
 		  ],
-		  "operate": "moniter_host"
+		  "operate": "monitor_host"
 		}
 
-		result = moniter_host(moniterhostjson)
+		result = monitor_host(monitorhostjson)
 		self.write(json.dumps(result))
 
-class MoniterTopoHandler(tornado.web.RequestHandler):
+class MonitorTopoHandler(tornado.web.RequestHandler):
 	def post(self):
-		json_str = self.get_argument('monitertopojson')
-		monitertopojson = eval(json_str)
+		json_str = self.get_argument('monitortopojson')
+		monitortopojson = eval(json_str)
 
 		#测试数据，使用时删除
-		monitertopojson = {
+		monitortopojson = {
 		  "topo_id":"21asd56wad1",
-		  "operate": "moniter_topo"
+		  "operate": "monitor_topo"
 		}
 
-		result = moniter_topo(monitertopojson)
+		result = monitor_topo(monitortopojson)
 		self.write(json.dumps(result))		

@@ -1,0 +1,11 @@
+{
+  "status": "success",
+  "caseins": "21asd56wad1",
+  "date": "2016-08-01",
+  "data": {
+    "is_exist": 1,
+    "url": "172.29.152.242/log/caseins.txt"
+  },
+  "operate": "log_day",
+  "msg": "ok"
+}

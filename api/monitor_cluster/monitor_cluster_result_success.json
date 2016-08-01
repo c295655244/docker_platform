@@ -1,0 +1,10 @@
+{
+  "status": "success",
+  "data": {
+    "run_num": 12,
+    "stop_num": 12,
+    "fault_num": 12,
+  },
+  "operate": "monitor_cluster",
+  "msg": "ok"
+}

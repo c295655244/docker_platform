@@ -1,11 +1,11 @@
-from views import CreateHandler,DeleteHandler,CmdHandler,MoniterHostHandler,MoniterTopoHandler
+from views import CreateHandler,DeleteHandler,CmdHandler,MonitorHostHandler,MonitorTopoHandler
 
 patterns = [
     (r"/create", CreateHandler),
     (r"/delete", DeleteHandler),
     (r"/cmd", CmdHandler),
-    (r"/moniter_host", MoniterHostHandler),
-    (r"/moniter_topo", MoniterTopoHandler),
+    (r"/monitor_host", MonitorHostHandler),
+    (r"/monitor_topo", MonitorTopoHandler),
 ]
 
 settings = dict(

@@ -4,6 +4,7 @@ from heapq import *
 from read_data import *
 from collections import defaultdict
 from docker_operate import *
+from set_log import *
 
 debug=ReadDockConf()["host"]["debug"]
 
@@ -18,7 +19,9 @@ class NetOperate():
 	"""docstring for BridgeOperate"""
 
 	def __init__(self):
-	  pass
+		self.caseins="demo"
+		self.logger=Logger()
+		pass
 
 
 	def ip2num(self,ip):
@@ -58,10 +61,16 @@ class NetOperate():
 				os.system("sudo ovs-docker add-port %s eth0 %s"%(bridge_id,docker_id))
 				os.system("sudo docker exec %s ifconfig eth0 %s/24"%(docker_id,ip))
 				os.system("sudo docker exec %s route add default gw %s"%(docker_id,gateway_ip))
+			cmd1= "sudo ovs-docker add-port %s eth0 %s"%(bridge_id,docker_id)
+			cmd2="sudo docker exec %s ifconfig eth0 %s/24"%(docker_id,ip)
+			cmd3="sudo docker exec %s route add default gw %s"%(docker_id,gateway_ip)
 
-			print "sudo ovs-docker add-port %s eth0 %s"%(bridge_id,docker_id)
-			print "sudo docker exec %s ifconfig eth0 %s/24"%(docker_id,ip)
-			print "sudo docker exec %s route add default gw %s"%(docker_id,gateway_ip)
+			self.logger.log_save(cmd1,self.caseins,"info")
+			self.logger.log_save(cmd2,self.caseins,"info")
+			self.logger.log_save(cmd3,self.caseins,"info")
+			#print "sudo ovs-docker add-port %s eth0 %s"%(bridge_id,docker_id)
+			#print "sudo docker exec %s ifconfig eth0 %s/24"%(docker_id,ip)
+			#print "sudo docker exec %s route add default gw %s"%(docker_id,gateway_ip)
 			save_data={
 				"real_id": docker_id,
 				"router_id":bridge,
@@ -93,10 +102,14 @@ class NetOperate():
 			os.system("sudo ovs-docker add-port %s %s %s"%(bridge_id,mac_name,docker_id))
 			os.system("sudo docker exec %s ifconfig %s %s/%s"%(docker_id,mac_name,ip,str(mask)))
 
-		print "sudo ovs-docker add-port %s %s %s"%(bridge_id,mac_name,docker_id)
-		print "sudo docker exec %s ifconfig %s %s/%s"%(docker_id,mac_name,ip,str(mask))	
 
-		#print docker_id+"  路由配ip: "+ip+"  连接网桥:"+bridge_id
+		cmd1= "sudo ovs-docker add-port %s %s %s"%(bridge_id,mac_name,docker_id)
+		cmd2= "sudo docker exec %s ifconfig %s %s/%s"%(docker_id,mac_name,ip,str(mask))	
+
+		self.logger.log_save(cmd1,self.caseins,"info")
+		self.logger.log_save(cmd2,self.caseins,"info")
+		#print "sudo ovs-docker add-port %s %s %s"%(bridge_id,mac_name,docker_id)
+		#print "sudo docker exec %s ifconfig %s %s/%s"%(docker_id,mac_name,ip,str(mask))	
 
 
 
@@ -109,7 +122,10 @@ class NetOperate():
 
 		if debug =="false":
 			os.system("sudo docker exec %s route add -net %s netmask %s gw %s"%(router_id,dst_ip,mask_ip,forward_ip))
-		print "sudo docker exec %s route add -net %s netmask %s gw %s"%(router_id,dst_ip,mask_ip,forward_ip)
+		cmd="sudo docker exec %s route add -net %s netmask %s gw %s"%(router_id,dst_ip,mask_ip,forward_ip)
+
+		self.logger.log_save(cmd,self.caseins,"info")
+		#print "sudo docker exec %s route add -net %s netmask %s gw %s"%(router_id,dst_ip,mask_ip,forward_ip)
 
 
 	#Host ip分配
@@ -171,14 +187,15 @@ class NetOperate():
 			#print "配置kvm！"
 			kvm_id =kvm_id_pre+str(count+1)
 			self.EditKvmNetFile(ip,gateway_ip,path)
-
-			if debug =="false":
-				cmd1="sudo virt-copy-in -d %s %s /"%(kvm_id,path)
-				os.system(cmd1)
-				cmd2='virsh start %s'%kvm_id
+			cmd1="sudo virt-copy-in -d %s %s /"%(kvm_id,path)
+			cmd2='virsh start %s'%kvm_id
+			if debug =="false":				
+				os.system(cmd1)				
 				os.system(cmd2)
-			print "sudo virt-copy-in -d %s %s /"%(kvm_id,path)
-			print 'virsh start %s'%kvm_id			
+			self.logger.log_save(cmd1,self.caseins,"info")
+			self.logger.log_save(cmd2,self.caseins,"info")
+			#print "sudo virt-copy-in -d %s %s /"%(kvm_id,path)
+			#print 'virsh start %s'%kvm_id			
 			save_data={
 				"real_id": kvm_id,
 				"router_id":host_dict["router_id"] ,
@@ -204,7 +221,7 @@ class NetOperate():
 
 	#编辑kvm网络配置脚本
 	def EditKvmNetFile(self,ip,gateway,path):
-		file_object = open(path, 'w')
+		file_object = open(path, 'a')
 		str_conf="@echo off\r\n"
 		file_object.write(str_conf)
 		str_conf='netsh interface ip set address "bridge" static %s 255.255.255.0 %s 1'%(ip,gateway)
@@ -324,13 +341,19 @@ class NetOperate():
 
 
 		for i in xrange(router_num):
-			for link_index in route_step_list[i]:
+			for link_index in xrange(len(route_step_list[i])):
+
+				#要达到目标路由的下一跳路由
+				next_step=route_step_list[i][link_index]
+
+				#指定目标路由ip，例如10.0.0.1，不需要减一，下面方法已经自动减一
+				target_ip=network_core_list[link_index]["as_gateway_ip"]
 				if link_index==i:
 					continue
+				record=network_core_list[i]["link_router_ip"][str(next_step)]
 
-				record=network_core_list[i]["link_router_ip"][str(link_index)]
-				self.RouterAdd(network_core_list[i]["docker_id"],record[0],record[1],record[2])
-
+				self.RouterAdd(network_core_list[i]["docker_id"],target_ip,record[1],record[2])
+				print "路由器"+str(i)+"，要到达"+str(link_index)+"，下一跳为"+str(next_step)
 
 
 
@@ -343,11 +366,15 @@ class NetOperate():
 
 		#配置主机ip
 		network_core_list,host_data_list,router_data_list=self.HostIpDistribution(link_list,network_core_list,conf,user_id)
+		print "配置主机ip完成!"
+
 		#配置路由ip
 		link_list,network_core_list=self.RouterIpDistribution(link_list,network_core_list,conf,user_id)
+		print "配置路由间ip完成!"
 
 		#添加路由表
 		self.AddRouteTable(link_list,network_core_list,conf,user_id)
+		print "添加路由表完成!"
 
 		return link_list,network_core_list,host_data_list,router_data_list
 

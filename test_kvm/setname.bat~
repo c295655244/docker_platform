@@ -1,0 +1,3 @@
+@echo off
+set /p name=demo
+wmic computersystem where "PrimaryOwnerName='%username%'" call rename %NAME%&exit
