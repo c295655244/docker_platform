@@ -1,6 +1,6 @@
 #coding=utf-8
 from topo_operate import *
-from monitor import *
+from monitor_new import *
 import copy
 
 
@@ -137,7 +137,7 @@ def test_docker_cmd():
 	demo.HostCmd(data)
 
 
-#拓扑状态查询测试
+#拓扑状态查询测试b
 def test_topo_monitor():
 	demo=TopoOperate()
 	data=ReadTopoData("monitor_topo")
@@ -151,10 +151,10 @@ def test_cluster_monitor():
 	demo.ClusterMonitor(data)
 
 #本月日志查询测试
-def test_log_month():
+def test_log_all():
 	demo=TopoOperate()
-	data=ReadTopoData("log_month")
-	demo.LogMonth(data)	
+	data=ReadTopoData("log_all")
+	demo.LogAll(data)	
 
 
 #本日日志查询测试
@@ -164,12 +164,21 @@ def test_log_day():
 	demo.LogDay(data)	
 
 
+#vnc查询测试
+def test_vnc():
+	demo=TopoOperate()
+	data=ReadTopoData("vnc")
+	demo.Vnc(data)	
+
+
+def test_get_image():
+	demo=TopoOperate()
+	data=ReadTopoData("get_image")
+	demo.GetImage(data)	
+
+
 if __name__ == '__main__':
 	
 	#test_create_topo()
-	#test_del_topo()
-	test_log_day()
-
-
-
-
+	test_del_topo()
+	#test_get_image()

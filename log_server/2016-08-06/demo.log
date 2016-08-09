@@ -1,0 +1,2 @@
+[2016-08-06 17:11:40] <info>  virsh dumpxml irc-server-windows > /home/hitnslab/docker/demo/user/bf33578c-3952-4b20-a0a8-92dc849dc6bb/bf33578c-3952-4b20-a0a8-92dc849dc6bb_14e5d03c_0_1.xml
+[2016-08-06 17:12:04] <info>  virsh dumpxml irc-server-windows > /home/hitnslab/docker/demo/user/bf33578c-3952-4b20-a0a8-92dc849dc6bb/bf33578c-3952-4b20-a0a8-92dc849dc6bb_14e5d03c_0_1.xml

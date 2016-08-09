@@ -1,6 +1,5 @@
 #coding=utf-8
 from topo_operate import *
-from monitor import *
 import copy
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -24,7 +23,6 @@ def cmd(data):
 
 	demo=TopoOperate()
 	result=demo.HostCmd(data)
-	
 	return result
 
 def monitor_host(data):
@@ -36,7 +34,6 @@ def monitor_topo(data):
 
 	demo=TopoOperate()
 	result=demo.TopoMonitor(data)
-	
 	return result
 
 
@@ -45,7 +42,6 @@ def monitor_cluster(data):
 
 	demo=TopoOperate()
 	result=demo.ClusterMonitor(data)
-	
 	return result
 
 
@@ -54,13 +50,26 @@ def log_day(data):
 
 	demo=TopoOperate()
 	result=demo.LogDay(data)
-	
 	return result
 
 
-def log_month(data):
+def log_all(data):
 
 	demo=TopoOperate()
-	result=demo.LogMonth(data)
+	result=demo.LogAll(data)
+	return result
+
+
+def vnc(data):
+
+	demo=TopoOperate()
+	result=demo.Vnc(data)
+	return result
+
+
+def get_image(data):
+
+	demo=TopoOperate()
+	result=demo.GetImage(data)
 	
 	return result

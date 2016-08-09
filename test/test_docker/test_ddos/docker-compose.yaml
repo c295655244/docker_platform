@@ -1,0 +1,13 @@
+version: '2'
+services:
+
+  server:
+    image: ddosserver:1.0
+    network_mode: "none"
+    privileged: true
+
+  client:
+    image: ddosclient:1.1
+    network_mode: "none"
+    privileged: true
+

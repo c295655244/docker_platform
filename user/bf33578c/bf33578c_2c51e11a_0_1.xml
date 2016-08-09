@@ -1,0 +1,62 @@
+<domain type="kvm">
+  <name>bf33578c_2c51e11a_0_1</name>
+  <memory unit="KiB">262144</memory>
+  <currentMemory unit="KiB">262144</currentMemory>
+  <vcpu placement="static">2</vcpu>
+  <os>
+    <type arch="x86_64" machine="pc-i440fx-trusty">hvm</type>
+    <boot dev="hd" />
+  </os>
+  <features>
+    <acpi />
+    <apic />
+    <pae />
+  </features>
+  <clock offset="utc" />
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>restart</on_crash>
+  <devices>
+    <emulator>/usr/bin/kvm-spice</emulator>
+    <disk device="disk" type="file">
+      <driver name="qemu" type="qcow2" />
+      <source file="/var/lib/libvirt/images/bf33578c_2c51e11a_0_1" />
+      <target bus="virtio" dev="vda" />
+      <address bus="0x00" domain="0x0000" function="0x0" slot="0x03" type="pci" />
+    </disk>
+    <controller index="0" type="usb">
+      <address bus="0x00" domain="0x0000" function="0x2" slot="0x01" type="pci" />
+    </controller>
+    <controller index="0" model="pci-root" type="pci" />
+    <controller index="0" type="ide">
+      <address bus="0x00" domain="0x0000" function="0x1" slot="0x01" type="pci" />
+    </controller>
+    <interface type="bridge">
+      <mac address="52:54:00:64:e9:64" />
+      <source bridge="br_2c51e11a" network="default" />
+      <model type="virtio" />
+      <address bus="0x00" domain="0x0000" function="0x0" slot="0x07" type="pci" />
+    <virtualport type="openvswitch" /></interface>
+    <serial type="pty">
+      <target port="0" />
+    </serial>
+    <console type="pty">
+      <target port="0" type="serial" />
+    </console>
+    <input bus="ps2" type="mouse" />
+    <input bus="ps2" type="keyboard" />
+    <graphics autoport="no" listen="0.0.0.0" port="34638" type="vnc">
+      <listen address="0.0.0.0" type="address" />
+    </graphics>
+    <sound model="ich6">
+      <address bus="0x00" domain="0x0000" function="0x0" slot="0x04" type="pci" />
+    </sound>
+    <video>
+      <model heads="1" type="cirrus" vram="9216" />
+      <address bus="0x00" domain="0x0000" function="0x0" slot="0x02" type="pci" />
+    </video>
+    <memballoon model="virtio">
+      <address bus="0x00" domain="0x0000" function="0x0" slot="0x05" type="pci" />
+    </memballoon>
+  </devices>
+</domain>

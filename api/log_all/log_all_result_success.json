@@ -1,0 +1,10 @@
+{
+  "status": "success",
+  "caseins": "21asd56wad1",
+  "data": [
+    "2016-08-01",
+    "2016-08-02"
+  ],
+  "operate": "log_all",
+  "msg": "ok"
+}

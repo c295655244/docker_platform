@@ -221,7 +221,7 @@ class NetOperate():
 
 	#编辑kvm网络配置脚本
 	def EditKvmNetFile(self,ip,gateway,path):
-		file_object = open(path, 'a')
+		file_object = open(path, 'w')
 		str_conf="@echo off\r\n"
 		file_object.write(str_conf)
 		str_conf='netsh interface ip set address "bridge" static %s 255.255.255.0 %s 1'%(ip,gateway)
@@ -238,7 +238,7 @@ class NetOperate():
 		router_start_ip=conf["host"]["router_start_ip"]
 		for count in xrange(len(link_list)):
 			link_relation=link_list[count]
-			bridge_name="br_router_"+str(link_relation["link"][0])+"_"+str(link_relation["link"][1])
+			bridge_name="br_"+self.caseins+"_"+str(link_relation["link"][0])+"_"+str(link_relation["link"][1])
 			eth_name="br_"+str(link_relation["link"][0])+"_"+str(link_relation["link"][1])
 			link_relation["bridge_name"]=bridge_name
 

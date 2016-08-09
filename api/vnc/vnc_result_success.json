@@ -1,0 +1,10 @@
+{
+  "status": "success",
+  "caseins": "21asd56wad1",
+  "real_id": "iuui_asdwad_0_1",
+  "msg": "ok",
+  "data": {
+    "url": "http://172.29.155.55/vnc.html?host=172.29.155.55&port=6080&token=iuui_asdwad_0_1"
+  },
+  "operate": "vnc"
+}

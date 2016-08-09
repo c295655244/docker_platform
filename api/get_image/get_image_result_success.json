@@ -1,0 +1,24 @@
+{
+  "status": "success",
+  "msg": "ok",
+  "data": {
+    "image_list": [
+    	{
+    		"image_name":"winxp",
+    		"hot_num":2,
+    		"use_num":3,
+    		"image_url":"/static/images/winxp.jpg",
+    		"type":"host"
+
+    	},
+    	{
+    		"image_name":"ubuntu:14.04",
+    		"hot_num":2,
+    		"use_num":3,
+    		"image_url":"/static/images/winxp.jpg",
+    		"type":"host"
+    	}
+    ]
+  },
+  "operate": "get_image"
+}

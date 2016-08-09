@@ -1,97 +1,134 @@
 {
-  "caseins": "75784053",
+  "caseins": "bae5dc07",
   "operate": "create",
   "data": {
     "user_info": {
-      "user_id": "bf33578c",
+      "user_id": "bf33578c-3952-4b20-a0a8-92dc849dc6bb",
       "name": "lyq_olivia"
     },
     "network_topo": {
       "network_core_list": [{
-        "name": "路由器1",
-        "id": "08630628",
+        "name": "僵尸主机-路由a",
+        "id": "ad2fe61a",
         "type": "router",
         "rank": "",
-        "image": "ubuntu:14.04",
-        "host_num": 1,
+        "image": "router-docker:latest",
+        "host_num": 10,
         "host_type": [{
-          "image": "ubuntu:14.04",
+          "image": "irc-bot-docker:latest",
           "type": "docker",
-          "host_num": 1,
+          "host_num": 10,
           "config": {
             "cpu_num": "1",
-            "mem": "256m"
+            "mem": "512m"
           },
-          "id": "af3ffeb6"
-        }
-       ]
-      },
-      {
-        "name": "路由器1",
-        "id": "b53d792c",
-        "type": "router",
-        "rank": "",
-        "image": "ubuntu:14.04",
-        "host_num": 1,
-        "host_type": [{
-          "image": "ubuntu:14.04",
-          "type": "docker",
-          "host_num": 1,
-          "config": {
-            "cpu_num": "1",
-            "mem": "256m"
-          },
-          "id": "ee05a06d"
+          "id": "f28ac1df"
         }]
       },
       {
-        "name": "路由器1",
-        "id": "cf1f51ff",
+        "name": "僵尸主机-边界路由",
+        "id": "41f30d36",
         "type": "router",
         "rank": "",
-        "image": "ubuntu:14.04",
-        "host_num": 2,
+        "image": "router-docker:latest",
+        "host_num": 0,
+        "host_type": []
+      },
+      {
+        "name": "僵尸主机-路由b",
+        "id": "55d73584",
+        "type": "router",
+        "rank": "",
+        "image": "router-docker:latest",
+        "host_num": 10,
         "host_type": [{
-          "image": "winxp",
+          "image": "irc-bot-docker:latest",
+          "type": "docker",
+          "host_num": 10,
+          "config": {
+            "cpu_num": "1",
+            "mem": "512m"
+          },
+          "id": "32ba62c8"
+        }]
+      },
+      {
+        "name": "路由-目标机",
+        "id": "a7c2a23e",
+        "type": "router",
+        "rank": "",
+        "image": "router-docker:latest",
+        "host_num": 1,
+        "host_type": [{
+          "image": "irc-target-windows",
           "type": "kvm",
-          "host_num": 2,
+          "host_num": 1,
           "config": {
-            "cpu_num": "1",
-            "mem": "1024m"
+            "cpu_num": "2",
+            "mem": "256m"
           },
-          "id": "b80fc3df"
+          "id": "0a287a69"
         }]
       },
       {
-        "name": "路由器1",
-        "id": "47e364fd",
+        "name": "路由-控制端",
+        "id": "997e1db1",
         "type": "router",
         "rank": "",
-        "image": "ubuntu:14.04",
+        "image": "router-docker:latest",
         "host_num": 1,
         "host_type": [{
-          "image": "ubuntu:14.04",
+          "image": "irc-controller-windows",
+          "type": "kvm",
+          "host_num": 1,
+          "config": {
+            "cpu_num": "2",
+            "mem": "256m"
+          },
+          "id": "cf87cdf1"
+        }]
+      },
+      {
+        "name": "路由-服务器",
+        "id": "d6ed5c14",
+        "type": "router",
+        "rank": "",
+        "image": "router-docker:latest",
+        "host_num": 1,
+        "host_type": [{
+          "image": "irc-server-docker:latest",
           "type": "docker",
           "host_num": 1,
           "config": {
-            "cpu_num": "1",
-            "mem": "1024m"
+            "cpu_num": "2",
+            "mem": "256m"
           },
-          "id": "0660dbbf"
+          "id": "cdaba982"
         }]
-      }
-      ],
+      }],
       "link_list": [{
-        "link": [0,
-        3]
-      },
-      {
         "link": [2,
-        0]
+        1]
       },
       {
-        "link": [1,
-        0]
+        "link": [0,
+        1]
+      },
+      {
+        "link": [5,
+        1]
+      },
+      {
+        "link": [3,
+        4]
+      },
+      {
+        "link": [5,
+        4]
+      },
+      {
+        "link": [3,
+        1]
       }]
     }
   }

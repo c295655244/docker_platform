@@ -43,7 +43,18 @@ class TopoOperate(BaseOperate):
 
 		config=self.conf
 		caseins=data["caseins"]
+		#获取创建锁
+		create_flag,vnc_start= self.mongo_operate.get_lock()
 		try:
+			if create_flag==0:
+				data["status"]="error"
+				data["msg"]="获得锁失败！其他用户正在操作！"
+				self.logger.log_save("获得锁失败！其他用户正在操作！",caseins,"error")
+				print "获得锁失败！其他用户正在操作！"
+				return data
+			config["host"]["vnc_start_port"]=vnc_start
+			print "获得锁成功！开始创建！"
+
 			self.bridge_operate.caseins=caseins
 			self.docker_operate.caseins=caseins
 			self.kvm_operate.caseins=caseins
@@ -86,7 +97,8 @@ class TopoOperate(BaseOperate):
 				config,user_info["user_id"])
 			self.logger.log_save('网络配置完成!',caseins,"info")
 			#print "网络配置完成！"
-
+			self.kvm_operate.VncAdd(config,host_data_list)
+			self.logger.log_save('添加vnc设置完成!',caseins,"info")
 			self.mongo_operate.save_dic(data,"cluster")
 
 			data["data"]={}
@@ -98,7 +110,10 @@ class TopoOperate(BaseOperate):
 			self.mongo_operate.save_dic(data,"host_list")
 			self.logger.log_save('数据库存储完成!',caseins,"info")
 			#print "数据库存储完成!"
-			
+
+			#释放锁
+			self.mongo_operate.release_lock(config["host"]["vnc_start_port"])
+
 			data["status"]="success"
 			data["msg"]="ok"
 		
@@ -116,7 +131,8 @@ class TopoOperate(BaseOperate):
 		except Exception, e:
 			data["status"]="error"
 			data["msg"]=traceback.format_exc()
-			data["data"]={}
+			#释放锁
+			self.mongo_operate.release_lock(vnc_start)
 			self.logger.log_save(str(traceback.format_exc()),caseins,"error")
 			print traceback.format_exc()
 			return data
@@ -130,6 +146,17 @@ class TopoOperate(BaseOperate):
 		task_data={}
 		caseins=data["caseins"]
 		try:
+			#获取删除锁
+			create_flag,vnc_start= self.mongo_operate.get_lock()
+			if create_flag==0:
+				data["status"]="error"
+				data["msg"]="获得锁失败！其他用户正在操作！"
+				self.logger.log_save("获得锁失败！其他用户正在操作！",caseins,"error")
+				print "获得锁失败！其他用户正在操作！"
+				return data
+			config["host"]["vnc_start_port"]=vnc_start
+			print "获得锁成功！开始删除！"
+
 			self.bridge_operate.caseins=caseins
 			self.docker_operate.caseins=caseins
 			self.kvm_operate.caseins=caseins
@@ -148,18 +175,27 @@ class TopoOperate(BaseOperate):
 			self.docker_operate.DockerDel(config,user_info["user_id"])
 			self.logger.log_save('删除docker完成!',caseins,"info")
 
-			# 删除ovs网桥
+			#删除ovs网桥
 			self.bridge_operate.OvsDel(network_topo["link_list"],
 				network_topo["network_core_list"])
-			self.logger.log_save('删除ovs网桥完成!',caseins,"info")	
+			self.logger.log_save('删除ovs网桥完成!',caseins,"info")
+
+			#删除vnc设置
+			self.kvm_operate.VncDel(config,host_data["data"]["host_list"])	
+			self.logger.log_save('删除vnc端口完成!',caseins,"info")
+
 
 			if debug =="false":
-				self.mongo_operate.del_dict("cluster",{"caseins":data["caseins"]})
-				self.mongo_operate.del_dict("host_list",{"caseins":data["caseins"]})
+				pass
+				#self.mongo_operate.del_dict("cluster",{"caseins":data["caseins"]})
+				#self.mongo_operate.del_dict("host_list",{"caseins":data["caseins"]})
 
 			data["status"]="success"
 			data["msg"]="ok"
 			data["data"]=topo_dict["data"]
+
+			#释放锁
+			self.mongo_operate.release_lock(vnc_start)
 
 			WriteTopoData(data,"del")
 			#print "删除拓扑成功!"
@@ -171,6 +207,8 @@ class TopoOperate(BaseOperate):
 			data["status"]="error"
 			data["msg"]=traceback.format_exc()
 			data["data"]={}
+			#释放锁
+			self.mongo_operate.release_lock(config["host"]["vnc_start_port"])
 			self.logger.log_save(str(traceback.format_exc()),caseins,"error")
 			print traceback.format_exc()
 			return data
@@ -181,6 +219,10 @@ class TopoOperate(BaseOperate):
 	def HostMonitor(self,data):
 		config=self.conf
 		data["data"]=[]
+		docker_list_flag={
+			"flag":"monitor_flag",
+			"docker_list":[]
+		}
 		try:
 			for host_id in data["host_id"]:
 				item_data=self.mysql_operate.find_host_stats_api(host_id)
@@ -194,6 +236,7 @@ class TopoOperate(BaseOperate):
 					"stats": item_data[6]
 					}
 					data["data"].append(item)
+					docker_list_flag["docker_list"].append(item_data[1])
 				else:
 					item={
 						"host_id":host_id,
@@ -204,7 +247,7 @@ class TopoOperate(BaseOperate):
 						"stats":"stop"
 					}
 					data["data"].append(item)
-
+			self.mongo_operate.save_moniter_flag(docker_list_flag,"monitor_flag")
 			#print data
 			WriteTopoData(data,"monitor_host")
 			data["status"]="success"
@@ -215,7 +258,6 @@ class TopoOperate(BaseOperate):
 			data["status"]="error"
 			data["msg"]=traceback.format_exc()
 			data["data"]=[]
-			self.logger.log_save(str(traceback.format_exc()),caseins,"error")
 			print traceback.format_exc()
 			return data
 
@@ -230,6 +272,7 @@ class TopoOperate(BaseOperate):
 		out_str=""
 		try:
 			self.docker_operate.caseins=caseins
+			self.logger.log_save("拓扑"+caseins+"执行指令"+data["cmd"],caseins,"info")
 			if len(data["host_id"])==1:
 				out_str=self.docker_operate.DockerCmd(data["host_id"][0],data["cmd"],timeout=timeout,flag=1)
 			else:
@@ -239,11 +282,10 @@ class TopoOperate(BaseOperate):
 			data["status"]="success"
 			data["msg"]="ok"
 			data["data"]={
-				"data": {
-					"return": out_str
-				}
+				"return": out_str
 			}
 			#print data
+			self.logger.log_save("执行指令成功！",caseins,"info")
 			print "命令执行成功!"
 			return data
 		except Exception, e:
@@ -258,7 +300,7 @@ class TopoOperate(BaseOperate):
 	def TopoMonitor(self,data):
 		try:		
 			save_data=self.mongo_operate.get_data_condition("host_list",{"caseins":data["caseins"]})[0]
-			run_host_data=self.mysql_operate.find_host_stats(condition=0)
+			run_host_data=self.mysql_operate.find_host_stats_real_id()
 			router_list=[ item["real_id"]   for item in  save_data["data"]["router_list"]]
 			host_list=[ item["real_id"]   for item in  save_data["data"]["host_list"]]
 			host_data=router_list+host_list
@@ -266,6 +308,7 @@ class TopoOperate(BaseOperate):
 			stop=0
 			fault=0
 			for host_id in host_data:
+
 				if host_id in run_host_data.keys():
 					if run_host_data[host_id][6] == "run":
 						run+=1
@@ -287,7 +330,6 @@ class TopoOperate(BaseOperate):
 			data["status"]="error"
 			data["msg"]=traceback.format_exc()
 			data["data"]=[]
-			self.logger.log_save(str(traceback.format_exc()),caseins,"error")
 			print traceback.format_exc()
 			return data
 
@@ -295,7 +337,7 @@ class TopoOperate(BaseOperate):
 
 	def ClusterMonitor(self,data):
 		try:		
-			run_host_data=self.mysql_operate.find_host_stats(condition=0)
+			run_host_data=self.mysql_operate.find_host_stats_real_id()
 			host_data=data["host_id"]
 			run=0
 			stop=0
@@ -323,36 +365,22 @@ class TopoOperate(BaseOperate):
 			data["status"]="error"
 			data["msg"]=traceback.format_exc()
 			data["data"]=[]
-			self.logger.log_save(str(traceback.format_exc()),caseins,"error")
 			print traceback.format_exc()
 			return data
 
 
-	def LogMonth(self,data):
+	def LogAll(self,data):
 		try:			
 			config=self.conf
 			caseins=data["caseins"]
-			month=data["month"]
 			dir_path=config["host"]["log_path"]
-			days_num=self.logger.cul_day_num(month)
+			list_dir=os.listdir(dir_path)
 			data_list=[]
-			for index in xrange(days_num):
-				if index <9:
-					day="0"+str(index+1)
-				else:
-					day=str(index+1)
-				date=month+"-"+day
+			for date in list_dir:
 				log_path=dir_path+date+"/"+caseins+".log"
-				if not os.path.exists(log_path):
-					is_exist=0
-				else:
-					is_exist=1
-				data_item={
-					"is_exist":is_exist,
-					"date":date
-				}
-				data_list.append(data_item)
-				#print data_item
+				#print log_path
+				if os.path.exists(log_path):
+					data_list.append(date)
 			data["status"]="success"
 			data["msg"]="ok"
 			data["data"]=data_list
@@ -372,14 +400,14 @@ class TopoOperate(BaseOperate):
 			caseins=data["caseins"]
 			date=data["date"]
 			dir_path=config["host"]["log_path"]
-			ftp_url=config["ftp"]["ftp_url"]
+			log_url=config["host"]["log_url"]
 			log_path=dir_path+date+"/"+caseins+".log"
 			if not os.path.exists(log_path):
 				is_exist=0
 				url=""
 			else:
 				is_exist=1
-				url=ftp_url+date+"/"+caseins+".log"
+				url=log_url+date+"/"+caseins+".log"
 			data["status"]="success"
 			data["msg"]="ok"
 			data["data"]={
@@ -395,8 +423,54 @@ class TopoOperate(BaseOperate):
 			print traceback.format_exc()
 			return data
 
+	def Vnc(self,data):
+		try:			
+			config=self.conf
+			caseins=data["caseins"]
+			host_id=data["real_id"]
+			url=config["host"]["vnc_url"]+host_id
+			data["status"]="success"
+			data["msg"]="ok"
+			data["data"]={
+				"url":url
+			}
+			print "VNC查询成功!"
+			return data	
+		except Exception, e:
+			data["status"]="error"
+			data["msg"]=str(traceback.format_exc())
+			data["data"]=[]
+			print traceback.format_exc()
+			return data		
 
 
+	def GetImage(self,data):
+		try:
+			result=self.mysql_operate.find_data("images")
+			data_list=[]
+			for item in result:
+				item_dict={
+					"image_name":item[0],
+					"hot_num":item[2],
+					"use_num":item[1],
+					"image_url":item[3],
+					"type":item[4]
+				}
+				data_list.append(item_dict)
+			data["status"]="success"
+			data["msg"]="ok"
+			data["data"]={
+				"image_list":data_list
+			}
+			data_list
+			print "镜像查询成功!"
+			return data
+		except Exception, e:
+			data["status"]="error"
+			data["msg"]=str(traceback.format_exc())
+			data["data"]=[]
+			print traceback.format_exc()
+			return data
 
 if __name__ == '__main__':
 	pass

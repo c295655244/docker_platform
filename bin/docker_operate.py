@@ -6,8 +6,10 @@ import datetime
 import subprocess 
 import traceback
 import signal
+import copy 
 from read_data import *
 from set_log import *
+exec_debug=ReadDockConf()["host"]["exec_debug"]
 debug=ReadDockConf()["host"]["debug"]
 
 class DockerOperate():
@@ -44,7 +46,6 @@ class DockerOperate():
 		}
 		docker_temp={
 			"image": "ubuntu:14.04",
-			"command": "sleep 365d",
 			"network_mode": "none",
 			"cpu_shares": 512,
 			"cpuset": "0,1",
@@ -57,6 +58,7 @@ class DockerOperate():
 			network_core_list[count]["docker_id"]=router_id
 			docker_list=network_core_list[count]["host_type"]
 			cluster_id=network_core_list[count]["id"]
+			compose_file["services"]["router"]["image"]=network_core_list[count]["image"]
 
 			#创建host的composefile
 			for count_d in xrange(len(docker_list)):
@@ -65,15 +67,14 @@ class DockerOperate():
 					docker_item=docker_list[count_d]
 					docker_list[count_d]["compose_id"]=network_core_list[count]["id"]+"_"+str(count_d)
 					docker_temp["image"]=docker_item["image"]
-					docker_temp["cpuset"]=",".join([str(x) for x in xrange(int(docker_item["config"]["cpu_num"]))])
+					docker_temp["cpuset"]=str(",".join([str(x) for x in xrange(int(docker_item["config"]["cpu_num"]))]))
 					docker_temp["mem_limit"]=docker_item["config"]["mem"]
 
 
 					#修改composefile
-					compose_file["services"][cluster_id+"_"+str(count_d)]=docker_temp
+					compose_file["services"][cluster_id+"_"+str(count_d)]=copy.deepcopy(docker_temp)
 
 
-		#print network_core_list,file_path
 
 		#此句防止出现!!python/unicode串
 		yaml.add_representer(unicode, lambda dumper, 
@@ -155,18 +156,19 @@ class DockerOperate():
 
 
 	#为docker下达命令
-	#flag=0 只进行单条执行，返回信息
-	#flsg=1 只进行批量执行,不返回信息
+	#flag=1 只进行单条执行，返回信息
+	#flsg=0 只进行批量执行,不返回信息
 	def DockerCmd(self,docker_id,cmd,timeout=5,flag=0):
 		exec_cmd="sudo docker exec %s  %s"%(docker_id,cmd)
+		exec_cmd_many="sudo docker exec  -d  %s  %s"%(docker_id,cmd)
 		timeout-=1
 		print exec_cmd
 		try: 
-			if debug =="false":
-				start = datetime.datetime.now()
-				proc = subprocess.Popen(exec_cmd,stdin=subprocess.PIPE,stdout=subprocess.PIPE,shell=True)	
-				self.logger.log_save("主机"+docker_id+"运行命令："+cmd,self.caseins,"info")
+			if exec_debug =="false":
+				start = datetime.datetime.now()		
 				if flag==1:
+					proc = subprocess.Popen(exec_cmd,stdin=subprocess.PIPE,stdout=subprocess.PIPE,shell=True)	
+					self.logger.log_save("主机"+docker_id+"运行命令："+cmd,self.caseins,"info")
 					while proc.poll() is None:
 						time.sleep(0.1)
 						now = datetime.datetime.now()
@@ -178,6 +180,8 @@ class DockerOperate():
 					self.logger.log_save("主机"+docker_id+"返回命令："+out,self.caseins,"info")		
 					return out
 				else:
+					proc = subprocess.Popen(exec_cmd_many,stdin=subprocess.PIPE,stdout=subprocess.PIPE,shell=True)	
+					self.logger.log_save("主机"+docker_id+"批量运行命令："+cmd,self.caseins,"info")					
 					return True
 			else:
 				return "此数据为测试数据！"

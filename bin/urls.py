@@ -9,7 +9,9 @@ patterns = [
     (r"/monitor_topo", MonitorTopoHandler),
     (r"/monitor_cluster", MonitorClusterHandler),
     (r"/log_day", LogDayHandler),
-    (r"/log_month", LogMonthHandler),
+    (r"/log_all", LogAllHandler),
+    (r"/vnc",VncHandler),    
+    (r"/get_image",GetImageHandler),
 ]
 
 settings = dict(

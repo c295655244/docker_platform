@@ -1,0 +1,45 @@
+#!/bin/bash
+
+sudo ovs-vsctl add-br br-kvm
+
+
+echo "正在复制test1镜像"
+#cp /var/lib/libvirt/images/winxp.qcow2 /var/lib/libvirt/images/test1
+
+echo "正在复制test2镜像"
+#cp /var/lib/libvirt/images/winxp.qcow2 /var/lib/libvirt/images/test2
+
+virsh define test1.xml
+
+virsh define test2.xml
+
+
+echo "@echo off" > setip.bat
+
+echo "netsh interface ip set address \"bridge\" static 10.0.0.2 255.255.255.0 10.0.0.1 1" >> setip.bat
+
+sudo virt-copy-in -d test1 setip.bat /
+
+
+
+
+echo "@echo off" > setip.bat
+
+echo "netsh interface ip set address \"bridge\" static 10.0.0.3 255.255.255.0 10.0.0.1 1" >> setip.bat
+
+
+sudo virt-copy-in -d test2 setip.bat /
+
+
+virsh start test1
+
+virsh start test2
+
+
+
+
+
+
+
+
+

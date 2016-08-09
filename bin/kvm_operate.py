@@ -37,6 +37,9 @@ class KvmOperate():
 		#修改memeory
 		memory =domain.find('./memory')
 		memory.text=str(node['memory'])
+
+		memory_current =domain.find('./currentMemory')
+		memory_current.text=str(node['memory'])
 		#修改cpu个数
 		cpu_num=domain.find('./vcpu')
 		cpu_num.text=str(node['cpu_num'])
@@ -109,7 +112,8 @@ class KvmOperate():
 		cmd='cp %s %s'%(img, node['diskimg'])
 		if debug =="false":
 			if not os.path.exists(node['diskimg']):
-				os.system(cmd)
+				print "执行复制!"
+				#os.system(cmd)
 		self.logger.log_save(cmd,self.caseins,"info")
 		#print cmd
 
@@ -157,7 +161,7 @@ class KvmOperate():
 						argv["config"]=config["host"]["compose_file_path"]
 						argv["image"]=host_data["image"]
 						argv["bridge"]="br_"+router_id
-						argv['id'] = str(user_id)+'_'+router_id+'_'+str(i)+'_'+str(count+1)
+						argv['id'] = str(user_id)+'_'+router_id+'_'+str(j)+'_'+str(count+1)
 						host_info=self.KvmPreStart(host_data,argv)
 						vnc_port+=1
 						
@@ -196,6 +200,45 @@ class KvmOperate():
 				self.logger.log_save(cmd,self.caseins,"info")
 				#print cmd
 
+	#删除vnc端口映射文件中对应host
+	def VncDel(self,config,data_list):
+		path=config["host"]["compose_file_path"]+"novnc/noVNC/vnc_port.conf"
+		read = open(path,"r")  
+		host_list_old=[]
+		host_list_new=[]
+		line=read.readline()
+		while line:  
+			host_list_old.append(line)
+			#print line  
+			line=read.readline()#如果没有这行会造成死循环  
+		read.close()
+		write=open(path,"w")
+		kvm_list=[kvm for kvm in data_list if kvm["type"]=="kvm"]
+		for host in host_list_old:
+			flag=0
+			for kvm in kvm_list:
+				if kvm["real_id"] in host:
+					flag=1
+					break
+			if flag==0:
+				host_list_new.append(host)
+
+		for host in host_list_new:
+			write.write(host)
+		write.close()
+
+
+
+
+	#添加vnc端口映射文件中对应的host
+	def VncAdd(self,config,data_list):
+		self.VncDel(config,data_list)
+		path=config["host"]["compose_file_path"]+"novnc/noVNC/vnc_port.conf"
+		write=open(path,"a")
+		for kvm in data_list:
+			if kvm["type"]=="kvm":
+				write.write(kvm["real_id"]+":  127.0.0.1:"+str(kvm["vncport"])+"\n")
+		write.close()
 
 
 

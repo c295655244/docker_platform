@@ -1,17 +1,28 @@
 services:
-  08630628_0: &id001
-    command: sleep 365d
+  55d73584_0:
     cpu_shares: 512
     cpuset: '0'
-    image: ubuntu:14.04
-    mem_limit: 1024m
+    image: irc-bot-docker:latest
+    mem_limit: 512m
     network_mode: none
     privileged: true
-  47e364fd_0: *id001
-  b53d792c_0: *id001
+  ad2fe61a_0:
+    cpu_shares: 512
+    cpuset: '0'
+    image: irc-bot-docker:latest
+    mem_limit: 512m
+    network_mode: none
+    privileged: true
+  d6ed5c14_0:
+    cpu_shares: 512
+    cpuset: 0,1
+    image: irc-server-docker:latest
+    mem_limit: 256m
+    network_mode: none
+    privileged: true
   router:
     command: sleep 365d
-    image: ubuntu:14.04
+    image: router-docker:latest
     network_mode: none
     privileged: true
 version: '2'

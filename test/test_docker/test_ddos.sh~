@@ -1,0 +1,13 @@
+sudo ovs-vsctl add-br br-ddos
+
+
+sudo docker run -id --privileged --network=none ddosserver:1.0
+sudo docker run -id --privileged --network=none ddosclient:1.0
+
+sudo ovs-docker add-port br-int1 eth0 test_ubuntu_1
+sudo docker exec test_ubuntu_1 ifconfig eth0 10.0.0.2/24
+sudo docker exec test_ubuntu_1 route add default gw 10.0.0.1
+
+sudo ovs-docker add-port br-int2 eth0 test_ubuntu_2
+sudo docker exec test_ubuntu_2 ifconfig eth0 10.0.1.2/24
+sudo docker exec test_ubuntu_2 route add default gw 10.0.1.1

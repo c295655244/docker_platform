@@ -1,9 +1,8 @@
 {
   "caseins": "21asd56wad1",
   "host_id": [
-    "87f984ca8ca1",
-    "67def7cfbfea",
-    "b730df28d9f0"
+    "23911",
+    "ed00003"
   ],
   "cmd": "ping 172.17.0.1 -c 2",
   "operate": "cmd"

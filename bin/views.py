@@ -75,7 +75,25 @@ class CmdHandler(tornado.web.RequestHandler):
 
 class MonitorHostHandler(tornado.web.RequestHandler):
 	def get(self):
-		self.write("success!")
+		#print self.request.arguments
+		callback = self.get_argument('data')
+		json_str = self.get_argument('data_json')
+		try:
+			data = eval(json_str)
+			result = monitor_host(data)
+			str_json=json.dumps(data)
+			self.write(callback+"("+str_json+");") 
+		except Exception, e:
+			data={
+			  "status": "error",
+			  "data": [],
+			  "operate": "monitor_host",
+			  "msg": str(traceback.format_exc())
+			}
+			str_json=json.dumps(data)
+			print traceback.format_exc()
+			self.write(callback+"("+str_json+");") 
+
 
 	def post(self):
 		json_str = self.get_argument('monitorhostjson')
@@ -155,22 +173,63 @@ class LogDayHandler(tornado.web.RequestHandler):
 			print traceback.format_exc()
 			self.write(json.dumps(data))    
 
-class LogMonthHandler(tornado.web.RequestHandler):
+class LogAllHandler(tornado.web.RequestHandler):
 	def get(self):
 		self.write("success!")
 
 	def post(self):
-		json_str = self.get_argument('logmonthjson')
+		json_str = self.get_argument('logalljson')
 		try:
 			data = eval(json_str)
-			result = log_month(data)
+			result = log_all(data)
 			self.write(json.dumps(result))
 		except Exception, e:
 			data={
 			  "status": "error",
 			  "data": [],
-			  "operate": "log_month",
+			  "operate": "log_all",
 			  "msg": str(traceback.format_exc())
 			}
 			print traceback.format_exc()
 			self.write(json.dumps(data))    
+
+
+class VncHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.write("success!")
+
+	def post(self):
+		json_str = self.get_argument('vncjson')
+		try:
+			data = eval(json_str)
+			result = vnc(data)
+			self.write(json.dumps(result))
+		except Exception, e:
+			data={
+			  "status": "error",
+			  "data": [],
+			  "operate": "vnc",
+			  "msg": str(traceback.format_exc())
+			}
+			print traceback.format_exc()
+			self.write(json.dumps(data))    
+
+class GetImageHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.write("success!")
+
+	def post(self):
+		json_str = self.get_argument('getimagejson')
+		try:
+			data = eval(json_str)
+			result = get_image(data)
+			self.write(json.dumps(result))
+		except Exception, e:
+			data={
+			  "status": "error",
+			  "data": [],
+			  "operate": "get_image",
+			  "msg": str(traceback.format_exc())
+			}
+			print traceback.format_exc()
+			self.write(json.dumps(data))  

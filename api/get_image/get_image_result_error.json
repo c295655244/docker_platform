@@ -1,0 +1,6 @@
+{
+  "status": "error",
+  "msg": "error_message",
+  "data": {},
+  "operate": "get_image"
+}

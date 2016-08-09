@@ -18,7 +18,7 @@ def ReadDockConf():
 			section_dict[item]=data_conf.get(section,item)
 		data_dict[section]=section_dict
 	data_dict["host"]["compose_file_path"]=os.path.dirname(sys.path[0])+"/"
-	#print data_dict["host"]["compose_file_path"]
+	data_dict["host"]["log_path"]=os.path.dirname(sys.path[0])+"/log_server/"
 	return data_dict
 
 

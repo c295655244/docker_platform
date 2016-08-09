@@ -1,0 +1,7 @@
+irc-server-windows
+irc-controller-windows
+irc-target-windows
+irc-target-docker:latest
+irc-bot-docker:latest
+router-docker:latest
+
