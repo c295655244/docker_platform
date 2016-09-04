@@ -139,7 +139,7 @@ class NetOperate():
 			bridge_id="br_"+network_core["id"]
 
 			#作为路由器的docker，id
-			router_id_docker=user_id+"_router_"+str(count+1)
+			router_id_docker=network_core_list[count]["docker_id"]
 
 			#网络核心处保存生成的网关ip
 			network_core["switch_id"]=bridge_id

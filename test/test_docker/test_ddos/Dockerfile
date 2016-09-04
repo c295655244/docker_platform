@@ -1,3 +1,3 @@
-FROM ddosclient:1.0
+FROM ubuntu:14.04
 
 CMD sleep 2d

@@ -1,0 +1,1972 @@
+[2016-08-10 08:58:48] <info>  数据初始化完成!
+[2016-08-10 08:58:48] <info>  sudo ovs-vsctl add-br br_bae5dc07_2_1
+[2016-08-10 08:58:48] <info>  sudo ovs-vsctl add-br br_bae5dc07_0_1
+[2016-08-10 08:58:48] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_1
+[2016-08-10 08:58:48] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_4
+[2016-08-10 08:58:48] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_4
+[2016-08-10 08:58:48] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_1
+[2016-08-10 08:58:48] <info>  sudo ovs-vsctl add-br br_ad2fe61a
+[2016-08-10 08:58:48] <info>  sudo ovs-vsctl add-br br_41f30d36
+[2016-08-10 08:58:48] <info>  sudo ovs-vsctl add-br br_55d73584
+[2016-08-10 08:58:48] <info>  sudo ovs-vsctl add-br br_a7c2a23e
+[2016-08-10 08:58:48] <info>  sudo ovs-vsctl add-br br_997e1db1
+[2016-08-10 08:58:48] <info>  sudo ovs-vsctl add-br br_d6ed5c14
+[2016-08-10 08:58:48] <info>  网桥创建完成!
+[2016-08-10 08:58:48] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  scale  ad2fe61a_0=10   55d73584_0=10   d6ed5c14_0=1   router=6   
+[2016-08-10 08:58:48] <info>  docker创建完成!
+[2016-08-10 08:58:48] <info>  virsh dumpxml irc-target-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 08:58:48] <info>  cp /var/lib/libvirt/images/irc-target-windows.img /var/lib/libvirt/images/bf33578c_a7c2a23e_0_1
+[2016-08-10 08:58:48] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 08:58:48] <info>  virsh dumpxml irc-controller-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 08:58:48] <info>  cp /var/lib/libvirt/images/irc-controller-windows.img /var/lib/libvirt/images/bf33578c_997e1db1_0_1
+[2016-08-10 08:58:48] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 08:58:48] <info>  kvm创建完成!
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_router_1
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_1 ifconfig eth0 10.0.0.1/24
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_1
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 ifconfig eth0 10.0.0.2/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 route add default gw 10.0.0.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_2
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 ifconfig eth0 10.0.0.3/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 route add default gw 10.0.0.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_3
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 ifconfig eth0 10.0.0.4/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 route add default gw 10.0.0.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_4
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 ifconfig eth0 10.0.0.5/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 route add default gw 10.0.0.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_5
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 ifconfig eth0 10.0.0.6/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 route add default gw 10.0.0.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_6
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 ifconfig eth0 10.0.0.7/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 route add default gw 10.0.0.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_7
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 ifconfig eth0 10.0.0.8/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 route add default gw 10.0.0.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_8
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 ifconfig eth0 10.0.0.9/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 route add default gw 10.0.0.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_9
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 ifconfig eth0 10.0.0.10/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 route add default gw 10.0.0.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_10
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 ifconfig eth0 10.0.0.11/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 route add default gw 10.0.0.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_41f30d36 eth0 bf33578c_router_2
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_2 ifconfig eth0 10.0.1.1/24
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_router_3
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_3 ifconfig eth0 10.0.2.1/24
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_1
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_1 ifconfig eth0 10.0.2.2/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_1 route add default gw 10.0.2.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_2
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_2 ifconfig eth0 10.0.2.3/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_2 route add default gw 10.0.2.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_3
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_3 ifconfig eth0 10.0.2.4/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_3 route add default gw 10.0.2.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_4
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_4 ifconfig eth0 10.0.2.5/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_4 route add default gw 10.0.2.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_5
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_5 ifconfig eth0 10.0.2.6/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_5 route add default gw 10.0.2.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_6
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_6 ifconfig eth0 10.0.2.7/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_6 route add default gw 10.0.2.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_7
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_7 ifconfig eth0 10.0.2.8/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_7 route add default gw 10.0.2.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_8
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_8 ifconfig eth0 10.0.2.9/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_8 route add default gw 10.0.2.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_9
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_9 ifconfig eth0 10.0.2.10/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_9 route add default gw 10.0.2.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_10
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_10 ifconfig eth0 10.0.2.11/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_55d73584_0_10 route add default gw 10.0.2.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_a7c2a23e eth0 bf33578c_router_4
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_4 ifconfig eth0 10.0.3.1/24
+[2016-08-10 08:58:48] <info>  sudo virt-copy-in -d bf33578c_a7c2a23e_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 08:58:48] <info>  virsh start bf33578c_a7c2a23e_0_1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_997e1db1 eth0 bf33578c_router_5
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_5 ifconfig eth0 10.0.4.1/24
+[2016-08-10 08:58:48] <info>  sudo virt-copy-in -d bf33578c_997e1db1_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 08:58:48] <info>  virsh start bf33578c_997e1db1_0_1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_router_6
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_6 ifconfig eth0 10.0.5.1/24
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_d6ed5c14_0_1
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 ifconfig eth0 10.0.5.2/24
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 route add default gw 10.0.5.1
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_3
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_3 ifconfig br_2_1 20.0.0.1/30
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_2
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_2 ifconfig br_2_1 20.0.0.2/30
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_1
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_1 ifconfig br_0_1 20.0.0.5/30
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_2
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_2 ifconfig br_0_1 20.0.0.6/30
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_6
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_6 ifconfig br_5_1 20.0.0.9/30
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_2
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_2 ifconfig br_5_1 20.0.0.10/30
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_4
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_4 ifconfig br_3_4 20.0.0.13/30
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_5
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_5 ifconfig br_3_4 20.0.0.14/30
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_6
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_6 ifconfig br_5_4 20.0.0.17/30
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_5
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_5 ifconfig br_5_4 20.0.0.18/30
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_4
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_4 ifconfig br_3_1 20.0.0.21/30
+[2016-08-10 08:58:48] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_2
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_2 ifconfig br_3_1 20.0.0.22/30
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_2 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.5
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_2 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.1
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_2 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_2 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_2 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.9
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_3 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_3 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_3 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_3 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_3 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_4 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_4 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_4 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_4 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.14
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_4 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_5 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_5 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_5 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_5 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_5 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.17
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_6 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_6 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_6 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_6 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 08:58:48] <info>  sudo docker exec bf33578c_router_6 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.18
+[2016-08-10 08:58:48] <info>  网络配置完成!
+[2016-08-10 08:58:48] <info>  添加vnc设置完成!
+[2016-08-10 08:58:48] <info>  数据库存储完成!
+[2016-08-10 08:58:48] <info>  拓扑创建成功!
+[2016-08-10 09:10:54] <info>  数据初始化完成!
+[2016-08-10 09:10:54] <info>  sudo ovs-vsctl add-br br_bae5dc07_2_1
+[2016-08-10 09:10:54] <info>  sudo ovs-vsctl add-br br_bae5dc07_0_1
+[2016-08-10 09:10:54] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_1
+[2016-08-10 09:10:54] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_4
+[2016-08-10 09:10:54] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_4
+[2016-08-10 09:10:54] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_1
+[2016-08-10 09:10:54] <info>  sudo ovs-vsctl add-br br_ad2fe61a
+[2016-08-10 09:10:54] <info>  sudo ovs-vsctl add-br br_41f30d36
+[2016-08-10 09:10:54] <info>  sudo ovs-vsctl add-br br_55d73584
+[2016-08-10 09:10:54] <info>  sudo ovs-vsctl add-br br_a7c2a23e
+[2016-08-10 09:10:54] <info>  sudo ovs-vsctl add-br br_997e1db1
+[2016-08-10 09:10:54] <info>  sudo ovs-vsctl add-br br_d6ed5c14
+[2016-08-10 09:10:54] <info>  网桥创建完成!
+[2016-08-10 09:10:54] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  scale  ad2fe61a_0=10   55d73584_0=10   d6ed5c14_0=1   router=6   
+[2016-08-10 09:10:54] <info>  docker创建完成!
+[2016-08-10 09:10:54] <info>  virsh dumpxml irc-target-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 09:10:54] <info>  cp /var/lib/libvirt/images/irc-target-windows.img /var/lib/libvirt/images/bf33578c_a7c2a23e_0_1
+[2016-08-10 09:10:54] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 09:10:55] <info>  virsh dumpxml irc-controller-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 09:10:55] <info>  cp /var/lib/libvirt/images/irc-controller-windows.img /var/lib/libvirt/images/bf33578c_997e1db1_0_1
+[2016-08-10 09:10:55] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 09:10:55] <info>  kvm创建完成!
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_router_1
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_1 ifconfig eth0 10.0.0.1/24
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_1
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 ifconfig eth0 10.0.0.2/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 route add default gw 10.0.0.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_2
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 ifconfig eth0 10.0.0.3/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 route add default gw 10.0.0.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_3
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 ifconfig eth0 10.0.0.4/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 route add default gw 10.0.0.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_4
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 ifconfig eth0 10.0.0.5/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 route add default gw 10.0.0.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_5
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 ifconfig eth0 10.0.0.6/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 route add default gw 10.0.0.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_6
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 ifconfig eth0 10.0.0.7/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 route add default gw 10.0.0.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_7
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 ifconfig eth0 10.0.0.8/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 route add default gw 10.0.0.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_8
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 ifconfig eth0 10.0.0.9/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 route add default gw 10.0.0.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_9
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 ifconfig eth0 10.0.0.10/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 route add default gw 10.0.0.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_10
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 ifconfig eth0 10.0.0.11/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 route add default gw 10.0.0.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_41f30d36 eth0 bf33578c_router_2
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_2 ifconfig eth0 10.0.1.1/24
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_router_3
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_3 ifconfig eth0 10.0.2.1/24
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_1
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_1 ifconfig eth0 10.0.2.2/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_1 route add default gw 10.0.2.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_2
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_2 ifconfig eth0 10.0.2.3/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_2 route add default gw 10.0.2.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_3
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_3 ifconfig eth0 10.0.2.4/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_3 route add default gw 10.0.2.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_4
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_4 ifconfig eth0 10.0.2.5/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_4 route add default gw 10.0.2.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_5
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_5 ifconfig eth0 10.0.2.6/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_5 route add default gw 10.0.2.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_6
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_6 ifconfig eth0 10.0.2.7/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_6 route add default gw 10.0.2.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_7
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_7 ifconfig eth0 10.0.2.8/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_7 route add default gw 10.0.2.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_8
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_8 ifconfig eth0 10.0.2.9/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_8 route add default gw 10.0.2.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_9
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_9 ifconfig eth0 10.0.2.10/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_9 route add default gw 10.0.2.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_10
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_10 ifconfig eth0 10.0.2.11/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_55d73584_0_10 route add default gw 10.0.2.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_a7c2a23e eth0 bf33578c_router_4
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_4 ifconfig eth0 10.0.3.1/24
+[2016-08-10 09:10:55] <info>  sudo virt-copy-in -d bf33578c_a7c2a23e_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 09:10:55] <info>  virsh start bf33578c_a7c2a23e_0_1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_997e1db1 eth0 bf33578c_router_5
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_5 ifconfig eth0 10.0.4.1/24
+[2016-08-10 09:10:55] <info>  sudo virt-copy-in -d bf33578c_997e1db1_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 09:10:55] <info>  virsh start bf33578c_997e1db1_0_1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_router_6
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_6 ifconfig eth0 10.0.5.1/24
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_d6ed5c14_0_1
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 ifconfig eth0 10.0.5.2/24
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 route add default gw 10.0.5.1
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_3
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_3 ifconfig br_2_1 20.0.0.1/30
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_2
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_2 ifconfig br_2_1 20.0.0.2/30
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_1
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_1 ifconfig br_0_1 20.0.0.5/30
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_2
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_2 ifconfig br_0_1 20.0.0.6/30
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_6
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_6 ifconfig br_5_1 20.0.0.9/30
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_2
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_2 ifconfig br_5_1 20.0.0.10/30
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_4
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_4 ifconfig br_3_4 20.0.0.13/30
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_5
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_5 ifconfig br_3_4 20.0.0.14/30
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_6
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_6 ifconfig br_5_4 20.0.0.17/30
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_5
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_5 ifconfig br_5_4 20.0.0.18/30
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_4
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_4 ifconfig br_3_1 20.0.0.21/30
+[2016-08-10 09:10:55] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_2
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_2 ifconfig br_3_1 20.0.0.22/30
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_2 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.5
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_2 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.1
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_2 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_2 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_2 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.9
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_3 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_3 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_3 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_3 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_3 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_4 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_4 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_4 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_4 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.14
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_4 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_5 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_5 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_5 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_5 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_5 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.17
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_6 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_6 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_6 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_6 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:10:55] <info>  sudo docker exec bf33578c_router_6 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.18
+[2016-08-10 09:10:55] <info>  网络配置完成!
+[2016-08-10 09:10:55] <info>  添加vnc设置完成!
+[2016-08-10 09:10:55] <info>  数据库存储完成!
+[2016-08-10 09:10:55] <info>  拓扑创建成功!
+[2016-08-10 09:13:53] <info>  数据初始化完成!
+[2016-08-10 09:13:53] <info>  sudo ovs-vsctl add-br br_bae5dc07_2_1
+[2016-08-10 09:13:53] <info>  sudo ovs-vsctl add-br br_bae5dc07_0_1
+[2016-08-10 09:13:53] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_1
+[2016-08-10 09:13:53] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_4
+[2016-08-10 09:13:53] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_4
+[2016-08-10 09:13:53] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_1
+[2016-08-10 09:13:53] <info>  sudo ovs-vsctl add-br br_ad2fe61a
+[2016-08-10 09:13:53] <info>  sudo ovs-vsctl add-br br_41f30d36
+[2016-08-10 09:13:53] <info>  sudo ovs-vsctl add-br br_55d73584
+[2016-08-10 09:13:53] <info>  sudo ovs-vsctl add-br br_a7c2a23e
+[2016-08-10 09:13:53] <info>  sudo ovs-vsctl add-br br_997e1db1
+[2016-08-10 09:13:53] <info>  sudo ovs-vsctl add-br br_d6ed5c14
+[2016-08-10 09:13:53] <info>  网桥创建完成!
+[2016-08-10 09:13:53] <error>  Traceback (most recent call last):
+  File "/home/hitnslab/docker/demo/bin/topo_operate.py", line 81, in TopoCreate
+    user_info["user_id"])
+  File "/home/hitnslab/docker/demo/bin/docker_operate.py", line 94, in DockerCreate
+    network_core_list,file_path=self.ComfileCreate(config,network_core_list,user_id)
+  File "/home/hitnslab/docker/demo/bin/docker_operate.py", line 43, in ComfileCreate
+    "privileged": True
+NameError: global name 'caseins' is not defined
+
+[2016-08-10 09:14:04] <info>  数据初始化完成!
+[2016-08-10 09:14:04] <info>  sudo ovs-vsctl add-br br_bae5dc07_2_1
+[2016-08-10 09:14:04] <info>  sudo ovs-vsctl add-br br_bae5dc07_0_1
+[2016-08-10 09:14:04] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_1
+[2016-08-10 09:14:04] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_4
+[2016-08-10 09:14:04] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_4
+[2016-08-10 09:14:04] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_1
+[2016-08-10 09:14:04] <info>  sudo ovs-vsctl add-br br_ad2fe61a
+[2016-08-10 09:14:04] <info>  sudo ovs-vsctl add-br br_41f30d36
+[2016-08-10 09:14:04] <info>  sudo ovs-vsctl add-br br_55d73584
+[2016-08-10 09:14:04] <info>  sudo ovs-vsctl add-br br_a7c2a23e
+[2016-08-10 09:14:04] <info>  sudo ovs-vsctl add-br br_997e1db1
+[2016-08-10 09:14:04] <info>  sudo ovs-vsctl add-br br_d6ed5c14
+[2016-08-10 09:14:04] <info>  网桥创建完成!
+[2016-08-10 09:14:04] <error>  Traceback (most recent call last):
+  File "/home/hitnslab/docker/demo/bin/topo_operate.py", line 81, in TopoCreate
+    user_info["user_id"])
+  File "/home/hitnslab/docker/demo/bin/docker_operate.py", line 94, in DockerCreate
+    network_core_list,file_path=self.ComfileCreate(config,network_core_list,user_id)
+  File "/home/hitnslab/docker/demo/bin/docker_operate.py", line 61, in ComfileCreate
+    compose_file["services"]["router"]["image"]=network_core_list[count]["image"]
+KeyError: 'router'
+
+[2016-08-10 09:47:54] <info>  数据初始化完成!
+[2016-08-10 09:47:54] <info>  sudo ovs-vsctl add-br br_bae5dc07_2_1
+[2016-08-10 09:47:54] <info>  sudo ovs-vsctl add-br br_bae5dc07_0_1
+[2016-08-10 09:47:54] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_1
+[2016-08-10 09:47:54] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_4
+[2016-08-10 09:47:54] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_4
+[2016-08-10 09:47:54] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_1
+[2016-08-10 09:47:54] <info>  sudo ovs-vsctl add-br br_ad2fe61a
+[2016-08-10 09:47:54] <info>  sudo ovs-vsctl add-br br_41f30d36
+[2016-08-10 09:47:54] <info>  sudo ovs-vsctl add-br br_55d73584
+[2016-08-10 09:47:54] <info>  sudo ovs-vsctl add-br br_a7c2a23e
+[2016-08-10 09:47:54] <info>  sudo ovs-vsctl add-br br_997e1db1
+[2016-08-10 09:47:54] <info>  sudo ovs-vsctl add-br br_d6ed5c14
+[2016-08-10 09:47:54] <info>  网桥创建完成!
+[2016-08-10 09:47:54] <error>  Traceback (most recent call last):
+  File "/home/hitnslab/docker/demo/bin/topo_operate.py", line 81, in TopoCreate
+    user_info["user_id"])
+  File "/home/hitnslab/docker/demo/bin/docker_operate.py", line 95, in DockerCreate
+    network_core_list,file_path=self.ComfileCreate(config,network_core_list,user_id)
+  File "/home/hitnslab/docker/demo/bin/docker_operate.py", line 59, in ComfileCreate
+    compose_file["services"]["router_"+self.caseins]["image"]=network_core_list[count]["image"]
+KeyError: u'router_bae5dc07'
+
+[2016-08-10 09:48:33] <info>  数据初始化完成!
+[2016-08-10 09:48:33] <info>  sudo ovs-vsctl add-br br_bae5dc07_2_1
+[2016-08-10 09:48:33] <info>  sudo ovs-vsctl add-br br_bae5dc07_0_1
+[2016-08-10 09:48:33] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_1
+[2016-08-10 09:48:33] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_4
+[2016-08-10 09:48:33] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_4
+[2016-08-10 09:48:33] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_1
+[2016-08-10 09:48:33] <info>  sudo ovs-vsctl add-br br_ad2fe61a
+[2016-08-10 09:48:33] <info>  sudo ovs-vsctl add-br br_41f30d36
+[2016-08-10 09:48:33] <info>  sudo ovs-vsctl add-br br_55d73584
+[2016-08-10 09:48:33] <info>  sudo ovs-vsctl add-br br_a7c2a23e
+[2016-08-10 09:48:33] <info>  sudo ovs-vsctl add-br br_997e1db1
+[2016-08-10 09:48:33] <info>  sudo ovs-vsctl add-br br_d6ed5c14
+[2016-08-10 09:48:33] <info>  网桥创建完成!
+[2016-08-10 09:48:33] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  scale  ad2fe61a_0=10   55d73584_0=10   d6ed5c14_0=1   router=6   
+[2016-08-10 09:48:33] <info>  docker创建完成!
+[2016-08-10 09:48:33] <info>  virsh dumpxml irc-target-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 09:48:33] <info>  cp /var/lib/libvirt/images/irc-target-windows.img /var/lib/libvirt/images/bf33578c_a7c2a23e_0_1
+[2016-08-10 09:48:33] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 09:48:33] <info>  virsh dumpxml irc-controller-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 09:48:33] <info>  cp /var/lib/libvirt/images/irc-controller-windows.img /var/lib/libvirt/images/bf33578c_997e1db1_0_1
+[2016-08-10 09:48:33] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 09:48:33] <info>  kvm创建完成!
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_router_1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_1 ifconfig eth0 10.0.0.1/24
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 ifconfig eth0 10.0.0.2/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 route add default gw 10.0.0.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_2
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 ifconfig eth0 10.0.0.3/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 route add default gw 10.0.0.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_3
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 ifconfig eth0 10.0.0.4/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 route add default gw 10.0.0.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_4
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 ifconfig eth0 10.0.0.5/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 route add default gw 10.0.0.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_5
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 ifconfig eth0 10.0.0.6/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 route add default gw 10.0.0.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_6
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 ifconfig eth0 10.0.0.7/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 route add default gw 10.0.0.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_7
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 ifconfig eth0 10.0.0.8/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 route add default gw 10.0.0.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_8
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 ifconfig eth0 10.0.0.9/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 route add default gw 10.0.0.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_9
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 ifconfig eth0 10.0.0.10/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 route add default gw 10.0.0.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_10
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 ifconfig eth0 10.0.0.11/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 route add default gw 10.0.0.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_41f30d36 eth0 bf33578c_router_2
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_2 ifconfig eth0 10.0.1.1/24
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_router_3
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_3 ifconfig eth0 10.0.2.1/24
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_1 ifconfig eth0 10.0.2.2/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_1 route add default gw 10.0.2.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_2
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_2 ifconfig eth0 10.0.2.3/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_2 route add default gw 10.0.2.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_3
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_3 ifconfig eth0 10.0.2.4/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_3 route add default gw 10.0.2.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_4
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_4 ifconfig eth0 10.0.2.5/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_4 route add default gw 10.0.2.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_5
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_5 ifconfig eth0 10.0.2.6/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_5 route add default gw 10.0.2.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_6
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_6 ifconfig eth0 10.0.2.7/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_6 route add default gw 10.0.2.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_7
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_7 ifconfig eth0 10.0.2.8/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_7 route add default gw 10.0.2.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_8
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_8 ifconfig eth0 10.0.2.9/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_8 route add default gw 10.0.2.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_9
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_9 ifconfig eth0 10.0.2.10/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_9 route add default gw 10.0.2.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_10
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_10 ifconfig eth0 10.0.2.11/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_55d73584_0_10 route add default gw 10.0.2.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_a7c2a23e eth0 bf33578c_router_4
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_4 ifconfig eth0 10.0.3.1/24
+[2016-08-10 09:48:33] <info>  sudo virt-copy-in -d bf33578c_a7c2a23e_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 09:48:33] <info>  virsh start bf33578c_a7c2a23e_0_1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_997e1db1 eth0 bf33578c_router_5
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_5 ifconfig eth0 10.0.4.1/24
+[2016-08-10 09:48:33] <info>  sudo virt-copy-in -d bf33578c_997e1db1_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 09:48:33] <info>  virsh start bf33578c_997e1db1_0_1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_router_6
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_6 ifconfig eth0 10.0.5.1/24
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_d6ed5c14_0_1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 ifconfig eth0 10.0.5.2/24
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 route add default gw 10.0.5.1
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_55d73584_1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_55d73584_1 ifconfig br_2_1 20.0.0.1/30
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_2_1 20.0.0.2/30
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_ad2fe61a_1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 ifconfig br_0_1 20.0.0.5/30
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_0_1 20.0.0.6/30
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_d6ed5c14_1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_1 20.0.0.9/30
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_5_1 20.0.0.10/30
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_a7c2a23e_1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_4 20.0.0.13/30
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_997e1db1_1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_3_4 20.0.0.14/30
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_d6ed5c14_1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_4 20.0.0.17/30
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_997e1db1_1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_5_4 20.0.0.18/30
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_a7c2a23e_1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_1 20.0.0.21/30
+[2016-08-10 09:48:33] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_3_1 20.0.0.22/30
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.5
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.1
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.9
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.14
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.17
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:48:33] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.18
+[2016-08-10 09:48:33] <info>  网络配置完成!
+[2016-08-10 09:48:33] <info>  添加vnc设置完成!
+[2016-08-10 09:48:33] <info>  数据库存储完成!
+[2016-08-10 09:48:33] <info>  拓扑创建成功!
+[2016-08-10 09:52:23] <info>  数据初始化完成!
+[2016-08-10 09:52:23] <info>  sudo ovs-vsctl add-br br_bae5dc07_2_1
+[2016-08-10 09:52:23] <info>  sudo ovs-vsctl add-br br_bae5dc07_0_1
+[2016-08-10 09:52:23] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_1
+[2016-08-10 09:52:23] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_4
+[2016-08-10 09:52:23] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_4
+[2016-08-10 09:52:23] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_1
+[2016-08-10 09:52:23] <info>  sudo ovs-vsctl add-br br_ad2fe61a
+[2016-08-10 09:52:23] <info>  sudo ovs-vsctl add-br br_41f30d36
+[2016-08-10 09:52:23] <info>  sudo ovs-vsctl add-br br_55d73584
+[2016-08-10 09:52:23] <info>  sudo ovs-vsctl add-br br_a7c2a23e
+[2016-08-10 09:52:23] <info>  sudo ovs-vsctl add-br br_997e1db1
+[2016-08-10 09:52:23] <info>  sudo ovs-vsctl add-br br_d6ed5c14
+[2016-08-10 09:52:23] <info>  网桥创建完成!
+[2016-08-10 09:52:23] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  scale   bf33578c_router_ad2fe61a_1=1ad2fe61a_0=10   bf33578c_router_41f30d36_1=1bf33578c_router_55d73584_1=155d73584_0=10   bf33578c_router_a7c2a23e_1=1bf33578c_router_997e1db1_1=1bf33578c_router_d6ed5c14_1=1d6ed5c14_0=1   
+[2016-08-10 09:52:23] <info>  docker创建完成!
+[2016-08-10 09:52:24] <info>  virsh dumpxml irc-target-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 09:52:24] <info>  cp /var/lib/libvirt/images/irc-target-windows.img /var/lib/libvirt/images/bf33578c_a7c2a23e_0_1
+[2016-08-10 09:52:24] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 09:52:24] <info>  virsh dumpxml irc-controller-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 09:52:24] <info>  cp /var/lib/libvirt/images/irc-controller-windows.img /var/lib/libvirt/images/bf33578c_997e1db1_0_1
+[2016-08-10 09:52:24] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 09:52:24] <info>  kvm创建完成!
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_router_1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_1 ifconfig eth0 10.0.0.1/24
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 ifconfig eth0 10.0.0.2/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 route add default gw 10.0.0.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_2
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 ifconfig eth0 10.0.0.3/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 route add default gw 10.0.0.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_3
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 ifconfig eth0 10.0.0.4/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 route add default gw 10.0.0.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_4
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 ifconfig eth0 10.0.0.5/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 route add default gw 10.0.0.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_5
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 ifconfig eth0 10.0.0.6/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 route add default gw 10.0.0.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_6
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 ifconfig eth0 10.0.0.7/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 route add default gw 10.0.0.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_7
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 ifconfig eth0 10.0.0.8/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 route add default gw 10.0.0.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_8
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 ifconfig eth0 10.0.0.9/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 route add default gw 10.0.0.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_9
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 ifconfig eth0 10.0.0.10/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 route add default gw 10.0.0.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_10
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 ifconfig eth0 10.0.0.11/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 route add default gw 10.0.0.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_41f30d36 eth0 bf33578c_router_2
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_2 ifconfig eth0 10.0.1.1/24
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_router_3
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_3 ifconfig eth0 10.0.2.1/24
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_1 ifconfig eth0 10.0.2.2/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_1 route add default gw 10.0.2.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_2
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_2 ifconfig eth0 10.0.2.3/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_2 route add default gw 10.0.2.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_3
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_3 ifconfig eth0 10.0.2.4/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_3 route add default gw 10.0.2.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_4
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_4 ifconfig eth0 10.0.2.5/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_4 route add default gw 10.0.2.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_5
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_5 ifconfig eth0 10.0.2.6/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_5 route add default gw 10.0.2.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_6
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_6 ifconfig eth0 10.0.2.7/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_6 route add default gw 10.0.2.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_7
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_7 ifconfig eth0 10.0.2.8/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_7 route add default gw 10.0.2.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_8
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_8 ifconfig eth0 10.0.2.9/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_8 route add default gw 10.0.2.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_9
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_9 ifconfig eth0 10.0.2.10/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_9 route add default gw 10.0.2.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_10
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_10 ifconfig eth0 10.0.2.11/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_55d73584_0_10 route add default gw 10.0.2.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_a7c2a23e eth0 bf33578c_router_4
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_4 ifconfig eth0 10.0.3.1/24
+[2016-08-10 09:52:24] <info>  sudo virt-copy-in -d bf33578c_a7c2a23e_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 09:52:24] <info>  virsh start bf33578c_a7c2a23e_0_1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_997e1db1 eth0 bf33578c_router_5
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_5 ifconfig eth0 10.0.4.1/24
+[2016-08-10 09:52:24] <info>  sudo virt-copy-in -d bf33578c_997e1db1_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 09:52:24] <info>  virsh start bf33578c_997e1db1_0_1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_router_6
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_6 ifconfig eth0 10.0.5.1/24
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_d6ed5c14_0_1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 ifconfig eth0 10.0.5.2/24
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 route add default gw 10.0.5.1
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_55d73584_1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_55d73584_1 ifconfig br_2_1 20.0.0.1/30
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_2_1 20.0.0.2/30
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_ad2fe61a_1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 ifconfig br_0_1 20.0.0.5/30
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_0_1 20.0.0.6/30
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_d6ed5c14_1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_1 20.0.0.9/30
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_5_1 20.0.0.10/30
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_a7c2a23e_1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_4 20.0.0.13/30
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_997e1db1_1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_3_4 20.0.0.14/30
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_d6ed5c14_1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_4 20.0.0.17/30
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_997e1db1_1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_5_4 20.0.0.18/30
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_a7c2a23e_1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_1 20.0.0.21/30
+[2016-08-10 09:52:24] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_3_1 20.0.0.22/30
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.5
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.1
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.9
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.14
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.17
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:52:24] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.18
+[2016-08-10 09:52:24] <info>  网络配置完成!
+[2016-08-10 09:52:24] <info>  添加vnc设置完成!
+[2016-08-10 09:52:24] <info>  数据库存储完成!
+[2016-08-10 09:52:24] <info>  拓扑创建成功!
+[2016-08-10 09:52:46] <info>  数据初始化完成!
+[2016-08-10 09:52:46] <info>  sudo ovs-vsctl add-br br_bae5dc07_2_1
+[2016-08-10 09:52:46] <info>  sudo ovs-vsctl add-br br_bae5dc07_0_1
+[2016-08-10 09:52:46] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_1
+[2016-08-10 09:52:46] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_4
+[2016-08-10 09:52:46] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_4
+[2016-08-10 09:52:46] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_1
+[2016-08-10 09:52:46] <info>  sudo ovs-vsctl add-br br_ad2fe61a
+[2016-08-10 09:52:46] <info>  sudo ovs-vsctl add-br br_41f30d36
+[2016-08-10 09:52:46] <info>  sudo ovs-vsctl add-br br_55d73584
+[2016-08-10 09:52:46] <info>  sudo ovs-vsctl add-br br_a7c2a23e
+[2016-08-10 09:52:46] <info>  sudo ovs-vsctl add-br br_997e1db1
+[2016-08-10 09:52:46] <info>  sudo ovs-vsctl add-br br_d6ed5c14
+[2016-08-10 09:52:46] <info>  网桥创建完成!
+[2016-08-10 09:52:46] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  scale   bf33578c_router_ad2fe61a_1=1  ad2fe61a_0=10   bf33578c_router_41f30d36_1=1  bf33578c_router_55d73584_1=1  55d73584_0=10   bf33578c_router_a7c2a23e_1=1  bf33578c_router_997e1db1_1=1  bf33578c_router_d6ed5c14_1=1  d6ed5c14_0=1   
+[2016-08-10 09:52:46] <info>  docker创建完成!
+[2016-08-10 09:52:46] <info>  virsh dumpxml irc-target-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 09:52:46] <info>  cp /var/lib/libvirt/images/irc-target-windows.img /var/lib/libvirt/images/bf33578c_a7c2a23e_0_1
+[2016-08-10 09:52:46] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 09:52:46] <info>  virsh dumpxml irc-controller-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 09:52:46] <info>  cp /var/lib/libvirt/images/irc-controller-windows.img /var/lib/libvirt/images/bf33578c_997e1db1_0_1
+[2016-08-10 09:52:46] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 09:52:46] <info>  kvm创建完成!
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_router_1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_1 ifconfig eth0 10.0.0.1/24
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 ifconfig eth0 10.0.0.2/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 route add default gw 10.0.0.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_2
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 ifconfig eth0 10.0.0.3/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 route add default gw 10.0.0.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_3
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 ifconfig eth0 10.0.0.4/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 route add default gw 10.0.0.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_4
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 ifconfig eth0 10.0.0.5/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 route add default gw 10.0.0.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_5
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 ifconfig eth0 10.0.0.6/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 route add default gw 10.0.0.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_6
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 ifconfig eth0 10.0.0.7/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 route add default gw 10.0.0.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_7
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 ifconfig eth0 10.0.0.8/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 route add default gw 10.0.0.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_8
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 ifconfig eth0 10.0.0.9/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 route add default gw 10.0.0.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_9
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 ifconfig eth0 10.0.0.10/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 route add default gw 10.0.0.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_10
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 ifconfig eth0 10.0.0.11/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 route add default gw 10.0.0.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_41f30d36 eth0 bf33578c_router_2
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_2 ifconfig eth0 10.0.1.1/24
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_router_3
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_3 ifconfig eth0 10.0.2.1/24
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_1 ifconfig eth0 10.0.2.2/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_1 route add default gw 10.0.2.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_2
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_2 ifconfig eth0 10.0.2.3/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_2 route add default gw 10.0.2.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_3
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_3 ifconfig eth0 10.0.2.4/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_3 route add default gw 10.0.2.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_4
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_4 ifconfig eth0 10.0.2.5/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_4 route add default gw 10.0.2.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_5
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_5 ifconfig eth0 10.0.2.6/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_5 route add default gw 10.0.2.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_6
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_6 ifconfig eth0 10.0.2.7/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_6 route add default gw 10.0.2.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_7
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_7 ifconfig eth0 10.0.2.8/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_7 route add default gw 10.0.2.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_8
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_8 ifconfig eth0 10.0.2.9/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_8 route add default gw 10.0.2.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_9
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_9 ifconfig eth0 10.0.2.10/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_9 route add default gw 10.0.2.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_10
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_10 ifconfig eth0 10.0.2.11/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_55d73584_0_10 route add default gw 10.0.2.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_a7c2a23e eth0 bf33578c_router_4
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_4 ifconfig eth0 10.0.3.1/24
+[2016-08-10 09:52:46] <info>  sudo virt-copy-in -d bf33578c_a7c2a23e_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 09:52:46] <info>  virsh start bf33578c_a7c2a23e_0_1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_997e1db1 eth0 bf33578c_router_5
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_5 ifconfig eth0 10.0.4.1/24
+[2016-08-10 09:52:46] <info>  sudo virt-copy-in -d bf33578c_997e1db1_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 09:52:46] <info>  virsh start bf33578c_997e1db1_0_1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_router_6
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_6 ifconfig eth0 10.0.5.1/24
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_d6ed5c14_0_1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 ifconfig eth0 10.0.5.2/24
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 route add default gw 10.0.5.1
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_55d73584_1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_55d73584_1 ifconfig br_2_1 20.0.0.1/30
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_2_1 20.0.0.2/30
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_ad2fe61a_1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 ifconfig br_0_1 20.0.0.5/30
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_0_1 20.0.0.6/30
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_d6ed5c14_1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_1 20.0.0.9/30
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_5_1 20.0.0.10/30
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_a7c2a23e_1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_4 20.0.0.13/30
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_997e1db1_1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_3_4 20.0.0.14/30
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_d6ed5c14_1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_4 20.0.0.17/30
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_997e1db1_1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_5_4 20.0.0.18/30
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_a7c2a23e_1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_1 20.0.0.21/30
+[2016-08-10 09:52:46] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_3_1 20.0.0.22/30
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.5
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.1
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.9
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.14
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.17
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:52:46] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.18
+[2016-08-10 09:52:46] <info>  网络配置完成!
+[2016-08-10 09:52:46] <info>  添加vnc设置完成!
+[2016-08-10 09:52:46] <info>  数据库存储完成!
+[2016-08-10 09:52:46] <info>  拓扑创建成功!
+[2016-08-10 09:54:08] <info>  数据初始化完成!
+[2016-08-10 09:54:08] <info>  sudo ovs-vsctl add-br br_bae5dc07_2_1
+[2016-08-10 09:54:08] <info>  sudo ovs-vsctl add-br br_bae5dc07_0_1
+[2016-08-10 09:54:08] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_1
+[2016-08-10 09:54:08] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_4
+[2016-08-10 09:54:08] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_4
+[2016-08-10 09:54:08] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_1
+[2016-08-10 09:54:08] <info>  sudo ovs-vsctl add-br br_ad2fe61a
+[2016-08-10 09:54:08] <info>  sudo ovs-vsctl add-br br_41f30d36
+[2016-08-10 09:54:08] <info>  sudo ovs-vsctl add-br br_55d73584
+[2016-08-10 09:54:08] <info>  sudo ovs-vsctl add-br br_a7c2a23e
+[2016-08-10 09:54:08] <info>  sudo ovs-vsctl add-br br_997e1db1
+[2016-08-10 09:54:08] <info>  sudo ovs-vsctl add-br br_d6ed5c14
+[2016-08-10 09:54:08] <info>  网桥创建完成!
+[2016-08-10 09:54:08] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  scale   router_ad2fe61a=1  ad2fe61a_0=10   router_41f30d36=1  router_55d73584=1  55d73584_0=10   router_a7c2a23e=1  router_997e1db1=1  router_d6ed5c14=1  d6ed5c14_0=1   
+[2016-08-10 09:54:08] <info>  docker创建完成!
+[2016-08-10 09:54:08] <info>  virsh dumpxml irc-target-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 09:54:08] <info>  cp /var/lib/libvirt/images/irc-target-windows.img /var/lib/libvirt/images/bf33578c_a7c2a23e_0_1
+[2016-08-10 09:54:08] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 09:54:08] <info>  virsh dumpxml irc-controller-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 09:54:08] <info>  cp /var/lib/libvirt/images/irc-controller-windows.img /var/lib/libvirt/images/bf33578c_997e1db1_0_1
+[2016-08-10 09:54:08] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 09:54:08] <info>  kvm创建完成!
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_router_1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_1 ifconfig eth0 10.0.0.1/24
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 ifconfig eth0 10.0.0.2/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 route add default gw 10.0.0.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_2
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 ifconfig eth0 10.0.0.3/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 route add default gw 10.0.0.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_3
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 ifconfig eth0 10.0.0.4/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 route add default gw 10.0.0.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_4
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 ifconfig eth0 10.0.0.5/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 route add default gw 10.0.0.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_5
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 ifconfig eth0 10.0.0.6/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 route add default gw 10.0.0.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_6
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 ifconfig eth0 10.0.0.7/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 route add default gw 10.0.0.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_7
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 ifconfig eth0 10.0.0.8/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 route add default gw 10.0.0.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_8
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 ifconfig eth0 10.0.0.9/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 route add default gw 10.0.0.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_9
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 ifconfig eth0 10.0.0.10/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 route add default gw 10.0.0.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_10
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 ifconfig eth0 10.0.0.11/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 route add default gw 10.0.0.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_41f30d36 eth0 bf33578c_router_2
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_2 ifconfig eth0 10.0.1.1/24
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_router_3
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_3 ifconfig eth0 10.0.2.1/24
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_1 ifconfig eth0 10.0.2.2/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_1 route add default gw 10.0.2.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_2
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_2 ifconfig eth0 10.0.2.3/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_2 route add default gw 10.0.2.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_3
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_3 ifconfig eth0 10.0.2.4/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_3 route add default gw 10.0.2.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_4
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_4 ifconfig eth0 10.0.2.5/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_4 route add default gw 10.0.2.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_5
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_5 ifconfig eth0 10.0.2.6/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_5 route add default gw 10.0.2.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_6
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_6 ifconfig eth0 10.0.2.7/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_6 route add default gw 10.0.2.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_7
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_7 ifconfig eth0 10.0.2.8/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_7 route add default gw 10.0.2.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_8
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_8 ifconfig eth0 10.0.2.9/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_8 route add default gw 10.0.2.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_9
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_9 ifconfig eth0 10.0.2.10/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_9 route add default gw 10.0.2.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_10
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_10 ifconfig eth0 10.0.2.11/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_55d73584_0_10 route add default gw 10.0.2.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_a7c2a23e eth0 bf33578c_router_4
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_4 ifconfig eth0 10.0.3.1/24
+[2016-08-10 09:54:08] <info>  sudo virt-copy-in -d bf33578c_a7c2a23e_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 09:54:08] <info>  virsh start bf33578c_a7c2a23e_0_1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_997e1db1 eth0 bf33578c_router_5
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_5 ifconfig eth0 10.0.4.1/24
+[2016-08-10 09:54:08] <info>  sudo virt-copy-in -d bf33578c_997e1db1_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 09:54:08] <info>  virsh start bf33578c_997e1db1_0_1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_router_6
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_6 ifconfig eth0 10.0.5.1/24
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_d6ed5c14_0_1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 ifconfig eth0 10.0.5.2/24
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 route add default gw 10.0.5.1
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_55d73584_1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_55d73584_1 ifconfig br_2_1 20.0.0.1/30
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_2_1 20.0.0.2/30
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_ad2fe61a_1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 ifconfig br_0_1 20.0.0.5/30
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_0_1 20.0.0.6/30
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_d6ed5c14_1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_1 20.0.0.9/30
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_5_1 20.0.0.10/30
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_a7c2a23e_1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_4 20.0.0.13/30
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_997e1db1_1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_3_4 20.0.0.14/30
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_d6ed5c14_1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_4 20.0.0.17/30
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_997e1db1_1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_5_4 20.0.0.18/30
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_a7c2a23e_1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_1 20.0.0.21/30
+[2016-08-10 09:54:08] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_3_1 20.0.0.22/30
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.5
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.1
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.9
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.14
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.17
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:54:08] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.18
+[2016-08-10 09:54:08] <info>  网络配置完成!
+[2016-08-10 09:54:09] <info>  添加vnc设置完成!
+[2016-08-10 09:54:09] <info>  数据库存储完成!
+[2016-08-10 09:54:09] <info>  拓扑创建成功!
+[2016-08-10 09:56:10] <info>  数据初始化完成!
+[2016-08-10 09:56:10] <info>  sudo ovs-vsctl add-br br_bae5dc07_2_1
+[2016-08-10 09:56:10] <info>  sudo ovs-vsctl add-br br_bae5dc07_0_1
+[2016-08-10 09:56:10] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_1
+[2016-08-10 09:56:10] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_4
+[2016-08-10 09:56:10] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_4
+[2016-08-10 09:56:10] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_1
+[2016-08-10 09:56:10] <info>  sudo ovs-vsctl add-br br_ad2fe61a
+[2016-08-10 09:56:10] <info>  sudo ovs-vsctl add-br br_41f30d36
+[2016-08-10 09:56:10] <info>  sudo ovs-vsctl add-br br_55d73584
+[2016-08-10 09:56:10] <info>  sudo ovs-vsctl add-br br_a7c2a23e
+[2016-08-10 09:56:10] <info>  sudo ovs-vsctl add-br br_997e1db1
+[2016-08-10 09:56:10] <info>  sudo ovs-vsctl add-br br_d6ed5c14
+[2016-08-10 09:56:10] <info>  网桥创建完成!
+[2016-08-10 09:56:10] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  scale   router_ad2fe61a=1  ad2fe61a_0=10   router_41f30d36=1  router_55d73584=1  55d73584_0=10   router_a7c2a23e=1  router_997e1db1=1  router_d6ed5c14=1  d6ed5c14_0=1   
+[2016-08-10 09:56:10] <info>  docker创建完成!
+[2016-08-10 09:56:10] <info>  virsh dumpxml irc-target-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 09:56:10] <info>  cp /var/lib/libvirt/images/irc-target-windows.img /var/lib/libvirt/images/bf33578c_a7c2a23e_0_1
+[2016-08-10 09:56:10] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 09:56:10] <info>  virsh dumpxml irc-controller-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 09:56:10] <info>  cp /var/lib/libvirt/images/irc-controller-windows.img /var/lib/libvirt/images/bf33578c_997e1db1_0_1
+[2016-08-10 09:56:10] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 09:56:10] <info>  kvm创建完成!
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_router_ad2fe61a_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 ifconfig eth0 10.0.0.1/24
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 ifconfig eth0 10.0.0.2/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 route add default gw 10.0.0.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_2
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 ifconfig eth0 10.0.0.3/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 route add default gw 10.0.0.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_3
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 ifconfig eth0 10.0.0.4/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 route add default gw 10.0.0.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_4
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 ifconfig eth0 10.0.0.5/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 route add default gw 10.0.0.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_5
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 ifconfig eth0 10.0.0.6/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 route add default gw 10.0.0.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_6
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 ifconfig eth0 10.0.0.7/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 route add default gw 10.0.0.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_7
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 ifconfig eth0 10.0.0.8/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 route add default gw 10.0.0.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_8
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 ifconfig eth0 10.0.0.9/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 route add default gw 10.0.0.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_9
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 ifconfig eth0 10.0.0.10/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 route add default gw 10.0.0.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_10
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 ifconfig eth0 10.0.0.11/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 route add default gw 10.0.0.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_41f30d36 eth0 bf33578c_router_41f30d36_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig eth0 10.0.1.1/24
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_router_55d73584_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_router_55d73584_1 ifconfig eth0 10.0.2.1/24
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_1 ifconfig eth0 10.0.2.2/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_1 route add default gw 10.0.2.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_2
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_2 ifconfig eth0 10.0.2.3/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_2 route add default gw 10.0.2.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_3
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_3 ifconfig eth0 10.0.2.4/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_3 route add default gw 10.0.2.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_4
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_4 ifconfig eth0 10.0.2.5/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_4 route add default gw 10.0.2.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_5
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_5 ifconfig eth0 10.0.2.6/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_5 route add default gw 10.0.2.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_6
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_6 ifconfig eth0 10.0.2.7/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_6 route add default gw 10.0.2.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_7
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_7 ifconfig eth0 10.0.2.8/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_7 route add default gw 10.0.2.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_8
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_8 ifconfig eth0 10.0.2.9/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_8 route add default gw 10.0.2.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_9
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_9 ifconfig eth0 10.0.2.10/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_9 route add default gw 10.0.2.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_10
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_10 ifconfig eth0 10.0.2.11/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_55d73584_0_10 route add default gw 10.0.2.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_a7c2a23e eth0 bf33578c_router_a7c2a23e_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig eth0 10.0.3.1/24
+[2016-08-10 09:56:10] <info>  sudo virt-copy-in -d bf33578c_a7c2a23e_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 09:56:10] <info>  virsh start bf33578c_a7c2a23e_0_1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_997e1db1 eth0 bf33578c_router_997e1db1_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig eth0 10.0.4.1/24
+[2016-08-10 09:56:10] <info>  sudo virt-copy-in -d bf33578c_997e1db1_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 09:56:10] <info>  virsh start bf33578c_997e1db1_0_1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_router_d6ed5c14_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig eth0 10.0.5.1/24
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_d6ed5c14_0_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 ifconfig eth0 10.0.5.2/24
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 route add default gw 10.0.5.1
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_55d73584_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_router_55d73584_1 ifconfig br_2_1 20.0.0.1/30
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_2_1 20.0.0.2/30
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_ad2fe61a_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 ifconfig br_0_1 20.0.0.5/30
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_0_1 20.0.0.6/30
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_d6ed5c14_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_1 20.0.0.9/30
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_5_1 20.0.0.10/30
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_a7c2a23e_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_4 20.0.0.13/30
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_997e1db1_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_3_4 20.0.0.14/30
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_d6ed5c14_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_4 20.0.0.17/30
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_997e1db1_1
+[2016-08-10 09:56:10] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_5_4 20.0.0.18/30
+[2016-08-10 09:56:10] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_a7c2a23e_1
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_1 20.0.0.21/30
+[2016-08-10 09:56:11] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_41f30d36_1
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_3_1 20.0.0.22/30
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.5
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.1
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.9
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.14
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.17
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 09:56:11] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.18
+[2016-08-10 09:56:11] <info>  网络配置完成!
+[2016-08-10 09:56:11] <info>  添加vnc设置完成!
+[2016-08-10 09:56:11] <info>  数据库存储完成!
+[2016-08-10 09:56:11] <info>  拓扑创建成功!
+[2016-08-10 10:12:27] <info>  数据初始化完成!
+[2016-08-10 10:12:27] <info>  sudo ovs-vsctl add-br br_bae5dc07_2_1
+[2016-08-10 10:12:27] <info>  sudo ovs-vsctl add-br br_bae5dc07_0_1
+[2016-08-10 10:12:27] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_1
+[2016-08-10 10:12:27] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_4
+[2016-08-10 10:12:27] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_4
+[2016-08-10 10:12:27] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_1
+[2016-08-10 10:12:27] <info>  sudo ovs-vsctl add-br br_ad2fe61a
+[2016-08-10 10:12:27] <info>  sudo ovs-vsctl add-br br_41f30d36
+[2016-08-10 10:12:27] <info>  sudo ovs-vsctl add-br br_55d73584
+[2016-08-10 10:12:27] <info>  sudo ovs-vsctl add-br br_a7c2a23e
+[2016-08-10 10:12:27] <info>  sudo ovs-vsctl add-br br_997e1db1
+[2016-08-10 10:12:27] <info>  sudo ovs-vsctl add-br br_d6ed5c14
+[2016-08-10 10:12:27] <info>  网桥创建完成!
+[2016-08-10 10:12:27] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  scale   router_ad2fe61a=1  ad2fe61a_0=10   router_41f30d36=1  router_55d73584=1  55d73584_0=10   router_a7c2a23e=1  router_997e1db1=1  router_d6ed5c14=1  d6ed5c14_0=1   
+[2016-08-10 10:12:27] <info>  docker创建完成!
+[2016-08-10 10:12:27] <info>  virsh dumpxml irc-target-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 10:12:27] <info>  cp /var/lib/libvirt/images/irc-target-windows.img /var/lib/libvirt/images/bf33578c_a7c2a23e_0_1
+[2016-08-10 10:12:27] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 10:12:27] <info>  virsh dumpxml irc-controller-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 10:12:27] <info>  cp /var/lib/libvirt/images/irc-controller-windows.img /var/lib/libvirt/images/bf33578c_997e1db1_0_1
+[2016-08-10 10:12:27] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 10:12:27] <info>  kvm创建完成!
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_router_ad2fe61a_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 ifconfig eth0 10.0.0.1/24
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 ifconfig eth0 10.0.0.2/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 route add default gw 10.0.0.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_2
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 ifconfig eth0 10.0.0.3/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 route add default gw 10.0.0.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_3
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 ifconfig eth0 10.0.0.4/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 route add default gw 10.0.0.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_4
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 ifconfig eth0 10.0.0.5/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 route add default gw 10.0.0.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_5
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 ifconfig eth0 10.0.0.6/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 route add default gw 10.0.0.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_6
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 ifconfig eth0 10.0.0.7/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 route add default gw 10.0.0.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_7
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 ifconfig eth0 10.0.0.8/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 route add default gw 10.0.0.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_8
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 ifconfig eth0 10.0.0.9/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 route add default gw 10.0.0.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_9
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 ifconfig eth0 10.0.0.10/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 route add default gw 10.0.0.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_10
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 ifconfig eth0 10.0.0.11/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 route add default gw 10.0.0.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_41f30d36 eth0 bf33578c_router_41f30d36_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig eth0 10.0.1.1/24
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_router_55d73584_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_55d73584_1 ifconfig eth0 10.0.2.1/24
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_1 ifconfig eth0 10.0.2.2/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_1 route add default gw 10.0.2.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_2
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_2 ifconfig eth0 10.0.2.3/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_2 route add default gw 10.0.2.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_3
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_3 ifconfig eth0 10.0.2.4/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_3 route add default gw 10.0.2.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_4
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_4 ifconfig eth0 10.0.2.5/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_4 route add default gw 10.0.2.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_5
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_5 ifconfig eth0 10.0.2.6/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_5 route add default gw 10.0.2.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_6
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_6 ifconfig eth0 10.0.2.7/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_6 route add default gw 10.0.2.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_7
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_7 ifconfig eth0 10.0.2.8/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_7 route add default gw 10.0.2.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_8
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_8 ifconfig eth0 10.0.2.9/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_8 route add default gw 10.0.2.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_9
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_9 ifconfig eth0 10.0.2.10/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_9 route add default gw 10.0.2.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_10
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_10 ifconfig eth0 10.0.2.11/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_55d73584_0_10 route add default gw 10.0.2.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_a7c2a23e eth0 bf33578c_router_a7c2a23e_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig eth0 10.0.3.1/24
+[2016-08-10 10:12:27] <info>  sudo virt-copy-in -d bf33578c_a7c2a23e_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 10:12:27] <info>  virsh start bf33578c_a7c2a23e_0_1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_997e1db1 eth0 bf33578c_router_997e1db1_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig eth0 10.0.4.1/24
+[2016-08-10 10:12:27] <info>  sudo virt-copy-in -d bf33578c_997e1db1_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 10:12:27] <info>  virsh start bf33578c_997e1db1_0_1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_router_d6ed5c14_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig eth0 10.0.5.1/24
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_d6ed5c14_0_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 ifconfig eth0 10.0.5.2/24
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 route add default gw 10.0.5.1
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_55d73584_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_55d73584_1 ifconfig br_2_1 20.0.0.1/30
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_41f30d36_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_2_1 20.0.0.2/30
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_ad2fe61a_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 ifconfig br_0_1 20.0.0.5/30
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_41f30d36_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_0_1 20.0.0.6/30
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_d6ed5c14_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_1 20.0.0.9/30
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_41f30d36_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_5_1 20.0.0.10/30
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_a7c2a23e_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_4 20.0.0.13/30
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_997e1db1_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_3_4 20.0.0.14/30
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_d6ed5c14_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_4 20.0.0.17/30
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_997e1db1_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_5_4 20.0.0.18/30
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_a7c2a23e_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_1 20.0.0.21/30
+[2016-08-10 10:12:27] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_41f30d36_1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_3_1 20.0.0.22/30
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.5
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.1
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.9
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.14
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.17
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 10:12:27] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.18
+[2016-08-10 10:12:27] <info>  网络配置完成!
+[2016-08-10 10:12:27] <info>  添加vnc设置完成!
+[2016-08-10 10:12:27] <info>  数据库存储完成!
+[2016-08-10 10:12:27] <info>  拓扑创建成功!
+[2016-08-10 10:14:26] <info>  数据初始化完成!
+[2016-08-10 10:14:26] <info>  sudo ovs-vsctl add-br br_bae5dc07_2_1
+[2016-08-10 10:14:26] <info>  sudo ovs-vsctl add-br br_bae5dc07_0_1
+[2016-08-10 10:14:26] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_1
+[2016-08-10 10:14:26] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_4
+[2016-08-10 10:14:26] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_4
+[2016-08-10 10:14:26] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_1
+[2016-08-10 10:14:26] <info>  sudo ovs-vsctl add-br br_ad2fe61a
+[2016-08-10 10:14:27] <info>  sudo ovs-vsctl add-br br_41f30d36
+[2016-08-10 10:14:27] <info>  sudo ovs-vsctl add-br br_55d73584
+[2016-08-10 10:14:27] <info>  sudo ovs-vsctl add-br br_a7c2a23e
+[2016-08-10 10:14:27] <info>  sudo ovs-vsctl add-br br_997e1db1
+[2016-08-10 10:14:27] <info>  sudo ovs-vsctl add-br br_d6ed5c14
+[2016-08-10 10:14:27] <info>  网桥创建完成!
+[2016-08-10 10:14:49] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  scale   router_ad2fe61a=1  ad2fe61a_0=10   router_41f30d36=1  router_55d73584=1  55d73584_0=10   router_a7c2a23e=1  router_997e1db1=1  router_d6ed5c14=1  d6ed5c14_0=1   
+[2016-08-10 10:14:49] <info>  docker创建完成!
+[2016-08-10 10:14:49] <info>  virsh dumpxml irc-target-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 10:14:49] <info>  cp /var/lib/libvirt/images/irc-target-windows.img /var/lib/libvirt/images/bf33578c_a7c2a23e_0_1
+[2016-08-10 10:14:49] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 10:14:49] <info>  virsh dumpxml irc-controller-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 10:14:49] <info>  cp /var/lib/libvirt/images/irc-controller-windows.img /var/lib/libvirt/images/bf33578c_997e1db1_0_1
+[2016-08-10 10:14:49] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 10:14:49] <info>  kvm创建完成!
+[2016-08-10 10:14:49] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_router_ad2fe61a_1
+[2016-08-10 10:14:49] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 ifconfig eth0 10.0.0.1/24
+[2016-08-10 10:14:50] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_1
+[2016-08-10 10:14:50] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 ifconfig eth0 10.0.0.2/24
+[2016-08-10 10:14:50] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 route add default gw 10.0.0.1
+[2016-08-10 10:14:50] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_2
+[2016-08-10 10:14:50] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 ifconfig eth0 10.0.0.3/24
+[2016-08-10 10:14:50] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 route add default gw 10.0.0.1
+[2016-08-10 10:14:51] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_3
+[2016-08-10 10:14:51] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 ifconfig eth0 10.0.0.4/24
+[2016-08-10 10:14:51] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 route add default gw 10.0.0.1
+[2016-08-10 10:14:52] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_4
+[2016-08-10 10:14:52] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 ifconfig eth0 10.0.0.5/24
+[2016-08-10 10:14:52] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 route add default gw 10.0.0.1
+[2016-08-10 10:14:52] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_5
+[2016-08-10 10:14:52] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 ifconfig eth0 10.0.0.6/24
+[2016-08-10 10:14:52] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 route add default gw 10.0.0.1
+[2016-08-10 10:14:53] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_6
+[2016-08-10 10:14:53] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 ifconfig eth0 10.0.0.7/24
+[2016-08-10 10:14:53] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 route add default gw 10.0.0.1
+[2016-08-10 10:14:53] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_7
+[2016-08-10 10:14:53] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 ifconfig eth0 10.0.0.8/24
+[2016-08-10 10:14:53] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 route add default gw 10.0.0.1
+[2016-08-10 10:14:54] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_8
+[2016-08-10 10:14:54] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 ifconfig eth0 10.0.0.9/24
+[2016-08-10 10:14:54] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 route add default gw 10.0.0.1
+[2016-08-10 10:14:55] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_9
+[2016-08-10 10:14:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 ifconfig eth0 10.0.0.10/24
+[2016-08-10 10:14:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 route add default gw 10.0.0.1
+[2016-08-10 10:14:55] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_10
+[2016-08-10 10:14:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 ifconfig eth0 10.0.0.11/24
+[2016-08-10 10:14:55] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 route add default gw 10.0.0.1
+[2016-08-10 10:14:56] <info>  sudo ovs-docker add-port br_41f30d36 eth0 bf33578c_router_41f30d36_1
+[2016-08-10 10:14:56] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig eth0 10.0.1.1/24
+[2016-08-10 10:14:56] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_router_55d73584_1
+[2016-08-10 10:14:56] <info>  sudo docker exec bf33578c_router_55d73584_1 ifconfig eth0 10.0.2.1/24
+[2016-08-10 10:14:56] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_1
+[2016-08-10 10:14:56] <info>  sudo docker exec bf33578c_55d73584_0_1 ifconfig eth0 10.0.2.2/24
+[2016-08-10 10:14:56] <info>  sudo docker exec bf33578c_55d73584_0_1 route add default gw 10.0.2.1
+[2016-08-10 10:14:57] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_2
+[2016-08-10 10:14:57] <info>  sudo docker exec bf33578c_55d73584_0_2 ifconfig eth0 10.0.2.3/24
+[2016-08-10 10:14:57] <info>  sudo docker exec bf33578c_55d73584_0_2 route add default gw 10.0.2.1
+[2016-08-10 10:14:57] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_3
+[2016-08-10 10:14:57] <info>  sudo docker exec bf33578c_55d73584_0_3 ifconfig eth0 10.0.2.4/24
+[2016-08-10 10:14:57] <info>  sudo docker exec bf33578c_55d73584_0_3 route add default gw 10.0.2.1
+[2016-08-10 10:14:58] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_4
+[2016-08-10 10:14:58] <info>  sudo docker exec bf33578c_55d73584_0_4 ifconfig eth0 10.0.2.5/24
+[2016-08-10 10:14:58] <info>  sudo docker exec bf33578c_55d73584_0_4 route add default gw 10.0.2.1
+[2016-08-10 10:14:58] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_5
+[2016-08-10 10:14:58] <info>  sudo docker exec bf33578c_55d73584_0_5 ifconfig eth0 10.0.2.6/24
+[2016-08-10 10:14:58] <info>  sudo docker exec bf33578c_55d73584_0_5 route add default gw 10.0.2.1
+[2016-08-10 10:14:59] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_6
+[2016-08-10 10:14:59] <info>  sudo docker exec bf33578c_55d73584_0_6 ifconfig eth0 10.0.2.7/24
+[2016-08-10 10:14:59] <info>  sudo docker exec bf33578c_55d73584_0_6 route add default gw 10.0.2.1
+[2016-08-10 10:14:59] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_7
+[2016-08-10 10:14:59] <info>  sudo docker exec bf33578c_55d73584_0_7 ifconfig eth0 10.0.2.8/24
+[2016-08-10 10:14:59] <info>  sudo docker exec bf33578c_55d73584_0_7 route add default gw 10.0.2.1
+[2016-08-10 10:15:00] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_8
+[2016-08-10 10:15:00] <info>  sudo docker exec bf33578c_55d73584_0_8 ifconfig eth0 10.0.2.9/24
+[2016-08-10 10:15:00] <info>  sudo docker exec bf33578c_55d73584_0_8 route add default gw 10.0.2.1
+[2016-08-10 10:15:00] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_9
+[2016-08-10 10:15:00] <info>  sudo docker exec bf33578c_55d73584_0_9 ifconfig eth0 10.0.2.10/24
+[2016-08-10 10:15:00] <info>  sudo docker exec bf33578c_55d73584_0_9 route add default gw 10.0.2.1
+[2016-08-10 10:15:01] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_10
+[2016-08-10 10:15:01] <info>  sudo docker exec bf33578c_55d73584_0_10 ifconfig eth0 10.0.2.11/24
+[2016-08-10 10:15:01] <info>  sudo docker exec bf33578c_55d73584_0_10 route add default gw 10.0.2.1
+[2016-08-10 10:15:01] <info>  sudo ovs-docker add-port br_a7c2a23e eth0 bf33578c_router_a7c2a23e_1
+[2016-08-10 10:15:01] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig eth0 10.0.3.1/24
+[2016-08-10 10:15:05] <info>  sudo virt-copy-in -d bf33578c_a7c2a23e_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 10:15:05] <info>  virsh start bf33578c_a7c2a23e_0_1
+[2016-08-10 10:15:05] <info>  sudo ovs-docker add-port br_997e1db1 eth0 bf33578c_router_997e1db1_1
+[2016-08-10 10:15:05] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig eth0 10.0.4.1/24
+[2016-08-10 10:15:09] <info>  sudo virt-copy-in -d bf33578c_997e1db1_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 10:15:09] <info>  virsh start bf33578c_997e1db1_0_1
+[2016-08-10 10:15:09] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_router_d6ed5c14_1
+[2016-08-10 10:15:09] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig eth0 10.0.5.1/24
+[2016-08-10 10:15:10] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_d6ed5c14_0_1
+[2016-08-10 10:15:10] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 ifconfig eth0 10.0.5.2/24
+[2016-08-10 10:15:10] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 route add default gw 10.0.5.1
+[2016-08-10 10:15:10] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_55d73584_1
+[2016-08-10 10:15:10] <info>  sudo docker exec bf33578c_router_55d73584_1 ifconfig br_2_1 20.0.0.1/30
+[2016-08-10 10:15:10] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_41f30d36_1
+[2016-08-10 10:15:10] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_2_1 20.0.0.2/30
+[2016-08-10 10:15:11] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_ad2fe61a_1
+[2016-08-10 10:15:11] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 ifconfig br_0_1 20.0.0.5/30
+[2016-08-10 10:15:11] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_41f30d36_1
+[2016-08-10 10:15:11] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_0_1 20.0.0.6/30
+[2016-08-10 10:15:11] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_d6ed5c14_1
+[2016-08-10 10:15:11] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_1 20.0.0.9/30
+[2016-08-10 10:15:11] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_41f30d36_1
+[2016-08-10 10:15:11] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_5_1 20.0.0.10/30
+[2016-08-10 10:15:12] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_a7c2a23e_1
+[2016-08-10 10:15:12] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_4 20.0.0.13/30
+[2016-08-10 10:15:12] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_997e1db1_1
+[2016-08-10 10:15:12] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_3_4 20.0.0.14/30
+[2016-08-10 10:15:12] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_d6ed5c14_1
+[2016-08-10 10:15:12] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_4 20.0.0.17/30
+[2016-08-10 10:15:12] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_997e1db1_1
+[2016-08-10 10:15:12] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_5_4 20.0.0.18/30
+[2016-08-10 10:15:13] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_a7c2a23e_1
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_1 20.0.0.21/30
+[2016-08-10 10:15:13] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_41f30d36_1
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_3_1 20.0.0.22/30
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.5
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.1
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.9
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.14
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 10:15:13] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 10:15:14] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 10:15:14] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.17
+[2016-08-10 10:15:14] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 10:15:14] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 10:15:14] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 10:15:14] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 10:15:14] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.18
+[2016-08-10 10:15:14] <info>  网络配置完成!
+[2016-08-10 10:15:14] <info>  添加vnc设置完成!
+[2016-08-10 10:15:14] <info>  数据库存储完成!
+[2016-08-10 10:15:14] <info>  拓扑创建成功!
+[2016-08-10 10:16:26] <info>  virsh destroy bf33578c_a7c2a23e_0_1
+[2016-08-10 10:16:26] <info>  virsh undefine bf33578c_a7c2a23e_0_1
+[2016-08-10 10:16:26] <info>  rm -f /var/lib/libvirt/images/bf33578c_a7c2a23e_0_1
+[2016-08-10 10:16:26] <info>  virsh destroy bf33578c_997e1db1_0_1
+[2016-08-10 10:16:26] <info>  virsh undefine bf33578c_997e1db1_0_1
+[2016-08-10 10:16:26] <info>  rm -f /var/lib/libvirt/images/bf33578c_997e1db1_0_1
+[2016-08-10 10:16:26] <info>  删除kvm完成!
+[2016-08-10 10:16:45] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  stop
+[2016-08-10 10:16:45] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  rm  -f
+[2016-08-10 10:16:45] <info>  删除docker完成!
+[2016-08-10 10:16:45] <info>  sudo ovs-vsctl del-br br_bae5dc07_2_1
+[2016-08-10 10:16:45] <info>  sudo ovs-vsctl del-br br_bae5dc07_0_1
+[2016-08-10 10:16:45] <info>  sudo ovs-vsctl del-br br_bae5dc07_5_1
+[2016-08-10 10:16:46] <info>  sudo ovs-vsctl del-br br_bae5dc07_3_4
+[2016-08-10 10:16:46] <info>  sudo ovs-vsctl del-br br_bae5dc07_5_4
+[2016-08-10 10:16:46] <info>  sudo ovs-vsctl del-br br_bae5dc07_3_1
+[2016-08-10 10:16:46] <info>  sudo ovs-vsctl del-br br_ad2fe61a
+[2016-08-10 10:16:46] <info>  sudo ovs-vsctl del-br br_41f30d36
+[2016-08-10 10:16:46] <info>  sudo ovs-vsctl del-br br_55d73584
+[2016-08-10 10:16:46] <info>  sudo ovs-vsctl del-br br_a7c2a23e
+[2016-08-10 10:16:46] <info>  sudo ovs-vsctl del-br br_997e1db1
+[2016-08-10 10:16:46] <info>  sudo ovs-vsctl del-br br_d6ed5c14
+[2016-08-10 10:16:46] <info>  删除ovs网桥完成!
+[2016-08-10 10:16:46] <info>  删除vnc端口完成!
+[2016-08-10 10:16:59] <info>  数据初始化完成!
+[2016-08-10 10:16:59] <info>  sudo ovs-vsctl add-br br_bae5dc07_2_1
+[2016-08-10 10:16:59] <info>  sudo ovs-vsctl add-br br_bae5dc07_0_1
+[2016-08-10 10:16:59] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_1
+[2016-08-10 10:16:59] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_4
+[2016-08-10 10:16:59] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_4
+[2016-08-10 10:16:59] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_1
+[2016-08-10 10:16:59] <info>  sudo ovs-vsctl add-br br_ad2fe61a
+[2016-08-10 10:17:00] <info>  sudo ovs-vsctl add-br br_41f30d36
+[2016-08-10 10:17:00] <info>  sudo ovs-vsctl add-br br_55d73584
+[2016-08-10 10:17:00] <info>  sudo ovs-vsctl add-br br_a7c2a23e
+[2016-08-10 10:17:00] <info>  sudo ovs-vsctl add-br br_997e1db1
+[2016-08-10 10:17:00] <info>  sudo ovs-vsctl add-br br_d6ed5c14
+[2016-08-10 10:17:00] <info>  网桥创建完成!
+[2016-08-10 10:17:00] <error>  Traceback (most recent call last):
+  File "/home/hitnslab/docker/demo/bin/topo_operate.py", line 81, in TopoCreate
+    user_info["user_id"])
+  File "/home/hitnslab/docker/demo/bin/docker_operate.py", line 95, in DockerCreate
+    network_core_list,file_path=self.ComfileCreate(config,network_core_list,user_id)
+  File "/home/hitnslab/docker/demo/bin/docker_operate.py", line 61, in ComfileCreate
+    compose_file["services"]["router_"+self.caseins]["command"]="sleep 365d",
+KeyError: u'router_bae5dc07'
+
+[2016-08-10 10:17:33] <info>  virsh destroy bf33578c_a7c2a23e_0_1
+[2016-08-10 10:17:33] <info>  virsh undefine bf33578c_a7c2a23e_0_1
+[2016-08-10 10:17:33] <info>  rm -f /var/lib/libvirt/images/bf33578c_a7c2a23e_0_1
+[2016-08-10 10:17:33] <info>  virsh destroy bf33578c_997e1db1_0_1
+[2016-08-10 10:17:33] <info>  virsh undefine bf33578c_997e1db1_0_1
+[2016-08-10 10:17:33] <info>  rm -f /var/lib/libvirt/images/bf33578c_997e1db1_0_1
+[2016-08-10 10:17:33] <info>  删除kvm完成!
+[2016-08-10 10:17:33] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  stop
+[2016-08-10 10:17:33] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  rm  -f
+[2016-08-10 10:17:33] <info>  删除docker完成!
+[2016-08-10 10:17:33] <info>  sudo ovs-vsctl del-br br_bae5dc07_2_1
+[2016-08-10 10:17:33] <info>  sudo ovs-vsctl del-br br_bae5dc07_0_1
+[2016-08-10 10:17:33] <info>  sudo ovs-vsctl del-br br_bae5dc07_5_1
+[2016-08-10 10:17:34] <info>  sudo ovs-vsctl del-br br_bae5dc07_3_4
+[2016-08-10 10:17:34] <info>  sudo ovs-vsctl del-br br_bae5dc07_5_4
+[2016-08-10 10:17:34] <info>  sudo ovs-vsctl del-br br_bae5dc07_3_1
+[2016-08-10 10:17:34] <info>  sudo ovs-vsctl del-br br_ad2fe61a
+[2016-08-10 10:17:34] <info>  sudo ovs-vsctl del-br br_41f30d36
+[2016-08-10 10:17:34] <info>  sudo ovs-vsctl del-br br_55d73584
+[2016-08-10 10:17:34] <info>  sudo ovs-vsctl del-br br_a7c2a23e
+[2016-08-10 10:17:34] <info>  sudo ovs-vsctl del-br br_997e1db1
+[2016-08-10 10:17:34] <info>  sudo ovs-vsctl del-br br_d6ed5c14
+[2016-08-10 10:17:34] <info>  删除ovs网桥完成!
+[2016-08-10 10:17:34] <info>  删除vnc端口完成!
+[2016-08-10 10:17:46] <info>  数据初始化完成!
+[2016-08-10 10:17:46] <info>  sudo ovs-vsctl add-br br_bae5dc07_2_1
+[2016-08-10 10:17:46] <info>  sudo ovs-vsctl add-br br_bae5dc07_0_1
+[2016-08-10 10:17:46] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_1
+[2016-08-10 10:17:46] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_4
+[2016-08-10 10:17:46] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_4
+[2016-08-10 10:17:46] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_1
+[2016-08-10 10:17:46] <info>  sudo ovs-vsctl add-br br_ad2fe61a
+[2016-08-10 10:17:46] <info>  sudo ovs-vsctl add-br br_41f30d36
+[2016-08-10 10:17:46] <info>  sudo ovs-vsctl add-br br_55d73584
+[2016-08-10 10:17:46] <info>  sudo ovs-vsctl add-br br_a7c2a23e
+[2016-08-10 10:17:46] <info>  sudo ovs-vsctl add-br br_997e1db1
+[2016-08-10 10:17:46] <info>  sudo ovs-vsctl add-br br_d6ed5c14
+[2016-08-10 10:17:46] <info>  网桥创建完成!
+[2016-08-10 10:17:47] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  scale   router_ad2fe61a=1  ad2fe61a_0=10   router_41f30d36=1  router_55d73584=1  55d73584_0=10   router_a7c2a23e=1  router_997e1db1=1  router_d6ed5c14=1  d6ed5c14_0=1   
+[2016-08-10 10:17:47] <info>  docker创建完成!
+[2016-08-10 10:17:47] <info>  virsh dumpxml irc-target-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 10:17:47] <info>  cp /var/lib/libvirt/images/irc-target-windows.img /var/lib/libvirt/images/bf33578c_a7c2a23e_0_1
+[2016-08-10 10:17:47] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 10:17:47] <info>  virsh dumpxml irc-controller-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 10:17:47] <info>  cp /var/lib/libvirt/images/irc-controller-windows.img /var/lib/libvirt/images/bf33578c_997e1db1_0_1
+[2016-08-10 10:17:47] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 10:17:47] <info>  kvm创建完成!
+[2016-08-10 10:17:47] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_router_ad2fe61a_1
+[2016-08-10 10:17:47] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 ifconfig eth0 10.0.0.1/24
+[2016-08-10 10:17:47] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_1
+[2016-08-10 10:17:47] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 ifconfig eth0 10.0.0.2/24
+[2016-08-10 10:17:47] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 route add default gw 10.0.0.1
+[2016-08-10 10:17:47] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_2
+[2016-08-10 10:17:47] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 ifconfig eth0 10.0.0.3/24
+[2016-08-10 10:17:47] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 route add default gw 10.0.0.1
+[2016-08-10 10:17:47] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_3
+[2016-08-10 10:17:47] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 ifconfig eth0 10.0.0.4/24
+[2016-08-10 10:17:47] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 route add default gw 10.0.0.1
+[2016-08-10 10:17:47] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_4
+[2016-08-10 10:17:47] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 ifconfig eth0 10.0.0.5/24
+[2016-08-10 10:17:47] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 route add default gw 10.0.0.1
+[2016-08-10 10:17:47] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_5
+[2016-08-10 10:17:47] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 ifconfig eth0 10.0.0.6/24
+[2016-08-10 10:17:47] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 route add default gw 10.0.0.1
+[2016-08-10 10:17:48] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_6
+[2016-08-10 10:17:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 ifconfig eth0 10.0.0.7/24
+[2016-08-10 10:17:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 route add default gw 10.0.0.1
+[2016-08-10 10:17:48] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_7
+[2016-08-10 10:17:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 ifconfig eth0 10.0.0.8/24
+[2016-08-10 10:17:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 route add default gw 10.0.0.1
+[2016-08-10 10:17:48] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_8
+[2016-08-10 10:17:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 ifconfig eth0 10.0.0.9/24
+[2016-08-10 10:17:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 route add default gw 10.0.0.1
+[2016-08-10 10:17:48] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_9
+[2016-08-10 10:17:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 ifconfig eth0 10.0.0.10/24
+[2016-08-10 10:17:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 route add default gw 10.0.0.1
+[2016-08-10 10:17:48] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_10
+[2016-08-10 10:17:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 ifconfig eth0 10.0.0.11/24
+[2016-08-10 10:17:48] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 route add default gw 10.0.0.1
+[2016-08-10 10:17:48] <info>  sudo ovs-docker add-port br_41f30d36 eth0 bf33578c_router_41f30d36_1
+[2016-08-10 10:17:48] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig eth0 10.0.1.1/24
+[2016-08-10 10:17:48] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_router_55d73584_1
+[2016-08-10 10:17:48] <info>  sudo docker exec bf33578c_router_55d73584_1 ifconfig eth0 10.0.2.1/24
+[2016-08-10 10:17:48] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_1
+[2016-08-10 10:17:48] <info>  sudo docker exec bf33578c_55d73584_0_1 ifconfig eth0 10.0.2.2/24
+[2016-08-10 10:17:48] <info>  sudo docker exec bf33578c_55d73584_0_1 route add default gw 10.0.2.1
+[2016-08-10 10:17:48] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_2
+[2016-08-10 10:17:48] <info>  sudo docker exec bf33578c_55d73584_0_2 ifconfig eth0 10.0.2.3/24
+[2016-08-10 10:17:48] <info>  sudo docker exec bf33578c_55d73584_0_2 route add default gw 10.0.2.1
+[2016-08-10 10:17:49] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_3
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_55d73584_0_3 ifconfig eth0 10.0.2.4/24
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_55d73584_0_3 route add default gw 10.0.2.1
+[2016-08-10 10:17:49] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_4
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_55d73584_0_4 ifconfig eth0 10.0.2.5/24
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_55d73584_0_4 route add default gw 10.0.2.1
+[2016-08-10 10:17:49] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_5
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_55d73584_0_5 ifconfig eth0 10.0.2.6/24
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_55d73584_0_5 route add default gw 10.0.2.1
+[2016-08-10 10:17:49] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_6
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_55d73584_0_6 ifconfig eth0 10.0.2.7/24
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_55d73584_0_6 route add default gw 10.0.2.1
+[2016-08-10 10:17:49] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_7
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_55d73584_0_7 ifconfig eth0 10.0.2.8/24
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_55d73584_0_7 route add default gw 10.0.2.1
+[2016-08-10 10:17:49] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_8
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_55d73584_0_8 ifconfig eth0 10.0.2.9/24
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_55d73584_0_8 route add default gw 10.0.2.1
+[2016-08-10 10:17:49] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_9
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_55d73584_0_9 ifconfig eth0 10.0.2.10/24
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_55d73584_0_9 route add default gw 10.0.2.1
+[2016-08-10 10:17:49] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_10
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_55d73584_0_10 ifconfig eth0 10.0.2.11/24
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_55d73584_0_10 route add default gw 10.0.2.1
+[2016-08-10 10:17:49] <info>  sudo ovs-docker add-port br_a7c2a23e eth0 bf33578c_router_a7c2a23e_1
+[2016-08-10 10:17:49] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig eth0 10.0.3.1/24
+[2016-08-10 10:17:53] <info>  sudo virt-copy-in -d bf33578c_a7c2a23e_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 10:17:53] <info>  virsh start bf33578c_a7c2a23e_0_1
+[2016-08-10 10:17:53] <info>  sudo ovs-docker add-port br_997e1db1 eth0 bf33578c_router_997e1db1_1
+[2016-08-10 10:17:53] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig eth0 10.0.4.1/24
+[2016-08-10 10:17:58] <info>  sudo virt-copy-in -d bf33578c_997e1db1_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 10:17:58] <info>  virsh start bf33578c_997e1db1_0_1
+[2016-08-10 10:17:59] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_router_d6ed5c14_1
+[2016-08-10 10:17:59] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig eth0 10.0.5.1/24
+[2016-08-10 10:17:59] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_d6ed5c14_0_1
+[2016-08-10 10:17:59] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 ifconfig eth0 10.0.5.2/24
+[2016-08-10 10:17:59] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 route add default gw 10.0.5.1
+[2016-08-10 10:17:59] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_55d73584_1
+[2016-08-10 10:17:59] <info>  sudo docker exec bf33578c_router_55d73584_1 ifconfig br_2_1 20.0.0.1/30
+[2016-08-10 10:17:59] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_41f30d36_1
+[2016-08-10 10:17:59] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_2_1 20.0.0.2/30
+[2016-08-10 10:17:59] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_ad2fe61a_1
+[2016-08-10 10:17:59] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 ifconfig br_0_1 20.0.0.5/30
+[2016-08-10 10:17:59] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_41f30d36_1
+[2016-08-10 10:17:59] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_0_1 20.0.0.6/30
+[2016-08-10 10:17:59] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_d6ed5c14_1
+[2016-08-10 10:17:59] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_1 20.0.0.9/30
+[2016-08-10 10:17:59] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_41f30d36_1
+[2016-08-10 10:17:59] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_5_1 20.0.0.10/30
+[2016-08-10 10:17:59] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_a7c2a23e_1
+[2016-08-10 10:17:59] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_4 20.0.0.13/30
+[2016-08-10 10:17:59] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_997e1db1_1
+[2016-08-10 10:17:59] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_3_4 20.0.0.14/30
+[2016-08-10 10:17:59] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_d6ed5c14_1
+[2016-08-10 10:17:59] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_4 20.0.0.17/30
+[2016-08-10 10:17:59] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_997e1db1_1
+[2016-08-10 10:17:59] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_5_4 20.0.0.18/30
+[2016-08-10 10:17:59] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_a7c2a23e_1
+[2016-08-10 10:17:59] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_1 20.0.0.21/30
+[2016-08-10 10:17:59] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_41f30d36_1
+[2016-08-10 10:17:59] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_3_1 20.0.0.22/30
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.5
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.1
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.9
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.14
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.17
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 10:18:00] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.18
+[2016-08-10 10:18:00] <info>  网络配置完成!
+[2016-08-10 10:18:00] <info>  添加vnc设置完成!
+[2016-08-10 10:18:00] <info>  数据库存储完成!
+[2016-08-10 10:18:00] <info>  拓扑创建成功!
+[2016-08-10 10:19:22] <info>  virsh destroy bf33578c_a7c2a23e_0_1
+[2016-08-10 10:19:22] <info>  virsh undefine bf33578c_a7c2a23e_0_1
+[2016-08-10 10:19:22] <info>  rm -f /var/lib/libvirt/images/bf33578c_a7c2a23e_0_1
+[2016-08-10 10:19:22] <info>  virsh destroy bf33578c_997e1db1_0_1
+[2016-08-10 10:19:22] <info>  virsh undefine bf33578c_997e1db1_0_1
+[2016-08-10 10:19:22] <info>  rm -f /var/lib/libvirt/images/bf33578c_997e1db1_0_1
+[2016-08-10 10:19:22] <info>  删除kvm完成!
+[2016-08-10 10:19:23] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  stop
+[2016-08-10 10:19:23] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  rm  -f
+[2016-08-10 10:19:23] <info>  删除docker完成!
+[2016-08-10 10:19:23] <info>  sudo ovs-vsctl del-br br_bae5dc07_2_1
+[2016-08-10 10:19:23] <info>  sudo ovs-vsctl del-br br_bae5dc07_0_1
+[2016-08-10 10:19:23] <info>  sudo ovs-vsctl del-br br_bae5dc07_5_1
+[2016-08-10 10:19:23] <info>  sudo ovs-vsctl del-br br_bae5dc07_3_4
+[2016-08-10 10:19:23] <info>  sudo ovs-vsctl del-br br_bae5dc07_5_4
+[2016-08-10 10:19:23] <info>  sudo ovs-vsctl del-br br_bae5dc07_3_1
+[2016-08-10 10:19:23] <info>  sudo ovs-vsctl del-br br_ad2fe61a
+[2016-08-10 10:19:23] <info>  sudo ovs-vsctl del-br br_41f30d36
+[2016-08-10 10:19:23] <info>  sudo ovs-vsctl del-br br_55d73584
+[2016-08-10 10:19:23] <info>  sudo ovs-vsctl del-br br_a7c2a23e
+[2016-08-10 10:19:23] <info>  sudo ovs-vsctl del-br br_997e1db1
+[2016-08-10 10:19:23] <info>  sudo ovs-vsctl del-br br_d6ed5c14
+[2016-08-10 10:19:23] <info>  删除ovs网桥完成!
+[2016-08-10 10:19:23] <info>  删除vnc端口完成!
+[2016-08-10 10:20:00] <info>  数据初始化完成!
+[2016-08-10 10:20:00] <info>  sudo ovs-vsctl add-br br_bae5dc07_2_1
+[2016-08-10 10:20:00] <info>  sudo ovs-vsctl add-br br_bae5dc07_0_1
+[2016-08-10 10:20:00] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_1
+[2016-08-10 10:20:00] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_4
+[2016-08-10 10:20:00] <info>  sudo ovs-vsctl add-br br_bae5dc07_5_4
+[2016-08-10 10:20:00] <info>  sudo ovs-vsctl add-br br_bae5dc07_3_1
+[2016-08-10 10:20:00] <info>  sudo ovs-vsctl add-br br_ad2fe61a
+[2016-08-10 10:20:00] <info>  sudo ovs-vsctl add-br br_41f30d36
+[2016-08-10 10:20:00] <info>  sudo ovs-vsctl add-br br_55d73584
+[2016-08-10 10:20:00] <info>  sudo ovs-vsctl add-br br_a7c2a23e
+[2016-08-10 10:20:00] <info>  sudo ovs-vsctl add-br br_997e1db1
+[2016-08-10 10:20:00] <info>  sudo ovs-vsctl add-br br_d6ed5c14
+[2016-08-10 10:20:00] <info>  网桥创建完成!
+[2016-08-10 10:20:20] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  scale   router_ad2fe61a=1  ad2fe61a_0=10   router_41f30d36=1  router_55d73584=1  55d73584_0=10   router_a7c2a23e=1  router_997e1db1=1  router_d6ed5c14=1  d6ed5c14_0=1   
+[2016-08-10 10:20:20] <info>  docker创建完成!
+[2016-08-10 10:20:20] <info>  virsh dumpxml irc-target-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 10:20:20] <info>  cp /var/lib/libvirt/images/irc-target-windows.img /var/lib/libvirt/images/bf33578c_a7c2a23e_0_1
+[2016-08-10 10:20:20] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_a7c2a23e_0_1.xml
+[2016-08-10 10:20:20] <info>  virsh dumpxml irc-controller-windows > /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 10:20:20] <info>  cp /var/lib/libvirt/images/irc-controller-windows.img /var/lib/libvirt/images/bf33578c_997e1db1_0_1
+[2016-08-10 10:20:20] <info>  virsh define /home/hitnslab/docker/demo/user/bf33578c/bf33578c_997e1db1_0_1.xml
+[2016-08-10 10:20:20] <info>  kvm创建完成!
+[2016-08-10 10:20:21] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_router_ad2fe61a_1
+[2016-08-10 10:20:21] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 ifconfig eth0 10.0.0.1/24
+[2016-08-10 10:20:21] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_1
+[2016-08-10 10:20:21] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 ifconfig eth0 10.0.0.2/24
+[2016-08-10 10:20:21] <info>  sudo docker exec bf33578c_ad2fe61a_0_1 route add default gw 10.0.0.1
+[2016-08-10 10:20:22] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_2
+[2016-08-10 10:20:22] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 ifconfig eth0 10.0.0.3/24
+[2016-08-10 10:20:22] <info>  sudo docker exec bf33578c_ad2fe61a_0_2 route add default gw 10.0.0.1
+[2016-08-10 10:20:22] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_3
+[2016-08-10 10:20:22] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 ifconfig eth0 10.0.0.4/24
+[2016-08-10 10:20:22] <info>  sudo docker exec bf33578c_ad2fe61a_0_3 route add default gw 10.0.0.1
+[2016-08-10 10:20:23] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_4
+[2016-08-10 10:20:23] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 ifconfig eth0 10.0.0.5/24
+[2016-08-10 10:20:23] <info>  sudo docker exec bf33578c_ad2fe61a_0_4 route add default gw 10.0.0.1
+[2016-08-10 10:20:23] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_5
+[2016-08-10 10:20:23] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 ifconfig eth0 10.0.0.6/24
+[2016-08-10 10:20:23] <info>  sudo docker exec bf33578c_ad2fe61a_0_5 route add default gw 10.0.0.1
+[2016-08-10 10:20:24] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_6
+[2016-08-10 10:20:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 ifconfig eth0 10.0.0.7/24
+[2016-08-10 10:20:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_6 route add default gw 10.0.0.1
+[2016-08-10 10:20:24] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_7
+[2016-08-10 10:20:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 ifconfig eth0 10.0.0.8/24
+[2016-08-10 10:20:24] <info>  sudo docker exec bf33578c_ad2fe61a_0_7 route add default gw 10.0.0.1
+[2016-08-10 10:20:25] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_8
+[2016-08-10 10:20:25] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 ifconfig eth0 10.0.0.9/24
+[2016-08-10 10:20:25] <info>  sudo docker exec bf33578c_ad2fe61a_0_8 route add default gw 10.0.0.1
+[2016-08-10 10:20:25] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_9
+[2016-08-10 10:20:25] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 ifconfig eth0 10.0.0.10/24
+[2016-08-10 10:20:25] <info>  sudo docker exec bf33578c_ad2fe61a_0_9 route add default gw 10.0.0.1
+[2016-08-10 10:20:26] <info>  sudo ovs-docker add-port br_ad2fe61a eth0 bf33578c_ad2fe61a_0_10
+[2016-08-10 10:20:26] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 ifconfig eth0 10.0.0.11/24
+[2016-08-10 10:20:26] <info>  sudo docker exec bf33578c_ad2fe61a_0_10 route add default gw 10.0.0.1
+[2016-08-10 10:20:26] <info>  sudo ovs-docker add-port br_41f30d36 eth0 bf33578c_router_41f30d36_1
+[2016-08-10 10:20:26] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig eth0 10.0.1.1/24
+[2016-08-10 10:20:27] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_router_55d73584_1
+[2016-08-10 10:20:27] <info>  sudo docker exec bf33578c_router_55d73584_1 ifconfig eth0 10.0.2.1/24
+[2016-08-10 10:20:27] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_1
+[2016-08-10 10:20:27] <info>  sudo docker exec bf33578c_55d73584_0_1 ifconfig eth0 10.0.2.2/24
+[2016-08-10 10:20:27] <info>  sudo docker exec bf33578c_55d73584_0_1 route add default gw 10.0.2.1
+[2016-08-10 10:20:28] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_2
+[2016-08-10 10:20:28] <info>  sudo docker exec bf33578c_55d73584_0_2 ifconfig eth0 10.0.2.3/24
+[2016-08-10 10:20:28] <info>  sudo docker exec bf33578c_55d73584_0_2 route add default gw 10.0.2.1
+[2016-08-10 10:20:28] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_3
+[2016-08-10 10:20:28] <info>  sudo docker exec bf33578c_55d73584_0_3 ifconfig eth0 10.0.2.4/24
+[2016-08-10 10:20:28] <info>  sudo docker exec bf33578c_55d73584_0_3 route add default gw 10.0.2.1
+[2016-08-10 10:20:29] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_4
+[2016-08-10 10:20:29] <info>  sudo docker exec bf33578c_55d73584_0_4 ifconfig eth0 10.0.2.5/24
+[2016-08-10 10:20:29] <info>  sudo docker exec bf33578c_55d73584_0_4 route add default gw 10.0.2.1
+[2016-08-10 10:20:29] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_5
+[2016-08-10 10:20:29] <info>  sudo docker exec bf33578c_55d73584_0_5 ifconfig eth0 10.0.2.6/24
+[2016-08-10 10:20:29] <info>  sudo docker exec bf33578c_55d73584_0_5 route add default gw 10.0.2.1
+[2016-08-10 10:20:30] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_6
+[2016-08-10 10:20:30] <info>  sudo docker exec bf33578c_55d73584_0_6 ifconfig eth0 10.0.2.7/24
+[2016-08-10 10:20:30] <info>  sudo docker exec bf33578c_55d73584_0_6 route add default gw 10.0.2.1
+[2016-08-10 10:20:30] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_7
+[2016-08-10 10:20:30] <info>  sudo docker exec bf33578c_55d73584_0_7 ifconfig eth0 10.0.2.8/24
+[2016-08-10 10:20:30] <info>  sudo docker exec bf33578c_55d73584_0_7 route add default gw 10.0.2.1
+[2016-08-10 10:20:31] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_8
+[2016-08-10 10:20:31] <info>  sudo docker exec bf33578c_55d73584_0_8 ifconfig eth0 10.0.2.9/24
+[2016-08-10 10:20:31] <info>  sudo docker exec bf33578c_55d73584_0_8 route add default gw 10.0.2.1
+[2016-08-10 10:20:31] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_9
+[2016-08-10 10:20:31] <info>  sudo docker exec bf33578c_55d73584_0_9 ifconfig eth0 10.0.2.10/24
+[2016-08-10 10:20:31] <info>  sudo docker exec bf33578c_55d73584_0_9 route add default gw 10.0.2.1
+[2016-08-10 10:20:32] <info>  sudo ovs-docker add-port br_55d73584 eth0 bf33578c_55d73584_0_10
+[2016-08-10 10:20:32] <info>  sudo docker exec bf33578c_55d73584_0_10 ifconfig eth0 10.0.2.11/24
+[2016-08-10 10:20:32] <info>  sudo docker exec bf33578c_55d73584_0_10 route add default gw 10.0.2.1
+[2016-08-10 10:20:32] <info>  sudo ovs-docker add-port br_a7c2a23e eth0 bf33578c_router_a7c2a23e_1
+[2016-08-10 10:20:32] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig eth0 10.0.3.1/24
+[2016-08-10 10:20:36] <info>  sudo virt-copy-in -d bf33578c_a7c2a23e_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 10:20:36] <info>  virsh start bf33578c_a7c2a23e_0_1
+[2016-08-10 10:20:37] <info>  sudo ovs-docker add-port br_997e1db1 eth0 bf33578c_router_997e1db1_1
+[2016-08-10 10:20:37] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig eth0 10.0.4.1/24
+[2016-08-10 10:20:42] <info>  sudo virt-copy-in -d bf33578c_997e1db1_0_1 /home/hitnslab/docker/demo/user/bf33578c/setip.bat /
+[2016-08-10 10:20:42] <info>  virsh start bf33578c_997e1db1_0_1
+[2016-08-10 10:20:42] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_router_d6ed5c14_1
+[2016-08-10 10:20:42] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig eth0 10.0.5.1/24
+[2016-08-10 10:20:43] <info>  sudo ovs-docker add-port br_d6ed5c14 eth0 bf33578c_d6ed5c14_0_1
+[2016-08-10 10:20:43] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 ifconfig eth0 10.0.5.2/24
+[2016-08-10 10:20:43] <info>  sudo docker exec bf33578c_d6ed5c14_0_1 route add default gw 10.0.5.1
+[2016-08-10 10:20:43] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_55d73584_1
+[2016-08-10 10:20:43] <info>  sudo docker exec bf33578c_router_55d73584_1 ifconfig br_2_1 20.0.0.1/30
+[2016-08-10 10:20:44] <info>  sudo ovs-docker add-port br_bae5dc07_2_1 br_2_1 bf33578c_router_41f30d36_1
+[2016-08-10 10:20:44] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_2_1 20.0.0.2/30
+[2016-08-10 10:20:44] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_ad2fe61a_1
+[2016-08-10 10:20:44] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 ifconfig br_0_1 20.0.0.5/30
+[2016-08-10 10:20:45] <info>  sudo ovs-docker add-port br_bae5dc07_0_1 br_0_1 bf33578c_router_41f30d36_1
+[2016-08-10 10:20:45] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_0_1 20.0.0.6/30
+[2016-08-10 10:20:45] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_d6ed5c14_1
+[2016-08-10 10:20:45] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_1 20.0.0.9/30
+[2016-08-10 10:20:46] <info>  sudo ovs-docker add-port br_bae5dc07_5_1 br_5_1 bf33578c_router_41f30d36_1
+[2016-08-10 10:20:46] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_5_1 20.0.0.10/30
+[2016-08-10 10:20:47] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_a7c2a23e_1
+[2016-08-10 10:20:47] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_4 20.0.0.13/30
+[2016-08-10 10:20:47] <info>  sudo ovs-docker add-port br_bae5dc07_3_4 br_3_4 bf33578c_router_997e1db1_1
+[2016-08-10 10:20:47] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_3_4 20.0.0.14/30
+[2016-08-10 10:20:48] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_d6ed5c14_1
+[2016-08-10 10:20:48] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 ifconfig br_5_4 20.0.0.17/30
+[2016-08-10 10:20:49] <info>  sudo ovs-docker add-port br_bae5dc07_5_4 br_5_4 bf33578c_router_997e1db1_1
+[2016-08-10 10:20:49] <info>  sudo docker exec bf33578c_router_997e1db1_1 ifconfig br_5_4 20.0.0.18/30
+[2016-08-10 10:20:49] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_a7c2a23e_1
+[2016-08-10 10:20:49] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 ifconfig br_3_1 20.0.0.21/30
+[2016-08-10 10:20:50] <info>  sudo ovs-docker add-port br_bae5dc07_3_1 br_3_1 bf33578c_router_41f30d36_1
+[2016-08-10 10:20:50] <info>  sudo docker exec bf33578c_router_41f30d36_1 ifconfig br_3_1 20.0.0.22/30
+[2016-08-10 10:20:50] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:20:51] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:20:51] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:20:51] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:20:51] <info>  sudo docker exec bf33578c_router_ad2fe61a_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.6
+[2016-08-10 10:20:52] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.5
+[2016-08-10 10:20:52] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.1
+[2016-08-10 10:20:52] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 10:20:52] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.21
+[2016-08-10 10:20:52] <info>  sudo docker exec bf33578c_router_41f30d36_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.9
+[2016-08-10 10:20:52] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:20:53] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:20:53] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:20:53] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:20:53] <info>  sudo docker exec bf33578c_router_55d73584_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.2
+[2016-08-10 10:20:53] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 10:20:53] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 10:20:54] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 10:20:54] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.14
+[2016-08-10 10:20:54] <info>  sudo docker exec bf33578c_router_a7c2a23e_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.22
+[2016-08-10 10:20:54] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 10:20:54] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 10:20:54] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 10:20:55] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.13
+[2016-08-10 10:20:55] <info>  sudo docker exec bf33578c_router_997e1db1_1 route add -net 10.0.5.0 netmask 255.255.255.0 gw 20.0.0.17
+[2016-08-10 10:20:55] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.0.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 10:20:55] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.1.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 10:20:55] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.2.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 10:20:55] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.3.0 netmask 255.255.255.0 gw 20.0.0.10
+[2016-08-10 10:20:56] <info>  sudo docker exec bf33578c_router_d6ed5c14_1 route add -net 10.0.4.0 netmask 255.255.255.0 gw 20.0.0.18
+[2016-08-10 10:20:56] <info>  网络配置完成!
+[2016-08-10 10:20:56] <info>  添加vnc设置完成!
+[2016-08-10 10:20:56] <info>  数据库存储完成!
+[2016-08-10 10:20:56] <info>  拓扑创建成功!
+[2016-08-10 10:33:00] <info>  virsh destroy bf33578c_a7c2a23e_0_1
+[2016-08-10 10:33:00] <info>  virsh undefine bf33578c_a7c2a23e_0_1
+[2016-08-10 10:33:00] <info>  rm -f /var/lib/libvirt/images/bf33578c_a7c2a23e_0_1
+[2016-08-10 10:33:01] <info>  virsh destroy bf33578c_997e1db1_0_1
+[2016-08-10 10:33:01] <info>  virsh undefine bf33578c_997e1db1_0_1
+[2016-08-10 10:33:01] <info>  rm -f /var/lib/libvirt/images/bf33578c_997e1db1_0_1
+[2016-08-10 10:33:01] <info>  删除kvm完成!
+[2016-08-10 10:33:22] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  stop
+[2016-08-10 10:33:22] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  rm  -f
+[2016-08-10 10:33:22] <info>  删除docker完成!
+[2016-08-10 10:33:23] <info>  sudo ovs-vsctl del-br br_bae5dc07_2_1
+[2016-08-10 10:33:23] <info>  sudo ovs-vsctl del-br br_bae5dc07_0_1
+[2016-08-10 10:33:23] <info>  sudo ovs-vsctl del-br br_bae5dc07_5_1
+[2016-08-10 10:33:23] <info>  sudo ovs-vsctl del-br br_bae5dc07_3_4
+[2016-08-10 10:33:23] <info>  sudo ovs-vsctl del-br br_bae5dc07_5_4
+[2016-08-10 10:33:23] <info>  sudo ovs-vsctl del-br br_bae5dc07_3_1
+[2016-08-10 10:33:23] <info>  sudo ovs-vsctl del-br br_ad2fe61a
+[2016-08-10 10:33:23] <info>  sudo ovs-vsctl del-br br_41f30d36
+[2016-08-10 10:33:23] <info>  sudo ovs-vsctl del-br br_55d73584
+[2016-08-10 10:33:24] <info>  sudo ovs-vsctl del-br br_a7c2a23e
+[2016-08-10 10:33:24] <info>  sudo ovs-vsctl del-br br_997e1db1
+[2016-08-10 10:33:24] <info>  sudo ovs-vsctl del-br br_d6ed5c14
+[2016-08-10 10:33:24] <info>  删除ovs网桥完成!
+[2016-08-10 10:33:24] <info>  删除vnc端口完成!
+[2016-08-10 10:58:21] <info>  virsh destroy bf33578c_a7c2a23e_0_1
+[2016-08-10 10:58:21] <info>  virsh undefine bf33578c_a7c2a23e_0_1
+[2016-08-10 10:58:21] <info>  rm -f /var/lib/libvirt/images/bf33578c_a7c2a23e_0_1
+[2016-08-10 10:58:21] <info>  virsh destroy bf33578c_997e1db1_0_1
+[2016-08-10 10:58:21] <info>  virsh undefine bf33578c_997e1db1_0_1
+[2016-08-10 10:58:21] <info>  rm -f /var/lib/libvirt/images/bf33578c_997e1db1_0_1
+[2016-08-10 10:58:21] <info>  删除kvm完成!
+[2016-08-10 10:58:39] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  stop
+[2016-08-10 10:58:39] <info>  sudo  docker-compose -f /home/hitnslab/docker/demo/user/bf33578c/docker-compose.yaml  rm  -f
+[2016-08-10 10:58:39] <info>  删除docker完成!
+[2016-08-10 10:58:39] <info>  sudo ovs-vsctl del-br br_bae5dc07_2_1
+[2016-08-10 10:58:39] <info>  sudo ovs-vsctl del-br br_bae5dc07_0_1
+[2016-08-10 10:58:39] <info>  sudo ovs-vsctl del-br br_bae5dc07_5_1
+[2016-08-10 10:58:39] <info>  sudo ovs-vsctl del-br br_bae5dc07_3_4
+[2016-08-10 10:58:39] <info>  sudo ovs-vsctl del-br br_bae5dc07_5_4
+[2016-08-10 10:58:39] <info>  sudo ovs-vsctl del-br br_bae5dc07_3_1
+[2016-08-10 10:58:39] <info>  sudo ovs-vsctl del-br br_ad2fe61a
+[2016-08-10 10:58:39] <info>  sudo ovs-vsctl del-br br_41f30d36
+[2016-08-10 10:58:39] <info>  sudo ovs-vsctl del-br br_55d73584
+[2016-08-10 10:58:39] <info>  sudo ovs-vsctl del-br br_a7c2a23e
+[2016-08-10 10:58:39] <info>  sudo ovs-vsctl del-br br_997e1db1
+[2016-08-10 10:58:39] <info>  sudo ovs-vsctl del-br br_d6ed5c14
+[2016-08-10 10:58:39] <info>  删除ovs网桥完成!
+[2016-08-10 10:58:39] <info>  删除vnc端口完成!

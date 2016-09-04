@@ -1,0 +1,6 @@
+http://www.litrin.net/2015/08/20/mesos实战/?utm_source=tuicool
+部署方法
+
+
+http://mesos.apache.org/gettingstarted/
+官网部署(有坑)

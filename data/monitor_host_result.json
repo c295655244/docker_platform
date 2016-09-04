@@ -1,1 +1,1 @@
-{"host_id": ["bf33578c_router_1", "bf33578c_router_2"], "operate": "monitor_host", "data": [{"net_output": 30.0, "stats": "run", "mem": 30.0, "net_input": 30.0, "host_id": "bf33578c_router_1", "cpu": 30.0}, {"net_output": 50.0, "stats": "run", "mem": 50.0, "net_input": 50.0, "host_id": "bf33578c_router_2", "cpu": 78.0}]}
+{"host_id": ["bf33578c_b0b2a443_0_1"], "operate": "moniter_host", "data": [{"net_output": 68.0, "stats": "run", "mem": 22.08, "net_input": 59.0, "host_id": "bf33578c_b0b2a443_0_1", "cpu": 4.03}]}

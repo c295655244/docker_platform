@@ -1,0 +1,60 @@
+服务器：172.26.253.30
+
+用户名：hitnslab
+密码：hitnslab
+
+域名：slave4.wizeye.com.cn:5000
+
+
+使用私有仓库方法：
+
+
+1.复制，加载证书
+ssh登入服务器，将/home/hitnslab/certs/下的
+slave4.wizeye.com.cn.crt复制到本机的
+/usr/local/share/ca-certificates/文件夹下
+
+使用命令：
+sudo update-ca-certificates
+或者
+sudo dpkg-reconfigure ca-certificates
+安装证书
+
+2.修改docker配置
+sudo gedit /etc/default/docker
+
+加入DOCKER_OPTS="$DOCKER_OPTS --insecure-registry=slave4.wizeye.com.cn:5000"
+
+
+保存，重启docker
+sudo service docker restart
+
+
+3.修改host文件：
+sudo gedit /etc/hosts
+加入：
+172.26.253.30  slave4.wizeye.com.cn
+
+
+3.登陆仓库
+sudo  docker login https://slave4.wizeye.com.cn:5000
+
+
+4.查看所有镜像
+浏览器登陆：
+https://172.26.253.30:5000/v2/_catalog查看
+或
+http://172.26.253.30:7999/
+
+
+5.pull镜像
+
+sudo docker pull slave4.wizeye.com.cn:5000/hitnslab/mongo
+
+
+6.参考
+https://docs.docker.com/registry/insecure/
+
+
+
+

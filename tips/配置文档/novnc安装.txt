@@ -1,0 +1,38 @@
+下载novnc
+git clone https://github.com/kanaka/noVNC.git
+
+
+安装websockfy
+./utils/launch.sh
+
+
+建立token到vncport的配置文件：
+建立vnc_port.conf
+内容：(冒号后有空格)
+winxp: 127.0.0.1:2345
+test1: 127.0.0.1:2346
+
+
+运行：
+sudo ../novnc/noVNC/utils/websockify/websockify.py --target-config=vnc_port.conf  --web ../novnc/noVNC/  6080
+
+
+安装nginx
+sudo apt-get install nginx
+
+
+修改配置文件
+ sudo gedit /etc/nginx/sites-available/default 
+
+location / {
+	proxy_pass  http://172.29.155.55:6080/;
+	proxy_redirect off;
+}
+
+重启nginx
+sudo service nginx restart
+
+访问vnc(保持kvm运行)
+http://172.29.155.55/vnc.html?host=172.29.155.55&port=6080&token=winxp
+
+

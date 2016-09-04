@@ -5,8 +5,8 @@ import copy
 
 
 #创建拓扑测试
-def test_create_topo():
-	data=ReadTopoData("create")
+def test_create_topo(op):
+	data=ReadTopoData(op)
 	record={}
 	record["user_id"]=copy.deepcopy(data["data"]["user_info"]["user_id"])
 	data["data"]["user_info"]["user_id"]=record["user_id"][0:8]
@@ -105,9 +105,9 @@ def test_insert():
 	client.close()
 
 #kvm创建测试
-def test_kvm_create():
+def test_kvm_create(op):
 	demo=KvmOperate()
-	data=ReadTopoData("create")
+	data=ReadTopoData(op)
 	conf=ReadDockConf()
 
 	demo.KvmCreate(conf,data["data"]["network_topo"]["network_core_list"],
@@ -170,7 +170,7 @@ def test_vnc():
 	data=ReadTopoData("vnc")
 	demo.Vnc(data)	
 
-
+#获取镜像测试
 def test_get_image():
 	demo=TopoOperate()
 	data=ReadTopoData("get_image")
@@ -179,6 +179,7 @@ def test_get_image():
 
 if __name__ == '__main__':
 	
-	#test_create_topo()
-	test_del_topo()
+	
+	test_create_topo("create")
+	#test_del_topo()
 	#test_get_image()

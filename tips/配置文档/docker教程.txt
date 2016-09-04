@@ -1,0 +1,18 @@
+安装：
+curl -sSL https://get.docker.com/
+sh install.sh
+
+
+http://tuxknight-notes.readthedocs.org/en/latest/index.html
+
+
+修改docker远程访问权限"
+
+sudo gedit /etc/default/docker
+
+添加：
+DOCKER_OPTS="-H=unix:///var/run/docker.sock -H=0.0.0.0:6732"  
+
+
+docker remote api
+https://github.com/docker/docker/blob/master/docs/reference/api/docker_remote_api_v1.22.md

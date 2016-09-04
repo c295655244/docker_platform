@@ -1,0 +1,6 @@
+http://www.ibm.com/developerworks/cn/cloud/library/cl-managingvms/
+http://blog.csdn.net/hjxhjh/article/details/5594527
+
+解决：将插槽连接到 '/var/run/libvirt/libvirt-sock' 失败: 没有那个文件或目录：
+sudo service libvirt-bin restart 
+http://www.cppblog.com/X-LIN/archive/2012/09/12/190347.html

@@ -35,14 +35,7 @@ class DockerOperate():
 		file_yaml=open(file_path,'w')
 		compose_file={
 			"version":"2",
-			"services":{
-				"router":{
-					"image": "ubuntu:14.04",
-					"command": "sleep 365d",
-					"network_mode": "none",
-					"privileged": True
-				}
-			}
+			"services":{}
 		}
 		docker_temp={
 			"image": "ubuntu:14.04",
@@ -50,15 +43,25 @@ class DockerOperate():
 			"cpu_shares": 512,
 			"cpuset": "0,1",
 			"mem_limit": "512m",
+			"expose":["80"],
 			"privileged": True  
 		}
 		for count in xrange(len(network_core_list)):
 			#为router标记id
-			router_id=str(user_id)+"_"+network_core_list[count]["type"]+"_"+str(count+1)
+			ids=network_core_list[count]["id"]
+			router_id=str(user_id)+"_"+"router_"+ids+"_1"
+			compose_file["services"]["router_"+ids]={
+				"network_mode": "none",
+				"privileged": True,
+				
+			}
 			network_core_list[count]["docker_id"]=router_id
 			docker_list=network_core_list[count]["host_type"]
 			cluster_id=network_core_list[count]["id"]
-			compose_file["services"]["router"]["image"]=network_core_list[count]["image"]
+			compose_file["services"]["router_"+ids]["image"]=network_core_list[count]["image"]
+			if "router" in network_core_list[count]["image"]:
+				compose_file["services"]["router_"+ids]["command"]="sleep 365d"
+
 
 			#创建host的composefile
 			for count_d in xrange(len(docker_list)):
@@ -93,7 +96,7 @@ class DockerOperate():
 		#创建complie-file
 		network_core_list,file_path=self.ComfileCreate(config,network_core_list,user_id)
 
-		compose_cmd="sudo  docker-compose -f "+file_path+"  scale  "
+		compose_cmd="sudo  docker-compose -f "+file_path+"  scale   "
 
 		#存储网络核心的种类以及对应数量
 		network_core_dict={}
@@ -101,24 +104,16 @@ class DockerOperate():
 
 		#添加docker主机创建命令
 		for network_core in network_core_list:
+			#添加网络核心创建命令
+			router_create="router_"+network_core["id"]+"=1  "
+			compose_cmd+=router_create
 
-			#按种类统计网络核心数量，例如router=3
-			if not network_core_dict.has_key(network_core["type"]):
-				network_core_dict[network_core["type"]]=1
-			else:
-				network_core_dict[network_core["type"]]+=1
 
 			#统计各docker集群数量
 			for cluster in network_core["host_type"]:
 				if cluster["type"]=="docker":
 					cmd_tmp=cluster["compose_id"]+"="+str(cluster["host_num"])+"   "
 					compose_cmd+=cmd_tmp
-
-
-		#添加网络核心创建命令
-		for (net_name,num) in network_core_dict.items():
-			cmd_tmp=net_name+"="+str(num)+"   "
-			compose_cmd+=cmd_tmp 
 
 
 

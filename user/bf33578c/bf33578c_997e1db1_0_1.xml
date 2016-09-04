@@ -32,7 +32,7 @@
       <address bus="0x00" domain="0x0000" function="0x1" slot="0x01" type="pci" />
     </controller>
     <interface type="bridge">
-      <mac address="52:54:00:35:66:55" />
+      <mac address="52:54:00:59:0b:1f" />
       <source bridge="br_997e1db1" network="default" />
       <model type="virtio" />
       <address bus="0x00" domain="0x0000" function="0x0" slot="0x03" type="pci" />
@@ -45,7 +45,7 @@
     </console>
     <input bus="ps2" type="mouse" />
     <input bus="ps2" type="keyboard" />
-    <graphics autoport="no" listen="0.0.0.0" port="34685" type="vnc">
+    <graphics autoport="no" listen="0.0.0.0" port="34716" type="vnc">
       <listen address="0.0.0.0" type="address" />
     </graphics>
     <video>

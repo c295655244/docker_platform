@@ -1,0 +1,41 @@
+1.mongodb安装
+sudo apt-get install mongodb
+
+mongodb 添加用户（默认无用户）
+http://hae.iteye.com/blog/2183478
+
+
+PyMongo安装
+http://www.2cto.com/database/201409/338199.html
+
+
+
+
+
+2.docker 安装
+见文件夹
+
+
+3.docker-compose 安装
+
+
+4.ovs安装
+sudo apt-get install openvswitch*
+
+
+5.mysql安装
+
+
+6.安装kvm
+sudo  apt-get install qemu-kvm libvirt-bin virt-manager bridge-utils
+
+
+7.libguestfs-tools安装
+update-guestfs-appliance 更新
+
+
+8.novnc安装
+
+
+
+

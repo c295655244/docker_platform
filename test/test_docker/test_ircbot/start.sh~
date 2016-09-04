@@ -10,7 +10,7 @@ count=0
 max=1000000
 while test $count -lt $max
 do
-	if ping -w 1 -c 1 10.0.5.2 | grep "1 packets received" >/dev/null
+	if ping -w 1 -c 1 10.0.1.2 | grep "1 packets received" >/dev/null
 	then
 		let "count = $max"
 	else
@@ -22,6 +22,6 @@ done
 sleep 5s
 
 #start the bot client
-/BotClient 10.0.5.2
+/BotClient 10.0.1.2
 
 sleep 365d

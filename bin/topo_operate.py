@@ -37,10 +37,7 @@ class TopoOperate(BaseOperate):
 	#继承父类成员
 		super(TopoOperate, self).__init__()
 
-
-
 	def TopoCreate(self,data):
-
 		config=self.conf
 		caseins=data["caseins"]
 		#获取创建锁

@@ -1,0 +1,23 @@
+1.mongodb安装
+sudo apt-get install mongodb
+
+mongodb 添加用户（默认无用户）
+http://hae.iteye.com/blog/2183478
+
+
+PyMongo安装
+http://www.2cto.com/database/201409/338199.html
+
+
+
+相关问题：
+
+1.若重启ubuntu后发现mongodb无法启动，一般是关机时没有正常关闭mongo，因此需要删除相关文件：
+首先查看日志：
+cat /var/log/mongodb/mongodb.log
+
+若出现lock问题，删除文件：
+sudo rm /var/lib/mongodb/mongod.lock
+
+重启服务：
+sudo service mongodb restart

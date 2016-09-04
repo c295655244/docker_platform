@@ -1,0 +1,18 @@
+mysql安装
+sudo apt-get install mysql-server mysql-client
+
+mysqldb安装
+sudo pip install mysql-python
+
+
+
+
+相关问题：
+
+1.解决安装mysql-python,报错EnvironmentError: mysql_config not found
+http://www.cnblogs.com/xiazh/archive/2012/12/12/2814289.html
+
+2.添加外网权限（记得有修改文件操作 /etc/mysql/my.cnf ）
+http://www.cnblogs.com/qq78292959/archive/2012/05/17/2505832.html
+http://xzuse.iteye.com/blog/989231
+

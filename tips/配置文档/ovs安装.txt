@@ -1,0 +1,8 @@
+sudo apt-get install openvswitch*
+
+3.解决kvm创建Unable to add port vnet0 to OVS bridge问题
+
+sudo apt-get install apparmor-utils
+sudo aa-complain /etc/apparmor.d/*
+
+参考文献:http://www.spinics.net/linux/fedora/libvirt-users/msg04599.html
